@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+
+        <legend>Modificar Publicidad</legend>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectPublicidad">Selecciona Publicidad:</label>
+            <div class="col-md-5">
+                <select id="selectPublicidad" name="selectPublicidad" class="form-control">
+                    <option value="1">Option one</option>
+                    <option value="2">Option two</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- AUTOCOMPLETAR DATOS SEGUN EL CODIGO DE PUBLICIDAD SELECCIONADO -->
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectAdmin">Selecciona Administrador</label>
+            <div class="col-md-5">
+                <select id="selectAdmin" name="selectAdmin" class="form-control">
+                    <option value="1">Option one</option>
+                    <option value="2">Option two</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="cliente">Selecciona Cliente:</label>
+            <div class="col-md-5">
+                <select id="cliente" name="cliente" class="form-control">
+                    <option value="1">Option one</option>
+                    <option value="2">Option two</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Multiple Checkboxes (inline) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label">Tipo:</label>
+            <div class="col-md-4">
+                <label class="checkbox-inline" for="tipo-0">
+                    <input type="checkbox" name="tipo" id="tipo-0" value="1">
+                    Twitter
+                </label>
+                <label class="checkbox-inline" for="tipo-1">
+                    <input type="checkbox" name="tipo" id="tipo-1" value="2">
+                    Facebook
+                </label>
+                <label class="checkbox-inline" for="tipo-2">
+                    <input type="checkbox" name="tipo" id="tipo-2" value="3">
+                    Email
+                </label>
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="descripcionPublicidad">Descripción</label>
+            <div class="col-md-4">
+                <textarea class="form-control" id="descripcionPublicidad" name="descripcionPublicidad"></textarea>
+            </div>
+        </div>
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="guardar"></label>
+            <div class="col-md-8">
+                <button id="guardar" name="guardar" class="btn btn-success">Guardar</button>
+                <button id="limpiar" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+</body>
+</html>

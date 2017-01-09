@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="modificaIncidencia" class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Modificar Incidencia</legend>
+
+
+        <!-- SELECCIONAR UNA INCIDENCIA EXISTENTE -->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="incidencia">Selecciona Incidencia:</label>
+            <div class="col-md-5">
+                <select id="incidencia" name="incidencia" class="form-control">
+                    <option value="1">Nombre 1</option>
+                    <option value="2">Nombre 2</option>
+                    <option value="3">Nombre 3</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Al seleccionar, los demas campos se autocompletan con los datos correspondientes a la incidencia seleccionada -->
+
+        <!-- Text input-->
+        <div class="control-group">
+            <label class="control-label" for="prioridad">Asunto</label>
+            <div class="controls">
+                <input id="prioridad" name="prioridad" type="text" placeholder="escribe aquí el asunto" class="input-large">
+
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="control-group">
+            <label class="control-label" for="desc_inc">Descripción</label>
+            <div class="controls">
+                <textarea id="desc_inc" name="desc_inc" placeholder="Describa minuciosamente el motivo de la incidencia"></textarea>
+            </div>
+        </div>
+
+        <!-- Multiple Radios (inline) -->
+        <div class="control-group">
+            <label class="control-label" for="prioridad">Prioridad: </label>
+            <div class="controls">
+                <label class="radio inline" for="prioridad-0">
+                    <input type="radio" name="prioridad" id="prioridad-0" value="Grave" checked="checked">
+                    Grave
+                </label>
+                <label class="radio inline" for="prioridad-1">
+                    <input type="radio" name="prioridad" id="prioridad-1" value="Media">
+                    Media
+                </label>
+                <label class="radio inline" for="prioridad-2">
+                    <input type="radio" name="prioridad" id="prioridad-2" value="Leve">
+                    Leve
+                </label>
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="control-group">
+            <label class="control-label" for="administradores">Selecciona Administrador</label>
+            <div class="controls">
+                <select id="administradores" name="administradores" class="input-large">
+                    <option>Admin-01</option>
+                    <option>Admin-02</option>
+                    <option>Admin-03</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Multiple Radios (inline) -->
+        <div class="control-group">
+            <label class="control-label">Estado: </label>
+            <div class="controls">
+                <label class="radio inline" for="estado-0">
+                    <input type="radio" name="estado" id="estado-0" value="Abierta" checked="checked">
+                    Abierta
+                </label>
+                <label class="radio inline" for="estado-1">
+                    <input type="radio" name="estado" id="estado-1" value="Pendiente Revisar">
+                    Pendiente Revisar
+                </label>
+                <label class="radio inline" for="estado-2">
+                    <input type="radio" name="estado" id="estado-2" value="Cerrada">
+                    Cerrada
+                </label>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+</body>
+</html>

@@ -72,7 +72,8 @@ function Cliente(nombreCliente, dniCliente, apellidosCliente, direccionCliente, 
 
 // PUBLICIDAD
 
-function Publicidad(tipoPublicidad, descripcionPublicidad, codigoAdministrador, dniCliente) {
+function Publicidad(codigoPublicidad, tipoPublicidad, descripcionPublicidad, codigoAdministrador, dniCliente) {
+    this.codigoPublicidad = codigoPublicidad;
     this.tipo = tipoPublicidad;
     this.descripcionPublicidad = descripcionPublicidad;
     this.codigoAdministrador = codigoAdministrador;          //Codigo del administrador que ha realizado la publicidad
