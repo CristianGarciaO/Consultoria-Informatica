@@ -1,19 +1,3 @@
-/**
- * Created by Alex on 27/12/2016.
- *
- * OBJETO PRINCIPAL:
- *  CONSULTORIA
- *
-    OBJETOS ALEX:
-        Contrato
-        Cliente
-        Publicidad
-        Administrador
-        Incidencias
-
- */
-
-
 //OBJETO PRINCIPAL -- CONSULTORIA
 
 //Se trata de mantener la información recogida en este objeto, de manera que se pueda acceder
@@ -37,19 +21,101 @@ function Consultoria(){
 
 }
 
+
+/**** METODOS PARA ORDENAR ARRAYS ****/
+/*
+ atributo = nombre del atributo o propiedad entre ' '
+ tipoOrdenacion = Ascendente (1) o Descendente (-1)
+ ingnoreCase = Si se desea ingnorar mayusculas o no (pasar true o false)
+*/
+
+/*! Ordenar elementos del ARRAY por una propiedad numérica. */
+Array.prototype.ordenaArrayInteger = function(atributo,tipoOrdenacion){
+    // Primero se verifica que la propiedad tipoOrdenacion tenga un dato válido.
+    if (tipoOrdenacion!=-1 && tipoOrdenacion!=1) tipoOrdenacion=1;
+    this.sort(function(a,b){
+        // La función de ordenamiento devuelve la comparación entre atributo de a y b.
+        // El resultado será afectado por tipoOrdenacion.
+        return (a[atributo]-b[atributo])*tipoOrdenacion;
+    })
+}
+/*! Ordenar elementos del ARRAY por una propiedad de tipo String */
+Array.prototype.ordenaArrayString=function(atributo,tipoOrdenacion,ignoreCase){
+    if (tipoOrdenacion!=-1 && tipoOrdenacion!=1) tipoOrdenacion=1;
+    this.sort(function(a,b){
+        var stringA=a[atributo],stringB=b[atributo];
+        // Si un valor es null o undefined, se convierte a cadena vacía.
+        if (stringA==null) stringA = '';
+        if (stringB==null) stringB = '';
+        // Si ignoreCase es true, se convierten ambas variables a minúsculas.
+        if (ignoreCase==true){stringA=stringA.toLowerCase();stringB=stringB.toLowerCase()}
+        var res = 0;
+        if (stringA<stringB) res = -1;
+        else if (stringA>stringB) res = 1;
+        return res*tipoOrdenacion;
+    })
+}
+/*! Ordenar elementos de ARRAY  */
+Array.prototype.ordenaArrayDate=function(atributo,tipoOrdenacion){
+    if (tipoOrdenacion!=-1 && tipoOrdenacion!=1) tipoOrdenacion=1;
+    this.sort(function(a,b){
+        var dateA=new Date(a[atributo]),dateB=new Date(b[atributo]);
+        return (dateA-dateB)*tipoOrdenacion;
+    })
+}
+
+
+
+/**** COMPROBAR EXISTENCIA TRABAJADOR ****/
+
+Consultoria.prototype.existeTrabajador = function(iDni){
+    /*Recibe un DNI y devuelve el objeto del trabajador si existe o null si no existe.*/
+    var bEncontrado = false;
+    var oTrabajador = null;
+
+    for(var i=0; i< this.trabajadores && bEncontrado == false; i++){
+        if(this.trabajadores[i].dniTrabajador == iDni){
+            oTrabajador = this.trabajadores[i];
+            bEncontrado = true;
+        }
+    }
+    return oTrabajador;
+}
+
 //************************************************************************************************************
 //OBJETOS ALEX ***********************************************************************************************
 //************************************************************************************************************
 
 // CONTRATO
 
-function Contrato(nombreProyecto, precio, fechaInicio, fechaFin, dniCliente) {
-    this.nombreProyecto = nombreProyecto;
-    this.precio = precio;
+function Contrato(sNombreProyecto, iPrecio, fechaInicio, fechaFin, iDniCliente) {
+    this.nombreProyecto = sNombreProyecto;
+    this.precio = iPrecio;
     this.fechaInicio = fechaInicio;
     this.fechaFin = fechaFin;
-    this.dniCliente = dniCliente;        //Para relacionar cada contrato al cliente que le corresponde
+    this.dniCliente = iDniCliente;        //Para relacionar cada contrato al cliente que le corresponde
 
+}
+
+
+// Metodos Contrato
+// ****************
+
+Consultoria.prototype.añadeContrato= function(oContrato){
+    this.contratos.push(oContrato);
+}
+
+Consultoria.prototype.contratosDeEsteCliente = function(iDniCliente, tipoOrdenacion){
+    /*Devuelve listado de los contratos del cliente pasado por parametro, con la ordenacion que se le indique*/
+
+    var listaContratos = [];
+    for(var i=0; i<this.contratos.length; i++){
+        if(this.contratos[i].codAdmin == iDniCliente){
+            listaContratos.push(this.contratos[i]);
+        }
+    }
+    listaContratos.ordenaArrayString('nombreProyecto', tipoOrdenacion, true);
+    return listaContratos;
 }
 
 
@@ -67,6 +133,14 @@ function Cliente(nombreCliente, dniCliente, apellidosCliente, direccionCliente, 
                                                  // (nombres de los contratos,que son los nombres de los proyectos asociados);
 }
 
+// Metodos Cliente
+// ***************
+
+Consultoria.prototype.añadeCliente= function(oCliente){
+    this.clientes.push(oCliente);
+}
+
+
 
 //---------------------------------------------------------
 
@@ -80,6 +154,13 @@ function Publicidad(codigoPublicidad, tipoPublicidad, descripcionPublicidad, cod
     this.dniCliente = dniCliente;                            //Dni del cliente para el que se ha realizado esta publicidad
 }
 
+
+// Metodos Publicidad
+// ******************
+
+Consultoria.prototype.añadePublicidad = function(oPublicidad){
+    this.publicidades.push(oPublicidad);
+}
 
 //---------------------------------------------------------
 // ADMINISTRADOR
@@ -96,20 +177,53 @@ Administrador.prototype = Object.create(Trabajador.prototype);
 Administrador.prototype.constructor = Administrador;
 
 
+// Metodos Administrador
+// *********************
+
+Consultoria.prototype.añadeAdministrador = function(oAdministrador){
+    this.administradores.push(oAdministrador);
+}
+
+
 //---------------------------------------------------------
 
 // INCIDENCIA
 
-function Incidencia(codigoIncidencia, prioridadIncidencia, asuntoIncidencia, descripcionIncidencia, codAdmin){
-    this.codigoIncidencia = codigoIncidencia;
-    this.prioridadIncidencia = prioridadIncidencia;
-    this.asuntoIncidencia = asuntoIncidencia;
-    this.descripcionIncidencia = descripcionIncidencia;
-    this.codAdmin = codAdmin;                //Codigo del administrador que la abre;
+function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, sDescripcionIncidencia, iCodAdmin){
+    this.numeroIncidencia = iNumeroIncidencia;
+    this.prioridadIncidencia = sPrioridadIncidencia;
+    this.asuntoIncidencia = sAsuntoIncidencia;
+    this.descripcionIncidencia = sDescripcionIncidencia;
+    this.codAdmin = iCodAdmin;                //Codigo del administrador que la abre;
+}
+
+
+// Metodos Incidencia
+// ******************
+
+Consultoria.prototype.añadeIncidencia = function(oIncidencia){
+    this.incidencias.push(oIncidencia);
 }
 
 
 
+Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacion){
+    /*Devuelve listado de las incidencias ordenado por numero de incidencia (segundo paramentro)
+    del administrador que se le pasa como primer parametro*/
+
+    var listaIncidencias = [];
+    for(var i=0; i<this.incidencias.length; i++){
+        if(this.incidencias[i].codAdmin == iCodAdmin){
+            listaIncidencias.push(this.incidencias[i]);
+        }
+    }
+    listaIncidencias.ordenaArrayInteger('numeroIncidencia', tipoOrdenacion);
+    return listaIncidencias;
+}
+
+
+
+//---------------------------------------------------------
 
 
 //************************************************************************************************************
