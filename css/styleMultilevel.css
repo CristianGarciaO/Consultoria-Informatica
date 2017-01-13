@@ -1,6 +1,23 @@
-.clearfix{
-    padding: 25px;
+
+/*** FORMULARIOS ***/
+
+#divFormNuevoCliente, #divFormModificaCliente,
+#divFormNuevaIncidencia, #divFormModificaIncidencia,
+#divFormNuevaPublioidad, #divFormEliminaPublicidad,
+#divFormNuevoContrato, #divFormModificarContrato,
+#divFormNuevoAdministrador, #divFormModificarAdministrador{
+    display:none;
 }
+
+/*** FIN FORMULARIOS ***/
+
+
+.clearfix{
+    padding: 50px;
+}
+
+
+/*** BARRA DE NAVEGACION ***/
 
 .dropdown-submenu {
     position: relative;
@@ -49,3 +66,5 @@
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
+/*** FIN BARRA DE NAVEGACION ***/

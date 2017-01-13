@@ -91,8 +91,8 @@ Consultoria.prototype.existeTrabajador = function(iDni){
 function Contrato(sNombreProyecto, iPrecio, fechaInicio, fechaFin, iDniCliente) {
     this.nombreProyecto = sNombreProyecto;
     this.precio = iPrecio;
-    this.fechaInicio = fechaInicio;
-    this.fechaFin = fechaFin;
+    this.fechaInicio = new Date(fechaInicio).toLocaleDateString();
+    this.fechaFin = new Date(fechaFin).toLocaleDateString();
     this.dniCliente = iDniCliente;        //Para relacionar cada contrato al cliente que le corresponde
 
 }
@@ -123,13 +123,13 @@ Consultoria.prototype.contratosDeEsteCliente = function(iDniCliente, tipoOrdenac
 
 // CLIENTE
 
-function Cliente(nombreCliente, dniCliente, apellidosCliente, direccionCliente, telefonoCliente, contratosCliente) {
-    this.nombreCliente = nombreCliente;
-    this.dniCliente = dniCliente;
-    this.apellidosCliente = apellidosCliente;
-    this.direccionCliente = direccionCliente;
-    this.telefonoCliente = telefonoCliente;
-    this.contratosCliente = contratosCliente;    //Lista de contratos que puede tener el cliente
+function Cliente(sNombreCliente, iDniCliente, sApellidosCliente, sDireccionCliente, iTelefonoCliente, aContratosCliente) {
+    this.nombreCliente = sNombreCliente;
+    this.dniCliente = iDniCliente;
+    this.apellidosCliente = sApellidosCliente;
+    this.direccionCliente = sDireccionCliente;
+    this.telefonoCliente = iTelefonoCliente;
+    this.contratosCliente = aContratosCliente;    //Lista de contratos que puede tener el cliente
                                                  // (nombres de los contratos,que son los nombres de los proyectos asociados);
 }
 
@@ -229,3 +229,26 @@ Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacio
 //************************************************************************************************************
 //OBJETOS CRISTIAN *******************************************************************************************
 //************************************************************************************************************
+
+// TRABAJADOR
+
+function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTelefonoTrabajador,sDireccionTrabajador){
+    this.nombreTrabajador = sNombreTrabajador;
+    this.dniTrabajador = iDniTrabajador;
+    this.apellidosTrabajador = sApellidosTrabajador;
+    this.telefonoTrabajador = iTelefonoTrabajador;
+    this.direccionTrabajador = sDireccionTrabajador;
+}
+
+//---------------------------------------------------------
+
+// PROYECTOS
+
+function Proyecto(sNombreProyecto, aAnalistasProyecto, aTareasProyecto){
+    this.nombreProyecto = sNombreProyecto;
+    this.analistasProyecto = aAnalistasProyecto;
+    this.tareasProyecto = aTareasProyecto;
+}
+
+
+
