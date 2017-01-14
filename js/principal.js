@@ -40,6 +40,7 @@ function ocultarFormularios() {
     document.getElementById('divFormModificarContrato').style.display = 'none';
     document.getElementById('divFormNuevoAdministrador').style.display = 'none';
     document.getElementById('divFormModificarAdministrador').style.display = 'none';
+    document.getElementById('divFormNuevoProyecto').style.display='none';
 }
 
 function nuevoCliente() {
@@ -104,4 +105,11 @@ function modificarAdministrador() {
     ocultarFormularios();
     document.getElementById('divFormModificarAdministrador').style.display = 'block';
     document.getElementById('formuModificarAdmin').reset();
+}
+
+
+function nuevoProyecto() {
+    ocultarFormularios();
+    document.getElementById('divFormNuevoAdministrador').style.display = 'block';
+    document.getElementById('formuNuevoProyecto').reset();
 }
