@@ -49,10 +49,10 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">TRABAJADORES<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trabajadores<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-level">
                             <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">ADMINISTRADORES</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administradores</a>
                                 <ul class="dropdown-menu">
                                     <li><a id="eventNuevoAdmin" href="#">Nuevo Administrador</a></li>
                                     <li><a id="eventModificarAdmin" href="#">Modificar Administrador</a></li>
@@ -61,7 +61,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">ANALISTAS</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analistas</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Nuevo Analista</a></li>
                                     <li><a href="#">Modificar Analista</a></li>
@@ -70,7 +70,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROGRAMADORES</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programadores</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Nuevo Programador</a></li>
                                     <li><a href="#">Modificar Programador</a></li>
@@ -81,7 +81,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">CLIENTE <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a id="eventNuevoCliente" href="#">Nuevo Cliente</a></li>
                             <li><a id="eventModificaCliente" href="#">Modificar Cliente</a></li>
@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONTRATOS <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contratos <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a id="eventNuevoContrato" href="#">Nuevo Contrato</a></li>
                             <li><a id="eventModificarContrato" href="#">Modificar Contrato</a></li>
@@ -98,7 +98,7 @@
                             <li><a href="#">Listar Contrato</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PUBLICIDAD</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publicidad</a>
                                 <ul class="dropdown-menu">
                                     <li><a id="eventNuevaPublicidad" href="#">Asignar Nueva Publicidad</a></li>
                                     <li><a id="eventEliminarPublicidad" href="#">Eliminar Publicidad</a></li>
@@ -116,17 +116,39 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">INCIDENCIAS <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Incidencias <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="eventNuevaIncidencia" href="#">Abrir Incidencia</a></li>
+                        <li><a id="eventModificaIncidencia" href="#">Cerrar Incidencia</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Listar Incidencias <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sin Cerrar</a></li>
+                                <li><a href="#">Todas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a id="eventNuevaIncidencia" href="#">Abrir Incidencia</a></li>
-                            <li><a id="eventModificaIncidencia" href="#">Cerrar Incidencia</a></li>
+                            <li><a id="eventNuevoProyecto" href="#">Nuevo Proyecto</a></li>
+                            <li><a id="eventModificaProyecto" href="#">Modificar Proyecto</a></li>
                             <li class="divider"></li>
-                            <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Listar Incidencias <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Sin Cerrar</a></li>
-                                    <li><a href="#">Todas</a></li>
-                                </ul>
+                            <li><a href="#" id="eventListarProyecto">Listar Proyectos</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tareas <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a id="eventNuevaTarea" href="#">Nueva Tarea</a></li>
+                            <li><a id="eventModificaTarea" href="#">Modificar Tarea</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" id="eventListarTareas">Listar Tareas</a>
+
                             </li>
                         </ul>
                     </li>
@@ -870,15 +892,15 @@
 </div>
 
 
-    <!-- ********** Nuevo Proyecto ********** -->
+    <!-- ********** NUEVO PROYECTO ********** -->
 
-<div class="container" id="divFormNuevoProyecto">
+    <div class="container" id="divFormNuevoProyecto">
 
     <form class="form-horizontal" id="formuNuevoProyecto">
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Proyecto</legend>
+            <legend class="text-center">Nuevo Proyecto</legend>
 
             <!-- Text input-->
             <div class="form-group">
@@ -926,6 +948,171 @@
 
 
 </div>
+
+
+    <!-- ********** MODIFICAR PROYECTO ********** -->
+    <div class="container" id="divFormModificaProyecto">
+
+        <form class="form-horizontal" id="formuModificaProyecto">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Modificar Proyecto</legend>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectProy_ModProy">Selecciona Proyecto</label>
+                    <div class="col-md-4">
+                        <select id="selectProy_ModProy" name="selectProy_ModProy" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Nombre">Nombre</label>
+                    <div class="col-md-4">
+                        <input id="nombreProyecto_modPr" name="Nombre" type="text" placeholder="Máximo 20 carateres" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Tareas">Tareas</label>
+                    <div class="col-md-4">
+                        <select id="TareasProyMod" name="Tareas" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="analistas">Analistas</label>
+                    <div class="col-md-4">
+                        <select id="analistasProyMod" name="analistas" class="form-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="proyecto"></label>
+                    <div class="col-md-4">
+                        <button id="proyectoModificar" name="proyecto" class="btn btn-primary">Modificar Proyecto</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+
+
+    </div>
+
+
+    <!-- ********** NUEVA TAREA ********** -->
+
+    <div class="container" id="divFormNuevaTarea">
+
+        <form class="form-horizontal">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Nueva Tarea</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Tarea">Nombre</label>
+                    <div class="col-md-4">
+                        <input id="Tarea" name="Tarea" type="text" placeholder="Nombre Tarea" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
+                    <div class="col-md-4">
+                        <input id="fechaini" name="fechaini" type="text" placeholder="Fecha inicial" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nombreProyectoSelect">Nombre Proyecto</label>
+                    <div class="col-md-4">
+                        <select id="nombreProyectoSelect" name="nombreProyectoSelect" class="form-control">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="fechafin">Fecha Fin</label>
+                    <div class="col-md-4">
+                        <input id="fechafin" name="fechafin" type="text" placeholder="Fecha final" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Multiple Radios (inline) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Estado</label>
+                    <div class="col-md-4">
+                        <label class="radio-inline" for="radioEstado-0">
+                            <input type="radio" name="radioEstado" id="radioEstado-0" value="Sin Hacer" checked="checked">
+                            Sin Hacer
+                        </label>
+                        <label class="radio-inline" for="radioEstado-1">
+                            <input type="radio" name="radioEstado" id="radioEstado-1" value="Empezado">
+                            Empezado
+                        </label>
+                        <label class="radio-inline" for="radioEstado-2">
+                            <input type="radio" name="radioEstado" id="radioEstado-2" value="Avanzado">
+                            Avanzado
+                        </label>
+                        <label class="radio-inline" for="radioEstado-3">
+                            <input type="radio" name="radioEstado" id="radioEstado-3" value="Casi Terminado">
+                            Casi Terminado
+                        </label>
+                        <label class="radio-inline" for="radioEstado-4">
+                            <input type="radio" name="radioEstado" id="radioEstado-4" value="Finalizado">
+                            Finalizado
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="CrearTarea"></label>
+                    <div class="col-md-4">
+                        <button id="CrearTarea" name="CrearTarea" class="btn btn-primary">Crear Tarea</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+
+
+
+
+    </div>
+
+
+
+
 
 
 </div>

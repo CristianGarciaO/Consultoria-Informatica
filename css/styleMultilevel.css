@@ -5,7 +5,7 @@
 #divFormNuevaIncidencia, #divFormModificaIncidencia,
 #divFormNuevaPublioidad, #divFormEliminaPublicidad,
 #divFormNuevoContrato, #divFormModificarContrato,
-#divFormNuevoAdministrador, #divFormModificarAdministrador{
+#divFormNuevoAdministrador, #divFormModificarAdministrador,#divFormNuevoProyecto,#divFormModificaProyecto,#divFormNuevaTarea{
     display:none;
 }
 

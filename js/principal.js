@@ -25,6 +25,11 @@ document.getElementById('eventNuevoAdmin').addEventListener('click', nuevoAdmini
 
 document.getElementById('eventModificarAdmin').addEventListener('click', modificarAdministrador, false);
 
+document.getElementById('eventNuevoProyecto').addEventListener('click', nuevoProyecto, false);
+
+document.getElementById('eventModificaProyecto').addEventListener('click', modificarProyecto, false);
+
+document.getElementById('eventNuevaTarea').addEventListener('click', nuevaTarea, false);
 
 // FUNCIONES PARA MANEJO DE CAPAS
 
@@ -41,6 +46,8 @@ function ocultarFormularios() {
     document.getElementById('divFormNuevoAdministrador').style.display = 'none';
     document.getElementById('divFormModificarAdministrador').style.display = 'none';
     document.getElementById('divFormNuevoProyecto').style.display='none';
+    document.getElementById('divFormModificaProyecto').style.display='none';
+    document.getElementById('divFormNuevaTarea').style.display='none';
 }
 
 function nuevoCliente() {
@@ -110,6 +117,19 @@ function modificarAdministrador() {
 
 function nuevoProyecto() {
     ocultarFormularios();
-    document.getElementById('divFormNuevoAdministrador').style.display = 'block';
+    document.getElementById('divFormNuevoProyecto').style.display = 'block';
     document.getElementById('formuNuevoProyecto').reset();
+}
+
+
+function modificarProyecto() {
+    ocultarFormularios();
+    document.getElementById('divFormModificaProyecto').style.display = 'block';
+    document.getElementById('formuModificaProyecto').reset();
+}
+
+function nuevaTarea() {
+    ocultarFormularios();
+    document.getElementById('divFormNuevaTarea').style.display = 'block';
+    document.getElementById('formuNuevaTarea').reset();
 }
