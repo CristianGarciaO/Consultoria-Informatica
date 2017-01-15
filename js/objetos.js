@@ -240,6 +240,13 @@ function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTe
     this.direccionTrabajador = sDireccionTrabajador;
 }
 
+// Metodos Trabajador
+// ******************
+
+Consultoria.prototype.añadeTrabajador = function(oTrabajador){
+    this.trabajadores.push(oTrabajador);
+}
+
 //---------------------------------------------------------
 
 // PROYECTOS

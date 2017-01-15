@@ -11,11 +11,18 @@
     display:none;
 }
 
+/*campos con errores*/
+.error {
+    background-color:yellow;
+}
 /*** FIN FORMULARIOS ***/
 
 
+
+
+
 .clearfix{
-    padding: 50px;
+    padding: 32px;
 }
 
 
