@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -1022,7 +1022,7 @@
 
     <div class="container" id="divFormNuevaTarea">
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="formuNuevaTarea">
             <fieldset>
 
                 <!-- Form Name -->
@@ -1041,7 +1041,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
                     <div class="col-md-4">
-                        <input id="fechaini" name="fechaini" type="text" placeholder="Fecha inicial" class="form-control input-md" required="">
+                        <input id="fechaini" name="fechaini" type="date" placeholder="Fecha inicial" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -1061,7 +1061,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechafin">Fecha Fin</label>
                     <div class="col-md-4">
-                        <input id="fechafin" name="fechafin" type="text" placeholder="Fecha final" class="form-control input-md" required="">
+                        <input id="fechafin" name="fechafin" type="date" placeholder="Fecha final" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -1069,9 +1069,9 @@
                 <!-- Multiple Radios (inline) -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Estado</label>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <label class="radio-inline" for="radioEstado-0">
-                            <input type="radio" name="radioEstado" id="radioEstado-0" value="Sin Hacer" checked="checked">
+                           <input type="radio" name="radioEstado" id="radioEstado-0" value="Sin Hacer" checked="checked">
                             Sin Hacer
                         </label>
                         <label class="radio-inline" for="radioEstado-1">
@@ -1110,7 +1110,112 @@
 
     </div>
 
+    <!-- ********** MODIFICAR TAREA ********** -->
 
+    <div class="container" id="divFormModificaTarea">
+
+        <form class="form-horizontal" id="formuModificaTarea">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Modificar Tarea</legend>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectTarea_ModTarea">Selecciona Tarea:</label>
+                    <div class="col-md-5">
+                        <select id="selectTarea_ModTarea" name="selectTarea" class="form-control">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="Tarea">Nombre</label>
+                    <div class="col-md-4">
+                        <input id="nombreTareaMod" name="Tarea" type="text" placeholder="Nombre Tarea" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
+                    <div class="col-md-4">
+                        <input id="fechainiMod" name="fechaini" type="date" placeholder="Fecha inicial" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nombreProyectoSelect">Nombre Proyecto</label>
+                    <div class="col-md-4">
+                        <select id="nombreProyectoSelectMod" name="nombreProyectoSelect" class="form-control">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="fechafin">Fecha Fin</label>
+                    <div class="col-md-4">
+                        <input id="fechafinMod" name="fechafin" type="date" placeholder="Fecha final" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Multiple Radios (inline) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Estado</label>
+                    <div class="col-md-5">
+                        <label class="radio-inline" for="radioEstadoMod-0">
+                            <input type="radio" name="radioEstado" id="radioEstadoMod-0" value="Sin Hacer" checked="checked">
+                            Sin Hacer
+                        </label>
+                        <label class="radio-inline" for="radioEstadoMod-1">
+                            <input type="radio" name="radioEstado" id="radioEstadoMod-1" value="Empezado">
+                            Empezado
+                        </label>
+                        <label class="radio-inline" for="radioEstadoMod-2">
+                            <input type="radio" name="radioEstado" id="radioEstadoMod-2" value="Avanzado">
+                            Avanzado
+                        </label>
+                        <label class="radio-inline" for="radioEstadoMod-3">
+                            <input type="radio" name="radioEstado" id="radioEstadoMod-3" value="Casi Terminado">
+                            Casi Terminado
+                        </label>
+                        <label class="radio-inline" for="radioEstadoMod-4">
+                            <input type="radio" name="radioEstado" id="radioEstadoMod-4" value="Finalizado">
+                            Finalizado
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="CrearTarea"></label>
+                    <div class="col-md-4">
+                        <button id="modificarTarea" name="ModificaTarea" class="btn btn-primary">Modifica Tarea</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+
+
+
+
+    </div>
 
 
 
@@ -1135,6 +1240,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 </body>
 </html>
