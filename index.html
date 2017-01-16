@@ -10,8 +10,8 @@
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
 
     <link rel="stylesheet" href="css/styleMultilevel.css">
 
@@ -295,7 +295,7 @@
 
     <div class="container" id="divFormNuevaIncidencia">
 
-        <form name="formuNuevaIncidencia" class="form-horizontal">
+        <form id="formuNuevaIncidencia" class="form-horizontal">
 
             <legend class="text-center">Nueva Incidencia</legend>
 
@@ -344,9 +344,7 @@
                 <label class="control-label col-md-4" for="administradores_NueInc">Selecciona Administrador</label>
                 <div class="controls col-md-5">
                     <select id="administradores_NueInc" name="administradores" class=" form-control input-large">
-                        <option> </option>
-                        <option> </option>
-                        <option> </option>
+                        <!--Aqui se crean los options dinamicamente-->
                     </select>
                 </div>
             </div>
@@ -390,7 +388,7 @@
 
     <div class="container" id="divFormModificaIncidencia">
 
-        <form name="formuModificaIncidencia" class="form-horizontal">
+        <form id="formuModificaIncidencia" class="form-horizontal">
 
             <legend class="text-center">Modificar Incidencia</legend>
 
@@ -400,9 +398,7 @@
                 <label class="col-md-4 control-label" for="incidencia_ModInc">Selecciona Incidencia:</label>
                 <div class="col-md-5">
                     <select id="incidencia_ModInc" name="incidencia" class="form-control">
-                        <option value="1">Nombre 1</option>
-                        <option value="2">Nombre 2</option>
-                        <option value="3">Nombre 3</option>
+                        <!--Aqui las distintas incidencias existentes por cargarComboIncidencias()-->
                     </select>
                 </div>
             </div>
@@ -448,13 +444,11 @@
 
             <!-- Select Basic -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="administradores_ModInc">Selecciona Administrador</label>
+                <label class="col-md-4 control-label" for="administradores_ModInc">Administrador</label>
                 <div class="col-md-5 controls">
-                    <select id="administradores_ModInc" name="administradores" class="form-control input-large">
-                        <option>Admin-01</option>
-                        <option>Admin-02</option>
-                        <option>Admin-03</option>
-                    </select>
+                    <input id="administradores_ModInc" name="administradores" class="form-control input-large" readonly="readonly">
+                      <!--Aqui el admin que abrio la incidencia-->
+                    </input>
                 </div>
             </div>
 
@@ -824,8 +818,7 @@
                 <label class="col-md-4 control-label" for="selectAdmin_ModAdm">Selecciona Administrador:</label>
                 <div class="col-md-5">
                     <select id="selectAdmin_ModAdm" name="selectAdmin" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
+
                     </select>
                 </div>
             </div>
