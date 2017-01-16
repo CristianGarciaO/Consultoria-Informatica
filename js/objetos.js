@@ -77,13 +77,9 @@ Consultoria.prototype.existeTrabajador = function(iDni){
             bEncontrado = true;
         }
     }
-<<<<<<< HEAD
     return bEncontrado;
-}
-=======
-    return oTrabajador;
 };
->>>>>>> origin/master
+
 
 /**** COMPROBAR EXISTENCIA CLIENTE ****/
 
@@ -97,7 +93,7 @@ Consultoria.prototype.existeCliente = function(iDni){
         }
     }
     return bEncontrado;
-}
+};
 
 
 
@@ -157,13 +153,10 @@ function Cliente(sNombreCliente, iDniCliente, sApellidosCliente, sDireccionClien
 
 Consultoria.prototype.anadeCliente= function(oCliente){
     this.clientes.push(oCliente);
-<<<<<<< HEAD
     var sMensaje = "Guardado";
     return sMensaje;
-}
-=======
 };
->>>>>>> origin/master
+
 
 
 
@@ -207,13 +200,10 @@ Administrador.prototype.constructor = Administrador;
 
 Consultoria.prototype.anadeAdministrador = function(oAdministrador){
     this.administradores.push(oAdministrador);
-<<<<<<< HEAD
     var sMensaje = "Guardado";
     return sMensaje;
-}
-=======
 };
->>>>>>> origin/master
+
 
 
 //---------------------------------------------------------
