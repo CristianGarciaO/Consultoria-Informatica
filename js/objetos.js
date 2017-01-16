@@ -69,18 +69,33 @@ Array.prototype.ordenaArrayDate=function(atributo,tipoOrdenacion){
 /**** COMPROBAR EXISTENCIA TRABAJADOR ****/
 
 Consultoria.prototype.existeTrabajador = function(iDni){
-    /*Recibe un DNI y devuelve el objeto del trabajador si existe o null si no existe.*/
+    /*Recibe un DNI y devuelve TRUE si existe o FALSE si no existe.*/
     var bEncontrado = false;
-    var oTrabajador = null;
 
     for(var i=0; i< this.trabajadores && bEncontrado == false; i++){
         if(this.trabajadores[i].dniTrabajador == iDni){
-            oTrabajador = this.trabajadores[i];
             bEncontrado = true;
         }
     }
-    return oTrabajador;
+    return bEncontrado;
 };
+
+
+/**** COMPROBAR EXISTENCIA CLIENTE ****/
+
+Consultoria.prototype.existeCliente = function(iDni){
+    /*Recibe un DNI y devuelve TRUE si existe o FALSE si no existe.*/
+    var bEncontrado = false;
+
+    for(var i=0; i< this.clientes && bEncontrado == false; i++){
+        if(this.clientes[i].dniCliente == iDni){
+            bEncontrado = true;
+        }
+    }
+    return bEncontrado;
+};
+
+
 
 //************************************************************************************************************
 //OBJETOS ALEX ***********************************************************************************************
@@ -101,7 +116,7 @@ function Contrato(sNombreProyecto, iPrecio, fechaInicio, fechaFin, iDniCliente) 
 // Metodos Contrato
 // ****************
 
-Consultoria.prototype.añadeContrato= function(oContrato){
+Consultoria.prototype.anadeContrato= function(oContrato){
     this.contratos.push(oContrato);
 };
 
@@ -136,9 +151,12 @@ function Cliente(sNombreCliente, iDniCliente, sApellidosCliente, sDireccionClien
 // Metodos Cliente
 // ***************
 
-Consultoria.prototype.añadeCliente= function(oCliente){
+Consultoria.prototype.anadeCliente= function(oCliente){
     this.clientes.push(oCliente);
+    var sMensaje = "Guardado";
+    return sMensaje;
 };
+
 
 
 
@@ -158,14 +176,14 @@ function Publicidad(codigoPublicidad, tipoPublicidad, descripcionPublicidad, cod
 // Metodos Publicidad
 // ******************
 
-Consultoria.prototype.añadePublicidad = function(oPublicidad){
+Consultoria.prototype.anadePublicidad = function(oPublicidad){
     this.publicidades.push(oPublicidad);
 };
 
 //---------------------------------------------------------
 // ADMINISTRADOR
 
-function Administrador(codigoAdmin) {
+function Administrador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, codigoAdmin) {
     Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
     this.codigoAdmin = codigoAdmin;       //Codigo de 2 cifras para distinguir a los trabajadores administradores.
 
@@ -180,9 +198,12 @@ Administrador.prototype.constructor = Administrador;
 // Metodos Administrador
 // *********************
 
-Consultoria.prototype.añadeAdministrador = function(oAdministrador){
+Consultoria.prototype.anadeAdministrador = function(oAdministrador){
     this.administradores.push(oAdministrador);
+    var sMensaje = "Guardado";
+    return sMensaje;
 };
+
 
 
 //---------------------------------------------------------
@@ -201,7 +222,7 @@ function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, 
 // Metodos Incidencia
 // ******************
 
-Consultoria.prototype.añadeIncidencia = function(oIncidencia){
+Consultoria.prototype.anadeIncidencia = function(oIncidencia){
     this.incidencias.push(oIncidencia);
 };
 
@@ -243,7 +264,7 @@ function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTe
 // Metodos Trabajador
 // ******************
 
-Consultoria.prototype.añadeTrabajador = function(oTrabajador){
+Consultoria.prototype.anadeTrabajador = function(oTrabajador){
     this.trabajadores.push(oTrabajador);
 };
 

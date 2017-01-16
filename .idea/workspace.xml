@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="693988c8-8d98-4e25-bfd3-af08fe27fab9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/styleMultilevel.css" afterPath="$PROJECT_DIR$/css/styleMultilevel.css" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/principal.js" afterPath="$PROJECT_DIR$/js/principal.js" />
+=======
+>>>>>>> origin/master
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/objetos.js" afterPath="$PROJECT_DIR$/js/objetos.js" />
     </list>
     <ignored path="Consultoria-Inform-tica.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,17 +28,36 @@
     <favorites_list name="Consultoria-Inform-tica" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+<<<<<<< HEAD
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="objetos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/objetos.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="212" column="25" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="1243" column="36" selection-start-line="1243" selection-start-column="36" selection-end-line="1243" selection-end-column="36" />
+            <state relative-caret-position="1484">
+              <caret line="810" column="61" selection-start-line="810" selection-start-column="61" selection-end-line="810" selection-end-column="61" />
+=======
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-528">
+              <caret line="493" column="54" selection-start-line="493" selection-start-column="54" selection-end-line="493" selection-end-column="54" />
+>>>>>>> origin/master
               <folding>
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#5;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#6;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -46,6 +67,7 @@
                 <element signature="n#div#10;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#11;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#12;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#13;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -54,9 +76,15 @@
       <file leaf-file-name="principal.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/principal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="148" column="49" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
+<<<<<<< HEAD
+            <state relative-caret-position="3791">
+              <caret line="541" column="1" selection-start-line="541" selection-start-column="1" selection-end-line="541" selection-end-column="1" />
+=======
+            <state relative-caret-position="-649">
+              <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+>>>>>>> origin/master
               <folding>
+                <element signature="n#!!block;n#validaNombre#0" expanded="false" />
                 <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
                 <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
                 <element signature="n#!!block;n#validaApellido#0" expanded="false" />
@@ -65,26 +93,21 @@
                 <element signature="n#!!block;n#validaFechas#0" expanded="false" />
                 <element signature="n#!!block;n#validaPrecio#0" expanded="false" />
                 <element signature="n#!!block;n#validaAsunto#0" expanded="false" />
+                <element signature="n#!!block;n#validaFormNuevoAdmin#0" expanded="false" />
+                <element signature="n#!!block;n#validaFormNuevoCliente#0" expanded="false" />
+                <element signature="n#!!block;n#cargaComboAdministradores#0" expanded="false" />
+                <element signature="n#!!block;n#modificaEsteAdmin#0" expanded="false" />
+                <element signature="n#!!block;n#cargaComboIncidencias#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="objetos.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="objetos.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/objetos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4267">
+            <state relative-caret-position="382">
               <caret line="251" column="4" selection-start-line="251" selection-start-column="4" selection-end-line="251" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styleMultilevel.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/styleMultilevel.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -122,10 +145,14 @@
         <option value="$PROJECT_DIR$/Formularios/nuevoAdmin.html" />
         <option value="$PROJECT_DIR$/Formularios/modificaCliente.html" />
         <option value="$PROJECT_DIR$/Plantilla Dropdown Multilevel.html" />
-        <option value="$PROJECT_DIR$/js/objetos.js" />
-        <option value="$PROJECT_DIR$/js/principal.js" />
         <option value="$PROJECT_DIR$/css/styleMultilevel.css" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/js/objetos.js" />
+=======
+>>>>>>> origin/master
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/principal.js" />
+        <option value="$PROJECT_DIR$/js/objetos.js" />
       </list>
     </option>
   </component>
@@ -139,10 +166,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -178,7 +204,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="F:/1-Cliente/Ejercicios/Entrega B2/6-Primitiva DOM" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -240,8 +266,12 @@
       <workItem from="1484327876070" duration="13128000" />
       <workItem from="1484403838663" duration="1305000" />
       <workItem from="1484427184022" duration="8452000" />
+<<<<<<< HEAD
+      <workItem from="1484580316807" duration="14890000" />
+=======
       <workItem from="1484555115675" duration="1395000" />
-      <workItem from="1484579281864" duration="5100000" />
+      <workItem from="1484579281864" duration="3362000" />
+>>>>>>> origin/master
     </task>
     <task id="LOCAL-00001" summary="añadido Proyecto Nuevo">
       <created>1484428554708</created>
@@ -257,33 +287,30 @@
       <option name="project" value="LOCAL" />
       <updated>1484432653400</updated>
     </task>
-    <task id="LOCAL-00003" summary="objetos Cristian">
-      <created>1484585247582</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1484585247582</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63346000" />
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="71990000" />
+=======
+    <option name="totallyTimeSpent" value="61608000" />
+>>>>>>> origin/master
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="676" y="0" width="697" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39246467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6892361" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6899489" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -308,21 +335,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="añadido Proyecto Nuevo" />
     <MESSAGE value="añadido Modifica Proyecto,Nuevas Tareas y la administración de sus capas,así como de la barra de navegación" />
-    <MESSAGE value="objetos Cristian" />
-    <option name="LAST_COMMIT_MESSAGE" value="objetos Cristian" />
+    <option name="LAST_COMMIT_MESSAGE" value="añadido Modifica Proyecto,Nuevas Tareas y la administración de sus capas,así como de la barra de navegación" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Formularios/nuevoCliente.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="68" column="7" selection-start-line="7" selection-start-column="0" selection-end-line="68" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Formularios/modificaCliente.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
@@ -412,6 +431,7 @@
         <state relative-caret-position="561">
           <caret line="33" column="94" selection-start-line="33" selection-start-column="94" selection-end-line="33" selection-end-column="94" />
           <folding>
+            <element signature="n#!!block;n#validaNombre#0" expanded="false" />
             <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
             <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
             <element signature="n#!!block;n#validaApellido#0" expanded="false" />
@@ -420,6 +440,11 @@
             <element signature="n#!!block;n#validaFechas#0" expanded="false" />
             <element signature="n#!!block;n#validaPrecio#0" expanded="false" />
             <element signature="n#!!block;n#validaAsunto#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoCliente#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboAdministradores#0" expanded="false" />
+            <element signature="n#!!block;n#modificaEsteAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboIncidencias#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -428,7 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -445,10 +469,10 @@
         <state relative-caret-position="374">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -458,6 +482,7 @@
             <element signature="n#div#10;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#11;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#12;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#13;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -482,10 +507,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -495,6 +520,7 @@
             <element signature="n#div#10;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#11;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#12;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#13;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -504,6 +530,7 @@
         <state relative-caret-position="1802">
           <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
           <folding>
+            <element signature="n#!!block;n#validaNombre#0" expanded="false" />
             <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
             <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
             <element signature="n#!!block;n#validaApellido#0" expanded="false" />
@@ -512,6 +539,11 @@
             <element signature="n#!!block;n#validaFechas#0" expanded="false" />
             <element signature="n#!!block;n#validaPrecio#0" expanded="false" />
             <element signature="n#!!block;n#validaAsunto#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoCliente#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboAdministradores#0" expanded="false" />
+            <element signature="n#!!block;n#modificaEsteAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboIncidencias#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -528,7 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -544,10 +575,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -557,6 +588,7 @@
             <element signature="n#div#10;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#11;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#12;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#13;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -566,6 +598,7 @@
         <state relative-caret-position="1802">
           <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
           <folding>
+            <element signature="n#!!block;n#validaNombre#0" expanded="false" />
             <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
             <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
             <element signature="n#!!block;n#validaApellido#0" expanded="false" />
@@ -574,6 +607,11 @@
             <element signature="n#!!block;n#validaFechas#0" expanded="false" />
             <element signature="n#!!block;n#validaPrecio#0" expanded="false" />
             <element signature="n#!!block;n#validaAsunto#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoCliente#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboAdministradores#0" expanded="false" />
+            <element signature="n#!!block;n#modificaEsteAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboIncidencias#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -590,7 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -599,10 +636,10 @@
         <state relative-caret-position="1360">
           <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
           <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -612,6 +649,7 @@
             <element signature="n#div#10;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#11;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#12;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#13;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -629,6 +667,7 @@
         <state relative-caret-position="68">
           <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding>
+            <element signature="n#!!block;n#validaNombre#0" expanded="false" />
             <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
             <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
             <element signature="n#!!block;n#validaApellido#0" expanded="false" />
@@ -637,6 +676,11 @@
             <element signature="n#!!block;n#validaFechas#0" expanded="false" />
             <element signature="n#!!block;n#validaPrecio#0" expanded="false" />
             <element signature="n#!!block;n#validaAsunto#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoCliente#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboAdministradores#0" expanded="false" />
+            <element signature="n#!!block;n#modificaEsteAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboIncidencias#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -753,19 +797,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/objetos.js">
+    <entry file="file://$PROJECT_DIR$/css/styleMultilevel.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4267">
-          <caret line="251" column="4" selection-start-line="251" selection-start-column="4" selection-end-line="251" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="374">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/principal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="148" column="49" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
+        <state relative-caret-position="-649">
+          <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
           <folding>
+            <element signature="n#!!block;n#validaNombre#0" expanded="false" />
             <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
             <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
             <element signature="n#!!block;n#validaApellido#0" expanded="false" />
@@ -778,23 +822,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/styleMultilevel.css">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        <state relative-caret-position="202">
+          <caret line="268" column="0" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/objetos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="212" column="25" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="1243" column="36" selection-start-line="1243" selection-start-column="36" selection-end-line="1243" selection-end-column="36" />
+<<<<<<< HEAD
+        <state relative-caret-position="1484">
+          <caret line="810" column="61" selection-start-line="810" selection-start-column="61" selection-end-line="810" selection-end-column="61" />
+=======
+        <state relative-caret-position="-528">
+          <caret line="493" column="54" selection-start-line="493" selection-start-column="54" selection-end-line="493" selection-end-column="54" />
+>>>>>>> origin/master
           <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -804,7 +861,39 @@
             <element signature="n#div#10;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#11;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#12;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#13;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/js/principal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3791">
+          <caret line="541" column="1" selection-start-line="541" selection-start-column="1" selection-end-line="541" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!block;n#validaNombre#0" expanded="false" />
+            <element signature="n#!!block;n#validaNombreProyecto#0" expanded="false" />
+            <element signature="n#!!block;n#validaTelefono#0" expanded="false" />
+            <element signature="n#!!block;n#validaApellido#0" expanded="false" />
+            <element signature="n#!!block;n#validaDireccion#0" expanded="false" />
+            <element signature="n#!!block;n#validaDni#0" expanded="false" />
+            <element signature="n#!!block;n#validaFechas#0" expanded="false" />
+            <element signature="n#!!block;n#validaPrecio#0" expanded="false" />
+            <element signature="n#!!block;n#validaAsunto#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#validaFormNuevoCliente#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboAdministradores#0" expanded="false" />
+            <element signature="n#!!block;n#modificaEsteAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#cargaComboIncidencias#0" expanded="false" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/js/objetos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="251" column="4" selection-start-line="251" selection-start-column="4" selection-end-line="251" selection-end-column="4" />
+          <folding />
+>>>>>>> origin/master
         </state>
       </provider>
     </entry>
