@@ -47,6 +47,7 @@ document.getElementById('eventNuevaTarea').addEventListener('click', nuevaTarea,
 
 document.getElementById('eventModificaTarea').addEventListener('click', modificaTarea, false);
 
+document.getElementById('eventNuevoAnalista').addEventListener('click', nuevoAnalista, false);
 //Eventos Combos
 
 document.getElementById('selectAdmin_ModAdm').addEventListener('change', muestraDatosDeEsteAdmin, false);
@@ -71,6 +72,7 @@ function ocultarFormularios() {
     document.getElementById('divFormModificaProyecto').style.display='none';
     document.getElementById('divFormNuevaTarea').style.display='none';
     document.getElementById('divFormModificaTarea').style.display='none';
+    document.getElementById('divFormNuevoAnalista').style.display='none';
 }
 
 function nuevoCliente() {
@@ -185,6 +187,12 @@ function modificaTarea() {
     document.getElementById('formuModificaTarea').reset();
 }
 
+
+function nuevoAnalista() {
+    ocultarFormularios();
+    document.getElementById('divFormNuevoAnalista').style.display = 'block';
+    document.getElementById('formuNuevoAnalista').reset();
+}
 
 // EXPRESIONES REGULARES Y FUNCIONES *******************************************************************************
 
