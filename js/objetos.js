@@ -206,6 +206,19 @@ Consultoria.prototype.anadeAdministrador = function(oAdministrador){
     return sMensaje;
 };
 
+Consultoria.prototype.dameAdministrador = function (codigoAdmin) {
+    var bEnc = false;
+    var oAdmin;
+    var i = 0;
+    while(i < this.administradores.length && bEnc == false){
+        if(this.administradores[i].codigoAdmin == codigoAdmin){
+            oAdmin = this.administradores[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oAdmin;
+}
 
 
 //---------------------------------------------------------

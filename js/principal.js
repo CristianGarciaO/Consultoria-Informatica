@@ -415,6 +415,127 @@ function validaFormNuevoAdmin(oEvento){
 }
 
 
+// MODIFICAR ADMINISTRADOR ********************************************
+// ****************************************************************
+
+document.querySelector('#guardar_ModAdm').addEventListener('click', validaFormModAdmin, false);
+
+function validaFormModAdmin(oEvento){
+    var oEvModAdmin = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+    var nombre = document.getElementById('nombreAdmin_ModAdm').value.trim();
+    document.getElementById('nombreAdmin_ModAdm').value = nombre;
+
+    if(validaNombre(nombre) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarAdmin').nombreAdmin.focus();
+        }
+        sErrores += "\nNOMBRE del Administrador incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById('formuModificarAdmin').nombreAdmin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarAdmin').nombreAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var apellido = document.getElementById('apellidoAdmin_ModAdm').value.trim();
+    document.getElementById('apellidoAdmin_ModAdm').value = apellido;
+
+
+    if(validaApellido(apellido) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarAdmin').apellidoAdmin.focus();
+        }
+        sErrores += "\nAPELLIDO del Administrador incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById('formuModificarAdmin').apellidoAdmin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarAdmin').apellidoAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    //DNI no hace falta validarlo. No se permite modificar el existente.
+
+    var tlf = document.getElementById('telefonoAdmin_ModAdm').value.trim();
+    document.getElementById('telefonoAdmin_ModAdm').value = tlf;
+
+    if(validaTelefono(tlf) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarAdmin').telefonoAdmin.focus();
+        }
+        sErrores += "\nTELEFONO del Administrador incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+
+        //Marcar error
+        document.getElementById('formuModificarAdmin').telefonoAdmin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarAdmin').telefonoAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var direccion = document.getElementById('direccionAdmin_ModAdm').value.trim();
+    document.getElementById('direccionAdmin_ModAdm').value = direccion;
+
+    if(validaDireccion(direccion) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarAdmin').direccionAdmin.focus();
+        }
+        sErrores += "\nDIRECCION del Administrador incorrecto (formato: 40 caracteres maximo)";
+
+        //Marcar error
+        document.getElementById('formuModificarAdmin').direccionAdmin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarAdmin').direccionAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvModAdmin.preventDefault();
+        //Mostrar errores
+        alert(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+        //El trabajador ya existe en el sistema, no hace falta comprobarlo.
+        //Coger el trabajador existente y cambiar los valores de sus atributos por los actuales.
+
+        var sMensaje = "";
+
+        if(!oConsultoria.existeTrabajador(dni)){
+            var codAdmin = oConsultoria.administradores.length + 1;
+            var oAdministrador = new Administrador(nombre, dni, apellido, tlf, direccion, codAdmin);
+            sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
+        }else{
+            sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
+        }
+
+        alert(sMensaje);
+    }
+
+
+}
+
+
 // NUEVO CLIENTE **************************************************
 // ****************************************************************
 
