@@ -165,9 +165,9 @@ function modificarAdministrador() {
     for(var i=0; i<oFormu.length; i++){
         oFormu[i].setAttribute('readonly', 'readonly');
     }
-
-    //Cargar los administradores existentes
-    cargaComboAdministradores('#selectAdmin_ModAdm');
+    
+    vaciarComboModAdmin();  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
+    cargaComboAdministradores('#selectAdmin_ModAdm'); //Cargar los administradores existentes
 }
 
 
@@ -295,6 +295,8 @@ function validaAsunto(cadena){
 // ****************************************************************
 
 document.querySelector('#guardar_NueAdm').addEventListener('click', validaFormNuevoAdmin, false);
+
+document.querySelector('#limpiar_NueAdm').addEventListener('click', nuevoAdministrador, false);
 
 function validaFormNuevoAdmin(oEvento){
     var oEvNuevoAdmin = oEvento || window.event;
@@ -435,6 +437,8 @@ function validaFormNuevoAdmin(oEvento){
 // ****************************************************************
 
 document.querySelector('#guardar_ModAdm').addEventListener('click', validaFormModAdmin, false);
+
+document.querySelector('#limpiar_ModAdm').addEventListener('click', modificarAdministrador, false);
 
 function validaFormModAdmin(oEvento){
     var oEvModAdmin = oEvento || window.event;
@@ -763,3 +767,13 @@ function cargaComboIncidencias(){
     }
 }
 
+//Vacia combo antes de ser cargado
+function vaciarComboModAdmin() {
+
+    var select = document.querySelector('#selectAdmin_ModAdm');
+
+    var longitud = select.length;
+    for(var i=0;i<longitud; i++){
+        select.options.remove(0);
+    }
+}
