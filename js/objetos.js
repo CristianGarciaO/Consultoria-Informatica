@@ -100,6 +100,28 @@ Consultoria.prototype.existeCliente = function(sDni){
 //OBJETOS ALEX ***********************************************************************************************
 //************************************************************************************************************
 
+
+// TRABAJADOR
+
+function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTelefonoTrabajador,sDireccionTrabajador){
+    this.nombreTrabajador = sNombreTrabajador;
+    this.dniTrabajador = iDniTrabajador;
+    this.apellidosTrabajador = sApellidosTrabajador;
+    this.telefonoTrabajador = iTelefonoTrabajador;
+    this.direccionTrabajador = sDireccionTrabajador;
+}
+
+// Metodos Trabajador
+// ******************
+
+Consultoria.prototype.anadeTrabajador = function(oTrabajador){
+    this.trabajadores.push(oTrabajador);
+};
+
+
+//---------------------------------------------------------
+
+
 // CONTRATO
 
 function Contrato(sNombreProyecto, iPrecio, fechaInicio, fechaFin, sDniCliente) {
@@ -156,6 +178,19 @@ Consultoria.prototype.anadeCliente= function(oCliente){
     return sMensaje;
 };
 
+Consultoria.prototype.dameCliente = function (dniCli) {
+    var bEnc = false;
+    var oCliente;
+    var i = 0;
+    while(i < this.clientes.length && bEnc == false){
+        if(this.clientes[i].dniCliente == dniCli){
+            oCliente = this.clientes[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oCliente;
+}
 
 
 
@@ -265,28 +300,7 @@ Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacio
 //OBJETOS CRISTIAN *******************************************************************************************
 //************************************************************************************************************
 
-// TRABAJADOR
 
-function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTelefonoTrabajador,sDireccionTrabajador){
-    this.nombreTrabajador = sNombreTrabajador;
-    this.dniTrabajador = iDniTrabajador;
-    this.apellidosTrabajador = sApellidosTrabajador;
-    this.telefonoTrabajador = iTelefonoTrabajador;
-    this.direccionTrabajador = sDireccionTrabajador;
-}
-
-// Metodos Trabajador
-// ******************
-
-Consultoria.prototype.anadeTrabajador = function(oTrabajador){
-    this.trabajadores.push(oTrabajador);
-};
-
-Trabajador.prototype.InnerHTML = function(){
-
-    
-
-};
 
 
 //---------------------------------------------------------
