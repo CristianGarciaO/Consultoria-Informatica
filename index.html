@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -60,7 +60,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Analistas</a>
                                 <ul class="dropdown-menu">
                                     <li><a id="eventNuevoAnalista" href="#">Nuevo Analista</a></li>
-                                    <li><a href="#">Modificar Analista</a></li>
+                                    <li><a id="eventModificaAnalista" href="#">Modificar Analista</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#">Listar Analista</a></li>
                                 </ul>
@@ -1216,7 +1216,7 @@
     <!-- ********** NUEVO ANALISTA ********** -->
 
 
-<div class="container" id="divFormNuevoAnalista">
+    <div class="container" id="divFormNuevoAnalista">
     <form class="form-horizontal" id="formuNuevoAnalista">
         <fieldset>
 
@@ -1229,7 +1229,7 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <input id="appendedtext" name="appendedtext" class="form-control" placeholder="Identificador" type="text" required="">
-                        <span class="input-group-addon" href="#" id="eventGenerarID">Generar</span>
+                        <span class="input-group-addon" href="#" id="eventGenerarIDAnalista"><a href="#">Generar</a></span>
                     </div>
 
                 </div>
@@ -1257,6 +1257,59 @@
 </div>
 
 
+    <!-- ********** MODIFICAR ANALISTA ********** -->
+
+    <div class="container" id="divFormModificaAnalista">
+        <form class="form-horizontal" id="formuModificaAnalista">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Analista</legend>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectbasic">Analista</label>
+                    <div class="col-md-4">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="appendedtextModifica">ID</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input id="appendedtextModifica" name="appendedtext" class="form-control" placeholder="Identificador" type="text" required="">
+                            <span class="input-group-addon" href="#" id="eventGenerarIDModifica"><a href="#">Generar</a></span>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Select Multiple -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectPrograAnalistaModifica">Selecciona Programador(es)</label>
+                    <div class="col-md-4">
+                        <select id="selectPrograAnalistaModifica" name="selectPrograAnalistaModifica" class="form-control" multiple="multiple">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="modificarAnalista"></label>
+                    <div class="col-md-4">
+                        <button id="modificarAnalista" name="modificarAnalista" class="btn btn-primary">Modificar Analista</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
 
 
 </div>

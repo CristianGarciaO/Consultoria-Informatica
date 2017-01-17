@@ -48,6 +48,11 @@ document.getElementById('eventNuevaTarea').addEventListener('click', nuevaTarea,
 document.getElementById('eventModificaTarea').addEventListener('click', modificaTarea, false);
 
 document.getElementById('eventNuevoAnalista').addEventListener('click', nuevoAnalista, false);
+
+document.getElementById('eventModificaAnalista').addEventListener('click', modificaAnalista, false);
+
+document.getElementById('eventGenerarIDAnalista').addEventListener('click', generaID, false);
+
 //Eventos Combos
 
 document.getElementById('selectAdmin_ModAdm').addEventListener('change', muestraDatosDeEsteAdmin, false);
@@ -73,6 +78,7 @@ function ocultarFormularios() {
     document.getElementById('divFormNuevaTarea').style.display='none';
     document.getElementById('divFormModificaTarea').style.display='none';
     document.getElementById('divFormNuevoAnalista').style.display='none';
+    document.getElementById('divFormModificaAnalista').style.display='none';
 }
 
 function nuevoCliente() {
@@ -201,6 +207,22 @@ function nuevoAnalista() {
     document.getElementById('divFormNuevoAnalista').style.display = 'block';
     document.getElementById('formuNuevoAnalista').reset();
 }
+
+function modificaAnalista() {
+    ocultarFormularios();
+    document.getElementById('divFormModificaAnalista').style.display = 'block';
+    document.getElementById('formuModificaAnalista').reset();
+}
+
+
+function generaID() {
+
+    document.querySelector('appendedtextModifica').value="hola";
+}
+
+
+
+
 
 // EXPRESIONES REGULARES Y FUNCIONES *******************************************************************************
 
