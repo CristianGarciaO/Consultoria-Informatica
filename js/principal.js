@@ -12,7 +12,7 @@ oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'de Miguel', 'Calle C
 
 oConsultoria.anadeIncidencia(new Incidencia(1,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2));
 
-oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5000.00, 2016-09-25, 2016-11-05,'11032393X'));
+oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, 2016-9-25, 2016-11-5,'11032393X'));
 
 
 // LISTA DE EVENTOS
@@ -79,6 +79,14 @@ function nuevoCliente() {
     ocultarFormularios();
     document.getElementById('divFormNuevoCliente').style.display = 'block';
     document.getElementById('formuNuevoCliente').reset();
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuNuevoCliente').querySelectorAll('input');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
 }
 
 function modificaCliente() {
@@ -198,7 +206,7 @@ function nuevoAnalista() {
 
 var oExRegTelefono = /^([9|6]{1})[0-9]{8}/;  // Teñefonos
 var oExRegNombre = /^[a-záéíóúñA-ZÑÁÉÍÓÚ]{3}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}$/; //Nombres (nombre mas corto permitido 3 caracteres
-var oExRegApellido = /^[a-záéíóúñA-ZÁÉÍÓÚ]{4}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){4,30}$/; //Apellidos
+var oExRegApellido = /^[a-záéíóúñA-ZÁÉÍÓÚ]{4}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}/; //Apellidos
 var oExRegDireccion = /^([a-záéíóúñA-ZÑÁÉÍÓÚ]{1})([a-záéíóúñA-ZÑÁÉÍÓÚ\s\d\.\,\º\ª\-\/]{0,39})$/; //Direccion
 var oExRegDni = /^[0-9]{8}[A-Z]{1}$/;
 var oExRegFechas = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/; //Fechas: 2013-12-14 o 2013/12/14 o 2013.12.14
@@ -526,17 +534,17 @@ function validaFormModAdmin(oEvento){
         //Aqui estan los datos correctos, los guardamos
         //El trabajador ya existe en el sistema, no hace falta comprobarlo.
         //Coger el trabajador existente y cambiar los valores de sus atributos por los actuales.
+        var select = document.querySelector('#selectAdmin_ModAdm');
+        var codAdminSeleccionado = select.value;
+        var oAdmin = oConsultoria.dameAdministrador(codAdminSeleccionado);
 
-        var sMensaje = "";
+        oAdmin.nombreTrabajador = nombre;
+        oAdmin.apellidosTrabajador = apellido;
+        oAdmin.telefonoTrabajador = tlf;
+        oAdmin.direccionTrabajador = direccion;
 
-        if(!oConsultoria.existeTrabajador(dni)){
-            var codAdmin = oConsultoria.administradores.length + 1;
-            var oAdministrador = new Administrador(nombre, dni, apellido, tlf, direccion, codAdmin);
-            sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
-        }else{
-            sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
-        }
-
+        var sMensaje;
+        sMensaje = oConsultoria.anadeAdministrador(oAdmin);
         alert(sMensaje);
     }
 
@@ -671,7 +679,7 @@ function validaFormNuevoCliente(oEvento){
 
         if(!oConsultoria.existeCliente(dni)){
             var contratos = [];  //Array de contratos que pueda tener este cliente
-            var oCliente = new Cliente(nombre, dni, apellido, tlf, direccion, contratos);
+            var oCliente = new Cliente(nombre, dni, apellido, direccion, tlf, contratos);
             sMensaje = oConsultoria.anadeCliente(oCliente);
         }else{
             sMensaje = "Imposible añadir. El Cliente que intenta añadir al sistema ya estaba registrado";
@@ -706,39 +714,36 @@ function cargaComboAdministradores(id){
 
 //Completa los campos de texto
 function muestraDatosDeEsteAdmin(){
+
     //Obtener valor del option seleccionado
     var select = document.querySelector('#selectAdmin_ModAdm');
 
     if(select.selectedIndex != 0){
 
-    var codAdmin = select.value;
-    //Buscar el objeto administrador al que se refiere
-    for(var i=0;i<oConsultoria.administradores.length;i++){
-        if(oConsultoria.administradores[i].codigoAdmin == codAdmin){
-            var oAdmin = oConsultoria.administradores[i];
-        }
-    }
-    //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+        var codAdmin = select.value;
+        var oAdmin = oConsultoria.dameAdministrador(codAdmin);
 
-    var nomAdmin = document.querySelector('#nombreAdmin_ModAdm');
-    nomAdmin.value = oAdmin.nombreTrabajador;
-    nomAdmin.removeAttribute('readonly');
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
 
-    var apeAdmin = document.querySelector('#apellidoAdmin_ModAdm');
-    apeAdmin.value = oAdmin.apellidosTrabajador;
-    apeAdmin.removeAttribute('readonly');
+        var nomAdmin = document.querySelector('#nombreAdmin_ModAdm');
+        nomAdmin.value = oAdmin.nombreTrabajador;
+        nomAdmin.removeAttribute('readonly');
 
-    var dniAdmin = document.querySelector('#dniAdmin_ModAdm');
-    dniAdmin.value = oAdmin.dniTrabajador;
-    //Este campo es unico, no debe poderse modificar. Dejamos el atributo readonly
+        var apeAdmin = document.querySelector('#apellidoAdmin_ModAdm');
+        apeAdmin.value = oAdmin.apellidosTrabajador;
+        apeAdmin.removeAttribute('readonly');
 
-    var tlfAdmin = document.querySelector('#telefonoAdmin_ModAdm');
-    tlfAdmin.value = oAdmin.telefonoTrabajador;
-    tlfAdmin.removeAttribute('readonly');
+        //Este campo es unico(DNI), no debe poderse modificar. Dejamos el atributo readonly
+        var dniAdmin = document.querySelector('#dniAdmin_ModAdm');
+        dniAdmin.value = oAdmin.dniTrabajador;
 
-    var dirAdmin = document.querySelector('#direccionAdmin_ModAdm');
-    dirAdmin.value = oAdmin.direccionTrabajador;
-    dirAdmin.removeAttribute('readonly');
+        var tlfAdmin = document.querySelector('#telefonoAdmin_ModAdm');
+        tlfAdmin.value = oAdmin.telefonoTrabajador;
+        tlfAdmin.removeAttribute('readonly');
+
+        var dirAdmin = document.querySelector('#direccionAdmin_ModAdm');
+        dirAdmin.value = oAdmin.direccionTrabajador;
+        dirAdmin.removeAttribute('readonly');
 
     }
 }
