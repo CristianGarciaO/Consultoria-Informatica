@@ -72,14 +72,13 @@ Consultoria.prototype.existeTrabajador = function(iDni){
     /*Recibe un DNI y devuelve TRUE si existe o FALSE si no existe.*/
     var bEncontrado = false;
 
-    for(var i=0; i< this.trabajadores && bEncontrado == false; i++){
+    for(var i=0; i< this.trabajadores.length && bEncontrado == false; i++){
         if(this.trabajadores[i].dniTrabajador == iDni){
             bEncontrado = true;
         }
     }
     return bEncontrado;
 };
-
 
 /**** COMPROBAR EXISTENCIA CLIENTE ****/
 
@@ -200,6 +199,9 @@ Administrador.prototype.constructor = Administrador;
 
 Consultoria.prototype.anadeAdministrador = function(oAdministrador){
     this.administradores.push(oAdministrador);
+    this.trabajadores.push(new Trabajador(oAdministrador.nombreTrabajador, oAdministrador.dniTrabajador,
+                    oAdministrador.apellidosTrabajador, oAdministrador.telefonoTrabajador,
+                    oAdministrador.direccionTrabajador));
     var sMensaje = "Guardado";
     return sMensaje;
 };
