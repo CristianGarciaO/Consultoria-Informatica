@@ -49,7 +49,7 @@ document.getElementById('eventModificaTarea').addEventListener('click', modifica
 
 //Eventos Combos
 
-document.getElementById('selectAdmin_ModAdm').addEventListener('change', modificaEsteAdmin, false);
+document.getElementById('selectAdmin_ModAdm').addEventListener('change', muestraDatosDeEsteAdmin, false);
 
 
 
@@ -136,12 +136,25 @@ function nuevoAdministrador() {
     ocultarFormularios();
     document.getElementById('divFormNuevoAdministrador').style.display = 'block';
     document.getElementById('formuNuevoAdmin').reset();
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuNuevoAdmin').querySelectorAll('input');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
 }
 
 function modificarAdministrador() {
     ocultarFormularios();
     document.getElementById('divFormModificarAdministrador').style.display = 'block';
     document.getElementById('formuModificarAdmin').reset();
+
+    var oFormu = document.getElementById('formuModificarAdmin').querySelectorAll('input');
+    for(var i=0; i<oFormu.length; i++){
+        oFormu[i].setAttribute('readonly', 'readonly');
+    }
 
     //Cargar los administradores existentes
     cargaComboAdministradores('#selectAdmin_ModAdm');
@@ -563,9 +576,12 @@ function cargaComboAdministradores(id){
 }
 
 //Completa los campos de texto
-function modificaEsteAdmin(){
+function muestraDatosDeEsteAdmin(){
     //Obtener valor del option seleccionado
     var select = document.querySelector('#selectAdmin_ModAdm');
+
+    if(select.selectedIndex != 0){
+
     var codAdmin = select.value;
     //Buscar el objeto administrador al que se refiere
     for(var i=0;i<oConsultoria.administradores.length;i++){
@@ -577,20 +593,25 @@ function modificaEsteAdmin(){
 
     var nomAdmin = document.querySelector('#nombreAdmin_ModAdm');
     nomAdmin.value = oAdmin.nombreTrabajador;
+    nomAdmin.removeAttribute('readonly');
 
     var apeAdmin = document.querySelector('#apellidoAdmin_ModAdm');
     apeAdmin.value = oAdmin.apellidosTrabajador;
+    apeAdmin.removeAttribute('readonly');
 
     var dniAdmin = document.querySelector('#dniAdmin_ModAdm');
     dniAdmin.value = oAdmin.dniTrabajador;
-    //Este campo es unico, no debe poderse modificar.
-    dniAdmin.setAttribute('readonly', 'readonly');
+    //Este campo es unico, no debe poderse modificar. Dejamos el atributo readonly
 
     var tlfAdmin = document.querySelector('#telefonoAdmin_ModAdm');
     tlfAdmin.value = oAdmin.telefonoTrabajador;
+    tlfAdmin.removeAttribute('readonly');
 
     var dirAdmin = document.querySelector('#direccionAdmin_ModAdm');
     dirAdmin.value = oAdmin.direccionTrabajador;
+    dirAdmin.removeAttribute('readonly');
+
+    }
 }
 
 //Cargar combo de Incidencias
