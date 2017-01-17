@@ -48,9 +48,13 @@ document.getElementById('eventNuevaTarea').addEventListener('click', nuevaTarea,
 document.getElementById('eventModificaTarea').addEventListener('click', modificaTarea, false);
 
 document.getElementById('eventNuevoAnalista').addEventListener('click', nuevoAnalista, false);
+
 //Eventos Combos
 
 document.getElementById('selectAdmin_ModAdm').addEventListener('change', muestraDatosDeEsteAdmin, false);
+
+document.getElementById('selectCliente_ModCli').addEventListener('change', muestraDatosDeEsteCliente, false);
+
 
 
 
@@ -93,6 +97,14 @@ function modificaCliente() {
     ocultarFormularios();
     document.getElementById('divFormModificaCliente').style.display = 'block';
     document.getElementById('formuModificaCliente').reset();
+
+    var oFormu = document.getElementById('formuModificaCliente').querySelectorAll('input');
+    for(var i=0; i<oFormu.length; i++){
+        oFormu[i].setAttribute('readonly', 'readonly');
+    }
+
+    vaciarComboModCliente();  //Vaciar el combo por si contiene algo anterior
+    cargaComboClientes();   //Cargar lista de clientes existentes
 }
 
 function nuevaIncidencia() {
@@ -114,20 +126,17 @@ function modificaIncidencia() {
     cargaComboIncidencias();
 }
 
-
 function nuevaPublicidad() {
     ocultarFormularios();
     document.getElementById('divFormNuevaPublioidad').style.display = 'block';
     document.getElementById('formuNuevaPublicidad').reset();
 }
 
-
 function eliminarPublicidad() {
     ocultarFormularios();
     document.getElementById('divFormEliminaPublicidad').style.display = 'block';
     document.getElementById('formuElimiarPublicidad').reset();
 }
-
 
 function nuevoContrato() {
     ocultarFormularios();
@@ -140,7 +149,6 @@ function modificarContrato() {
     document.getElementById('divFormModificarContrato').style.display = 'block';
     document.getElementById('formuModificarContrato').reset();
 }
-
 
 function nuevoAdministrador() {
     ocultarFormularios();
@@ -165,7 +173,7 @@ function modificarAdministrador() {
     for(var i=0; i<oFormu.length; i++){
         oFormu[i].setAttribute('readonly', 'readonly');
     }
-    
+
     vaciarComboModAdmin();  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
     cargaComboAdministradores('#selectAdmin_ModAdm'); //Cargar los administradores existentes
 }
@@ -291,8 +299,8 @@ function validaAsunto(cadena){
 
 // VALIDACIONES ******************************************************************************************************
 
-// NUEVO ADMINISTRADOR ********************************************
-// ****************************************************************
+// NUEVO ADMINISTRADOR ************************************************
+// ********************************************************************
 
 document.querySelector('#guardar_NueAdm').addEventListener('click', validaFormNuevoAdmin, false);
 
@@ -434,7 +442,7 @@ function validaFormNuevoAdmin(oEvento){
 
 
 // MODIFICAR ADMINISTRADOR ********************************************
-// ****************************************************************
+// ********************************************************************
 
 document.querySelector('#guardar_ModAdm').addEventListener('click', validaFormModAdmin, false);
 
@@ -556,10 +564,12 @@ function validaFormModAdmin(oEvento){
 }
 
 
-// NUEVO CLIENTE **************************************************
-// ****************************************************************
+// NUEVO CLIENTE ******************************************************
+// ********************************************************************
 
 document.querySelector('#guardar_NueCli').addEventListener('click', validaFormNuevoCliente, false);
+
+document.querySelector('#limpiar_NueCli').addEventListener('click', nuevoCliente, false);
 
 function validaFormNuevoCliente(oEvento){
     var oEvNuevoCliente = oEvento || window.event;
@@ -696,6 +706,144 @@ function validaFormNuevoCliente(oEvento){
 }
 
 
+
+// MODIFICAR CLIENTE **************************************************
+// ********************************************************************
+
+document.querySelector('#guardar_ModCli').addEventListener('click', validaFormModCliente, false);
+
+document.querySelector('#limpiar_ModCli').addEventListener('click', modificaCliente, false);
+
+function validaFormModCliente(oEvento){
+    var oEvModCliente = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+    var nombre = document.getElementById('nombreCliente_ModCli').value.trim();
+    document.getElementById('nombreCliente_ModCli').value = nombre;
+
+    if(validaNombre(nombre) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificaCliente').nombreCliente.focus();
+        }
+        sErrores += "\nNOMBRE del Cliente incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById('formuModificaCliente').nombreCliente.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificaCliente').nombreCliente.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    var apellido = document.getElementById('apellidoCliente_ModCli').value.trim();
+    document.getElementById('apellidoCliente_ModCli').value = apellido;
+
+
+    if(validaApellido(apellido) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificaCliente').apellidoCliente.focus();
+        }
+        sErrores += "\nAPELLIDO del Cliente incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById('formuModificaCliente').apellidoCliente.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificaCliente').apellidoCliente.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    //DNI no hace falta validarlo. No se permite modificar el existente.
+
+
+    var tlf = document.getElementById('telefonoCliente_ModCli').value.trim();
+    document.getElementById('telefonoCliente_ModCli').value = tlf;
+
+    if(validaTelefono(tlf) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificaCliente').telefonoCliente.focus();
+        }
+        sErrores += "\nTELEFONO del Cliente incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+
+        //Marcar error
+        document.getElementById('formuModificaCliente').telefonoCliente.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificaCliente').telefonoCliente.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var direccion = document.getElementById('direccionCliente_ModCli').value.trim();
+    document.getElementById('direccionCliente_ModCli').value = direccion;
+
+    if(validaDireccion(direccion) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificaCliente').direccionCliente.focus();
+        }
+        sErrores += "\nDIRECCION del Cliente incorrecto (formato: 40 caracteres maximo)";
+
+        //Marcar error
+        document.getElementById('formuModificaCliente').direccionCliente.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificaCliente').direccionCliente.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvModCliente.preventDefault();
+        //Mostrar errores
+        alert(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+        //El cliente ya existe en el sistema, no hace falta comprobarlo.
+        // Coger el cliente existente y cambiar los valores de sus atributos por los actuales.
+
+        var select = document.querySelector('#selectCliente_ModCli');
+        var dniClienteSeleccionado = select.value;
+        var oCliente = oConsultoria.dameCliente(dniClienteSeleccionado);
+
+        oCliente.nombreCliente = nombre;
+        oCliente.apellidosCliente = apellido;
+        oCliente.telefonoCliente = tlf;
+        oCliente.direccionCliente = direccion;
+
+        var sMensaje;
+
+        sMensaje = oConsultoria.anadeCliente(oCliente);
+        alert(sMensaje);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
 // *******************************************************************************************************************
 // Funciones Varias
 
@@ -752,6 +900,82 @@ function muestraDatosDeEsteAdmin(){
     }
 }
 
+//Vacia combo antes de ser cargado
+function vaciarComboModAdmin() {
+
+    var select = document.querySelector('#selectAdmin_ModAdm');
+
+    var longitud = select.length;
+    for(var i=0;i<longitud; i++){
+        select.options.remove(0);
+    }
+}
+
+
+function cargaComboClientes(){
+
+    var miCombo = document.querySelector('#selectCliente_ModCli');
+    var oOption = document.createElement('option');
+    oOption.text = 'Seleccione un Cliente';
+    miCombo.add(oOption);
+    for(var i=0; i<oConsultoria.clientes.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.clientes[i].nombreCliente + ' ' +
+                       oConsultoria.clientes[i].apellidosCliente + ' - ' +
+                       oConsultoria.clientes[i].dniCliente;
+        oOption.value = oConsultoria.clientes[i].dniCliente;
+        miCombo.add(oOption);
+    }
+}
+
+//Completa los campos de texto
+function muestraDatosDeEsteCliente(){
+
+    //Obtener valor del option seleccionado
+    var select = document.querySelector('#selectCliente_ModCli');
+
+    if(select.selectedIndex != 0){
+
+        var dniCli = select.value;
+        var oCliente = oConsultoria.dameCliente(dniCli);
+
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+
+        var nomCli = document.querySelector('#nombreCliente_ModCli');
+        nomCli.value = oCliente.nombreCliente;
+        nomCli.removeAttribute('readonly');
+
+        var apeCli = document.querySelector('#apellidoCliente_ModCli');
+        apeCli.value = oCliente.apellidosCliente;
+        apeCli.removeAttribute('readonly');
+
+        //Este campo es unico(DNI), no debe poderse modificar. Dejamos el atributo readonly
+        var dniCliente = document.querySelector('#dniCliente_ModCli');
+        dniCliente.value = oCliente.dniCliente;
+
+        var tlfCli = document.querySelector('#telefonoCliente_ModCli');
+        tlfCli.value = oCliente.telefonoCliente;
+        tlfCli.removeAttribute('readonly');
+
+        var dirCli = document.querySelector('#direccionCliente_ModCli');
+        dirCli.value = oCliente.direccionCliente;
+        dirCli.removeAttribute('readonly');
+
+    }
+}
+
+
+//Vacia combo antes de ser cargado
+function vaciarComboModCliente() {
+
+    var select = document.querySelector('#selectCliente_ModCli');
+
+    var longitud = select.length;
+    for(var i=0;i<longitud; i++){
+        select.options.remove(0);
+    }
+}
+
 //Cargar combo de Incidencias
 function cargaComboIncidencias(){
 
@@ -767,13 +991,3 @@ function cargaComboIncidencias(){
     }
 }
 
-//Vacia combo antes de ser cargado
-function vaciarComboModAdmin() {
-
-    var select = document.querySelector('#selectAdmin_ModAdm');
-
-    var longitud = select.length;
-    for(var i=0;i<longitud; i++){
-        select.options.remove(0);
-    }
-}

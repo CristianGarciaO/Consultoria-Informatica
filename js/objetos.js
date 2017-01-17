@@ -178,6 +178,19 @@ Consultoria.prototype.anadeCliente= function(oCliente){
     return sMensaje;
 };
 
+Consultoria.prototype.dameCliente = function (dniCli) {
+    var bEnc = false;
+    var oCliente;
+    var i = 0;
+    while(i < this.clientes.length && bEnc == false){
+        if(this.clientes[i].dniCliente == dniCli){
+            oCliente = this.clientes[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oCliente;
+}
 
 
 
