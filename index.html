@@ -23,7 +23,7 @@
 
 
 
-    <title>Document</title>
+    <title>Consultoria CRAL</title>
 </head>
 <body>
 
@@ -43,7 +43,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://github.com/fontenele/bootstrap-navbar-dropdowns" target="_blank">GitHub Project</a></li>
+                    <li><a href="https://github.com/CristianGarciaO/Consultoria-Informatica" target="_blank">Proyecto GitHub</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
@@ -71,10 +71,10 @@
                             <li class="dropdown-submenu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Programadores</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Nuevo Programador</a></li>
-                                    <li><a href="#">Modificar Programador</a></li>
+                                    <li><a id="eventNuevoProgramador" href="#">Nuevo Programador</a></li>
+                                    <li><a id="eventModificaProgramador" href="#">Modificar Programador</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">Listar Programador</a></li>
+                                    <li><a id="eventListarProgramadores" href="#">Listar Programador</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -742,7 +742,7 @@
     <div class="container" id="divFormNuevoAdministrador">
 
 
-        <form id="formuNuevoAdmin"class="form-horizontal">
+        <form id="formuNuevoAdmin" class="form-horizontal">
 
             <legend class="text-center">Nuevo Administrador</legend>
 
@@ -1234,13 +1234,57 @@
 
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="nombreAdmin_NueAdm">Nombre:</label>
+                <div class="col-md-5">
+                    <input id="nombreAnalis_NueAnalist" name="nombreAnalista" type="text" placeholder="max 30 caracteres" class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="apellidoAdmin_NueAdm">Apellidos:</label>
+                <div class="col-md-5">
+                    <input id="apellidosAnalis_NueAnalist" name="apellidosAnalsta" type="text" placeholder="max 30 caracteres" class="form-control input-md">
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="dniAdmin_NueAdm">DNI:</label>
+                <div class="col-md-5">
+                    <input id="dniAnalis_NueAnalist" name="dniAnalist" type="text" placeholder="8 digitos más letra mayuscula" class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="telefonoAdmin_NueAdm">Teléfono:</label>
+                <div class="col-md-5">
+                    <input id="telefonoAnalis_NueAnalist" name="telefonoAnalista" type="text" placeholder="9 digitos" class="form-control input-md">
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="direccionAdmin_NueAdm">Dirección:</label>
+                <div class="col-md-5">
+                    <input id="direccionAnalis_NueAnalist" name="direccionAnalista" type="text" placeholder="40 caracteres" class="form-control input-md">
+
+                </div>
+            </div>
+
             <!-- Select Multiple -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="selectPrograAnalista">Selecciona Programador(es)</label>
                 <div class="col-md-4">
                     <select id="selectPrograAnalista" name="selectPrograAnalista" class="form-control" multiple="multiple">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
+
                     </select>
                 </div>
             </div>
@@ -1309,6 +1353,93 @@
             </fieldset>
         </form>
     </div>
+
+    <!-- ********** AÑADIR PROGRAMADOR ********** -->
+
+    <div class="container" id="divFormNuevoProgramador">
+        <form class="form-horizontal" id="formuNuevoProgramador">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Programador</legend>
+
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="appendedtext">ID</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input id="appendedtextProgramdor" name="appendedtext" class="form-control" placeholder="Identificador" type="text" required="">
+                            <span class="input-group-addon" href="#" id="eventGenerarIDProgramador"><a href="#">Generar</a></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nombreAdmin_NueAdm">Nombre:</label>
+                    <div class="col-md-5">
+                        <input id="nombreProgr_NueProgr" name="nombreProgramador" type="text" placeholder="max 30 caracteres" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="apellidoAdmin_NueAdm">Apellidos:</label>
+                    <div class="col-md-5">
+                        <input id="apellidosProgr_NueProgr" name="apellidosProgramador" type="text" placeholder="max 30 caracteres" class="form-control input-md">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="dniAdmin_NueAdm">DNI:</label>
+                    <div class="col-md-5">
+                        <input id="dniProgr_NueProgr" name="dniProgramador" type="text" placeholder="8 digitos más letra mayuscula" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="telefonoAdmin_NueAdm">Teléfono:</label>
+                    <div class="col-md-5">
+                        <input id="telefonoProgr_NueProgr" name="telefonoProgramador" type="text" placeholder="9 digitos" class="form-control input-md">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="direccionAdmin_NueAdm">Dirección:</label>
+                    <div class="col-md-5">
+                        <input id="direccioProgr_NueProgr" name="direccionProgramador" type="text" placeholder="40 caracteres" class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Select Multiple -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectPrograAnalista">Selecciona Programador(es)</label>
+                    <div class="col-md-4">
+                        <select id="selectAnalistaProgr" name="selectAnalistaProgr" class="form-control">
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="CrearTarea"></label>
+                    <div class="col-md-4">
+                        <button id="añadirProgramador" name="añadirProgramador" class="btn btn-primary">Añadir Programador</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
 
 
 </div>

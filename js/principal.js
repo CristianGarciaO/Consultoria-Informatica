@@ -58,6 +58,8 @@ document.getElementById('eventModificaAnalista').addEventListener('click', modif
 
 document.getElementById('eventGenerarIDAnalista').addEventListener('click', generaID, false);
 
+document.getElementById('eventNuevoProgramador').addEventListener('click', nuevoProgramador, false);
+
 
 //Eventos Combos
 
@@ -88,6 +90,7 @@ function ocultarFormularios() {
     document.getElementById('divFormModificaTarea').style.display='none';
     document.getElementById('divFormNuevoAnalista').style.display='none';
     document.getElementById('divFormModificaAnalista').style.display='none';
+    document.getElementById('divFormNuevoProgramador').style.display='none';
 }
 
 function nuevoCliente() {
@@ -257,6 +260,18 @@ function generaID() {
     document.querySelector('appendedtextModifica').value="hola";
 }
 
+function nuevoProgramador() {
+    ocultarFormularios();
+    document.getElementById('divFormNuevoProgramador').style.display = 'block';
+    document.getElementById('formuNuevoProgramador').reset();
+}
+
+function modificaProgramador() {
+    ocultarFormularios();
+    document.getElementById('divFormModificaProgramador').style.display = 'block';
+    document.getElementById('formuModificaProgramador').reset();
+
+}
 
 
 
