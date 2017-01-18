@@ -252,7 +252,7 @@ Consultoria.prototype.dameAdministrador = function (codigoAdmin) {
         i++;
     }
     return oAdmin;
-}
+};
 
 
 //---------------------------------------------------------
@@ -313,7 +313,7 @@ function Proyecto(sNombreProyecto, aAnalistasProyecto, aTareasProyecto){
     this.tareasProyecto = aTareasProyecto;
 }
 
-Consultoria.prototype.añadeProyecto = function(oProyecto){
+Consultoria.prototype.anadeProyecto = function(oProyecto){
     this.proyectos.push(oProyecto);
 };
 
@@ -327,19 +327,20 @@ function Tarea(sNombreTarea, dFechaIni, oProyecto,dFechaFin,bEstado){
     this.estado=bEstado;
 }
 
-Consultoria.prototype.añadeTarea = function(oTarea){
+Consultoria.prototype.anadeTarea = function(oTarea){
     this.tareas.push(oProyecto);
 };
 
 
 //ANALISTA
 
-function Analista(idAnalista,oProgramadores){
+function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idAnalista,oProgramadores) {
+    Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
     this.id = idAnalista;
-    this.programadores = oProgramadores;
+    this.programadores = oProgramadores; 
 
 }
-Consultoria.prototype.añadeAnalista = function(oAnalista){
+Consultoria.prototype.anadeAnalista = function(oAnalista){
     this.analistas.push(oAnalista);
 };
 // Herencia Trabajador-ANALISTA
@@ -352,13 +353,13 @@ Analista.prototype.constructor = Analista;
 
 
 //PROGRAMADOR
-
-function Programador(idProgramador,oAnalista){
+function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idProgramador,oAnalista) {
+    Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
     this.id = idProgramador;
     this.analista = oAnalista;
 
 }
-Consultoria.prototype.añadeProgramador = function(oProgramador){
+Consultoria.prototype.anadeProgramador = function(oProgramador){
     this.programadores.push(oProgramador);
 };
 // Herencia Trabajador-PROGRAMADOR

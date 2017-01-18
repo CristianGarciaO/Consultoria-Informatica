@@ -14,6 +14,11 @@ oConsultoria.anadeIncidencia(new Incidencia(1,3,'Algoritmo erroneo', 'Pues eso, 
 
 oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, 2016-9-25, 2016-11-5,'11032393X'));
 
+oConsultoria.anadeAdministrador(new Administrador('Cristian','34537865X','Garcia Ocaña',655589624,'Avenida del Paraiso',131313));
+
+var a=oConsultoria.anadeAnalista(new Analista('Andres','24358543B','Rodriguez Martin',698521596,'Calle Rodriguez Sexto',100933,null));
+
+oConsultoria.anadeProgramador(new Programador('Roberto','34259087M','Lopez Lopez',678945672,'Pasaje Antonino',100036,a));
 
 // LISTA DE EVENTOS
 
@@ -220,6 +225,11 @@ function modificaAnalista() {
     ocultarFormularios();
     document.getElementById('divFormModificaAnalista').style.display = 'block';
     document.getElementById('formuModificaAnalista').reset();
+
+
+
+
+    cargaComboAnalista('#selectAnalis_Mod');
 }
 
 
@@ -1013,3 +1023,18 @@ function cargaComboIncidencias(){
     }
 }
 
+
+//Cargar combo de Analistas
+function cargaComboAnalista(id){
+
+    var miCombo = document.querySelector(id);
+    var oOptions = document.createElement('option');
+    oOptions.text = 'Seleccione un Analista';
+    miCombo.add(oOptions);
+    for(var i=0; i<oConsultoria.analistas.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.analistas[i].nombreTrabajador + ' - ' + oConsultoria.analistas[i].id;
+        oOption.value = oConsultoria.analistas[i].id;
+        miCombo.add(oOption);
+    }
+}
