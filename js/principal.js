@@ -353,7 +353,7 @@ function validaFormNuevoAdmin(oEvento){
            //Este campo obtiene el foco
            document.getElementById('formuNuevoAdmin').nombreAdmin.focus();
        }
-       sErrores += "\n NOMBRE del Administrador incorrecto (formato: Máx 30 caracteres)";
+       sErrores += "NOMBRE del Administrador incorrecto (formato: Máx 30 caracteres)";
 
        //Marcar error
        document.getElementById('formuNuevoAdmin').nombreAdmin.className = "form-control input-md error";
@@ -376,7 +376,7 @@ function validaFormNuevoAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoAdmin').apellidoAdmin.focus();
         }
-        sErrores += "<br> APELLIDO del Administrador incorrecto (formato: Máx 30 caracteres)";
+        sErrores += "<br><br> APELLIDO del Administrador incorrecto (formato: Máx 30 caracteres)";
 
         //Marcar error
         document.getElementById('formuNuevoAdmin').apellidoAdmin.className = "form-control input-md error";
@@ -396,7 +396,7 @@ function validaFormNuevoAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoAdmin').dniAdmin.focus();
         }
-        sErrores += "<br> DNI del Administrador incorrecto (formato: 8 digitos más letra mayuscula)";
+        sErrores += "<br><br> DNI del Administrador incorrecto (formato: 8 digitos más letra mayuscula)";
 
         //Marcar error
         document.getElementById('formuNuevoAdmin').dniAdmin.className = "form-control input-md error";
@@ -416,7 +416,7 @@ function validaFormNuevoAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoAdmin').telefonoAdmin.focus();
         }
-        sErrores += "<br> TELEFONO del Administrador incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+        sErrores += "<br><br> TELEFONO del Administrador incorrecto (formato: 9 digitos comenzando en 6 o 9)";
 
         //Marcar error
         document.getElementById('formuNuevoAdmin').telefonoAdmin.className = "form-control input-md error";
@@ -436,7 +436,7 @@ function validaFormNuevoAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoAdmin').direccionAdmin.focus();
         }
-        sErrores += "<br> DIRECCION del Administrador incorrecto (formato: 40 caracteres maximo)";
+        sErrores += "<br><br> DIRECCION del Administrador incorrecto (formato: 40 caracteres maximo)";
 
         //Marcar error
         document.getElementById('formuNuevoAdmin').direccionAdmin.className = "form-control input-md error";
@@ -451,7 +451,7 @@ function validaFormNuevoAdmin(oEvento){
         //Cancelar envio del formulario
         oEvNuevoAdmin.preventDefault();
         //Mostrar errores
-        toastr.Error(sErrores);
+        toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
         //Comprobar si existe el trabajador
@@ -465,7 +465,7 @@ function validaFormNuevoAdmin(oEvento){
         }else{
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
         }
-        toastr.Error(sMensaje);
+        toastr.error(sMensaje);
     }
 
 
@@ -515,7 +515,7 @@ function validaFormModAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuModificarAdmin').apellidoAdmin.focus();
         }
-        sErrores += "<br> APELLIDO del Administrador incorrecto (formato: Máx 30 caracteres)";
+        sErrores += "<br><br> APELLIDO del Administrador incorrecto (formato: Máx 30 caracteres)";
 
         //Marcar error
         document.getElementById('formuModificarAdmin').apellidoAdmin.className = "form-control input-md error";
@@ -537,7 +537,7 @@ function validaFormModAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuModificarAdmin').telefonoAdmin.focus();
         }
-        sErrores += "<br> TELEFONO del Administrador incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+        sErrores += "<br><br> TELEFONO del Administrador incorrecto (formato: 9 digitos comenzando en 6 o 9)";
 
         //Marcar error
         document.getElementById('formuModificarAdmin').telefonoAdmin.className = "form-control input-md error";
@@ -557,7 +557,7 @@ function validaFormModAdmin(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuModificarAdmin').direccionAdmin.focus();
         }
-        sErrores += "<br> DIRECCION del Administrador incorrecto (formato: 40 caracteres maximo)";
+        sErrores += "<br><br> DIRECCION del Administrador incorrecto (formato: 40 caracteres maximo)";
 
         //Marcar error
         document.getElementById('formuModificarAdmin').direccionAdmin.className = "form-control input-md error";
@@ -572,7 +572,7 @@ function validaFormModAdmin(oEvento){
         //Cancelar envio del formulario
         oEvModAdmin.preventDefault();
         //Mostrar errores
-        toastr.Error(sErrores);
+        toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
         //El trabajador ya existe en el sistema, no hace falta comprobarlo.
@@ -588,7 +588,7 @@ function validaFormModAdmin(oEvento){
 
         var sMensaje;
         sMensaje = oConsultoria.anadeAdministrador(oAdmin);
-        toastr.Error(sMensaje);
+        toastr.error(sMensaje);
     }
 
 
@@ -640,7 +640,7 @@ function validaFormNuevoCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoCliente').apellidoCliente.focus();
         }
-        sErrores += "<br> APELLIDO del Cliente incorrecto (formato: Máx 30 caracteres)";
+        sErrores += "<br><br> APELLIDO del Cliente incorrecto (formato: Máx 30 caracteres)";
 
         //Marcar error
         document.getElementById('formuNuevoCliente').apellidoCliente.className = "form-control input-md error";
@@ -660,7 +660,7 @@ function validaFormNuevoCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoCliente').dniCliente.focus();
         }
-        sErrores += "<br> DNI del Cliente incorrecto (formato: 8 digitos más letra mayuscula)";
+        sErrores += "<br><br> DNI del Cliente incorrecto (formato: 8 digitos más letra mayuscula)";
 
         //Marcar error
         document.getElementById('formuNuevoCliente').dniCliente.className = "form-control input-md error";
@@ -680,7 +680,7 @@ function validaFormNuevoCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoCliente').telefonoCliente.focus();
         }
-        sErrores += "<br> TELEFONO del Cliente incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+        sErrores += "<br><br> TELEFONO del Cliente incorrecto (formato: 9 digitos comenzando en 6 o 9)";
 
         //Marcar error
         document.getElementById('formuNuevoCliente').telefonoCliente.className = "form-control input-md error";
@@ -700,7 +700,7 @@ function validaFormNuevoCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoCliente').direccionCliente.focus();
         }
-        sErrores += "<br> DIRECCION del Cliente incorrecto (formato: 40 caracteres maximo)";
+        sErrores += "<br><br> DIRECCION del Cliente incorrecto (formato: 40 caracteres maximo)";
 
         //Marcar error
         document.getElementById('formuNuevoCliente').direccionCliente.className = "form-control input-md error";
@@ -715,7 +715,7 @@ function validaFormNuevoCliente(oEvento){
         //Cancelar envio del formulario
         oEvNuevoCliente.preventDefault();
         //Mostrar errores
-        toastr.Error(sErrores);
+        toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
         //Comprobar si existe el cliente
@@ -730,7 +730,7 @@ function validaFormNuevoCliente(oEvento){
             sMensaje = "Imposible añadir. El Cliente que intenta añadir al sistema ya estaba registrado";
         }
 
-        toastr.Error(sMensaje);
+        toastr.error(sMensaje);
     }
 
 
@@ -783,7 +783,7 @@ function validaFormModCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuModificaCliente').apellidoCliente.focus();
         }
-        sErrores += "<br> APELLIDO del Cliente incorrecto (formato: Máx 30 caracteres)";
+        sErrores += "<br><br> APELLIDO del Cliente incorrecto (formato: Máx 30 caracteres)";
 
         //Marcar error
         document.getElementById('formuModificaCliente').apellidoCliente.className = "form-control input-md error";
@@ -808,7 +808,7 @@ function validaFormModCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuModificaCliente').telefonoCliente.focus();
         }
-        sErrores += "<br> TELEFONO del Cliente incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+        sErrores += "<br><br> TELEFONO del Cliente incorrecto (formato: 9 digitos comenzando en 6 o 9)";
 
         //Marcar error
         document.getElementById('formuModificaCliente').telefonoCliente.className = "form-control input-md error";
@@ -828,7 +828,7 @@ function validaFormModCliente(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuModificaCliente').direccionCliente.focus();
         }
-        sErrores += "<br> DIRECCION del Cliente incorrecto (formato: 40 caracteres maximo)";
+        sErrores += "<br><br> DIRECCION del Cliente incorrecto (formato: 40 caracteres maximo)";
 
         //Marcar error
         document.getElementById('formuModificaCliente').direccionCliente.className = "form-control input-md error";
@@ -843,7 +843,7 @@ function validaFormModCliente(oEvento){
         //Cancelar envio del formulario
         oEvModCliente.preventDefault();
         //Mostrar errores
-        toastr.Error(sErrores);
+        toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
         //El cliente ya existe en el sistema, no hace falta comprobarlo.
@@ -862,7 +862,7 @@ function validaFormModCliente(oEvento){
 
         sMensaje = oConsultoria.anadeCliente(oCliente);
 
-        toastr.Error(sMensaje);
+        toastr.error(sMensaje);
     }
 
 }
