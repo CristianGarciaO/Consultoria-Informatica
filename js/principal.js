@@ -56,9 +56,15 @@ document.getElementById('eventNuevoAnalista').addEventListener('click', nuevoAna
 
 document.getElementById('eventModificaAnalista').addEventListener('click', modificaAnalista, false);
 
-document.getElementById('eventGenerarIDAnalista').addEventListener('click', generaID, false);
-
 document.getElementById('eventNuevoProgramador').addEventListener('click', nuevoProgramador, false);
+
+document.getElementById('eventModificaProgramador').addEventListener('click', modificaProgramador, false);
+
+//CREACION DE OBJETOS
+
+//document.getElementById('CrearTarea').addEventListener('click', crearTarea, false);
+
+
 
 
 //Eventos Combos
@@ -69,6 +75,8 @@ document.getElementById('selectCliente_ModCli').addEventListener('change', muest
 
 
 
+//evento para generar codigos
+document.getElementById('eventGenerarCodigoTarea').addEventListener('click', generarCodigoTarea, false);
 
 // FUNCIONES PARA MANEJO DE CAPAS
 
@@ -91,6 +99,7 @@ function ocultarFormularios() {
     document.getElementById('divFormNuevoAnalista').style.display='none';
     document.getElementById('divFormModificaAnalista').style.display='none';
     document.getElementById('divFormNuevoProgramador').style.display='none';
+    document.getElementById('divFormModificaProgramador').style.display='none';
 }
 
 function nuevoCliente() {
@@ -255,9 +264,20 @@ function modificaAnalista() {
 }
 
 
-function generaID() {
+function generarCodigoTarea() {
 
-    document.querySelector('appendedtextModifica').value="hola";
+    var inputCodigoTarea = document.querySelector('#nTareaCodigo');
+
+    numeroAleatorio=parseInt(Math.random() * (99999 - 00000) + 00000);
+
+    for (var i=0;i<oConsultoria.tareas.length;i++){
+        if(oConsultoria.tareas[i].codigoTarea==numeroAleatorio){
+            numeroAleatorio=parseInt(Math.random() * (99999 - 00000) + 00000);
+            i=0;
+        }
+    }
+    inputCodigoTarea.value = numeroAleatorio;
+
 }
 
 function nuevoProgramador() {
@@ -272,6 +292,13 @@ function modificaProgramador() {
     document.getElementById('formuModificaProgramador').reset();
 
 }
+
+function crearTarea() {
+
+    alert(document.querySelector("#fechaini").value);
+
+}
+
 
 
 

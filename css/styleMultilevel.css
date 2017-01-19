@@ -7,7 +7,8 @@
 #divFormNuevoContrato, #divFormModificarContrato,
 #divFormNuevoAdministrador, #divFormModificarAdministrador,
 #divFormNuevoProyecto,#divFormModificaProyecto,#divFormNuevaTarea,
-#divFormModificaTarea,#divFormNuevoAnalista,#divFormModificaAnalista{
+#divFormModificaTarea,#divFormNuevoAnalista,#divFormModificaAnalista,
+#divFormNuevoProgramador,#divFormModificaProgramador{
     display:none;
 }
 

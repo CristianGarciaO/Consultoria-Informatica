@@ -321,7 +321,8 @@ Consultoria.prototype.anadeProyecto = function(oProyecto){
 
 // TAREAS
 
-function Tarea(sNombreTarea, dFechaIni, oProyecto,dFechaFin,bEstado){
+function Tarea(iCodigo,sNombreTarea, dFechaIni, oProyecto,dFechaFin,bEstado){
+    this.codigoTarea=iCodigo;
     this.nombreProyecto = oProyecto;
     this.fechaInicio = dFechaIni;
     this.fechaFin = dFechaFin;
@@ -332,7 +333,9 @@ function Tarea(sNombreTarea, dFechaIni, oProyecto,dFechaFin,bEstado){
 Consultoria.prototype.anadeTarea = function(oTarea){
     this.tareas.push(oProyecto);
 };
-
+Consultoria.prototype.dameCodigos = function(){
+    
+};
 
 //ANALISTA
 

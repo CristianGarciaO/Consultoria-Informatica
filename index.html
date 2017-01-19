@@ -46,7 +46,7 @@
                     <li><a href="https://github.com/CristianGarciaO/Consultoria-Informatica" target="_blank">Proyecto GitHub</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="#">Inicio</a></li>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trabajadores<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-level">
@@ -1023,6 +1023,18 @@
                 <!-- Form Name -->
                 <legend class="text-center">Nueva Tarea</legend>
 
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nTareaCodigo">Código</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input id="nTareaCodigo" name="nTareaCodigo" class="form-control" placeholder="Código" type="text" required="" disabled="disabled" >
+                            <span class="input-group-addon" href="#" id="eventGenerarCodigoTarea"><a href="#">Código</a></span>
+                        </div>
+
+                    </div>
+                </div>
+
+
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="Tarea">Nombre</label>
@@ -1036,7 +1048,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
                     <div class="col-md-4">
-                        <input id="fechaini" name="fechaini" type="date" placeholder="Fecha inicial" class="form-control input-md" required="">
+                        <input id="fechaini" name="fechaini" type="date" placeholder="Fecha inicial" class="form-control input-md" required="" min="2017-01-01" max="2019-01-01">
 
                     </div>
                 </div>
@@ -1056,7 +1068,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechafin">Fecha Fin</label>
                     <div class="col-md-4">
-                        <input id="fechafin" name="fechafin" type="date" placeholder="Fecha final" class="form-control input-md" required="">
+                        <input id="fechafin" name="fechafin" type="date" placeholder="Fecha final" class="form-control input-md" required="" max="2021-01-01" min="2019-01-02">
 
                     </div>
                 </div>
@@ -1127,7 +1139,16 @@
 
                 <hr>
 
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nTareaCodigoMod">Código</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input id="nTareaCodigoMod" name="nTareaCodigo" class="form-control" placeholder="Código" type="text" required="" disabled="disabled" >
+                            <span class="input-group-addon" href="#" id="eventGenerarCodigoTareaMod">Código</span>
+                        </div>
 
+                    </div>
+                </div>
 
 
                 <!-- Text input-->
@@ -1223,17 +1244,6 @@
             <!-- Form Name -->
             <legend class="text-center">Analista</legend>
 
-            <!-- Appended Input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="appendedtext">ID</label>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <input id="appendedtext" name="appendedtext" class="form-control" placeholder="Identificador" type="text" required="">
-                        <span class="input-group-addon" href="#" id="eventGenerarIDAnalista"><a href="#">Generar</a></span>
-                    </div>
-
-                </div>
-            </div>
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="nombreAdmin_NueAdm">Nombre:</label>
@@ -1321,14 +1331,47 @@
                 </div>
 
                 <br>
-                <!-- Appended Input-->
+
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="appendedtextModifica">ID</label>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <input id="appendedtextModifica" name="appendedtext" class="form-control" placeholder="Identificador" type="text" required="">
-                            <span class="input-group-addon" href="#" id="eventGenerarIDModifica"><a href="#">Generar</a></span>
-                        </div>
+                    <label class="col-md-4 control-label" for="nombreAnalis_Mod">Nombre:</label>
+                    <div class="col-md-5">
+                        <input id="nombreAnalis_Mod" name="nombreAnalistaMod" type="text" placeholder="max 30 caracteres" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="apellidosAnalis_Mod">Apellidos:</label>
+                    <div class="col-md-5">
+                        <input id="apellidosAnalis_Mod" name="apellidosAnalstaMod" type="text" placeholder="max 30 caracteres" class="form-control input-md">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="dniAnalis_Mod">DNI:</label>
+                    <div class="col-md-5">
+                        <input id="dniAnalis_Mod" name="dniAnalistMod" type="text" placeholder="8 digitos más letra mayuscula" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="telefonoAnalis_Mod">Teléfono:</label>
+                    <div class="col-md-5">
+                        <input id="telefonoAnalis_Mod" name="telefonoAnalistaMod" type="text" placeholder="9 digitos" class="form-control input-md">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="direccionAnalis_Mod">Dirección:</label>
+                    <div class="col-md-5">
+                        <input id="direccionAnalis_Mod" name="direccionAnalistaMod" type="text" placeholder="40 caracteres" class="form-control input-md">
 
                     </div>
                 </div>
@@ -1363,17 +1406,6 @@
                 <!-- Form Name -->
                 <legend class="text-center">Programador</legend>
 
-                <!-- Appended Input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="appendedtext">ID</label>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <input id="appendedtextProgramdor" name="appendedtext" class="form-control" placeholder="Identificador" type="text" required="">
-                            <span class="input-group-addon" href="#" id="eventGenerarIDProgramador"><a href="#">Generar</a></span>
-                        </div>
-
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nombreAdmin_NueAdm">Nombre:</label>
@@ -1421,7 +1453,7 @@
 
                 <!-- Select Multiple -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectPrograAnalista">Selecciona Programador(es)</label>
+                    <label class="col-md-4 control-label" for="selectPrograAnalista">Selecciona Analista(s)</label>
                     <div class="col-md-4">
                         <select id="selectAnalistaProgr" name="selectAnalistaProgr" class="form-control">
 
@@ -1440,7 +1472,93 @@
         </form>
     </div>
 
+    <!-- ********** MODIFICAR PROGRAMADOR ********** -->
 
+
+    <div class="container" id="divFormModificaProgramador">
+        <form class="form-horizontal" id="formuModificaProgramador">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Programador</legend>
+
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectProgram_Mod">Programador:</label>
+                    <div class="col-md-4">
+                        <select id="selectProgram_Mod" name="selectProgram_Mod" class="form-control">
+                            <!--se cargan las options-->
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="nombreProgr_ModProgr">Nombre:</label>
+                    <div class="col-md-5">
+                        <input id="nombreProgr_ModProgr" name="nombreProgramadorMod" type="text" placeholder="max 30 caracteres" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="apellidosProgr_ModProgr">Apellidos:</label>
+                    <div class="col-md-5">
+                        <input id="apellidosProgr_ModProgr" name="apellidosProgramadorMod" type="text" placeholder="max 30 caracteres" class="form-control input-md">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="dniProgr_ModProgr">DNI:</label>
+                    <div class="col-md-5">
+                        <input id="dniProgr_ModProgr" name="dniProgramadorMod" type="text" placeholder="8 digitos más letra mayuscula" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="telefonoProgr_ModProgr">Teléfono:</label>
+                    <div class="col-md-5">
+                        <input id="telefonoProgr_ModProgr" name="telefonoProgramadorMod" type="text" placeholder="9 digitos" class="form-control input-md">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="direccioProgr_ModProgr">Dirección:</label>
+                    <div class="col-md-5">
+                        <input id="direccioProgr_ModProgr" name="direccionProgramadorMod" type="text" placeholder="40 caracteres" class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Select Multiple -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectAnalistaProgrMod">Selecciona Analista(s)</label>
+                    <div class="col-md-4">
+                        <select id="selectAnalistaProgrMod" name="selectAnalistaProgrMod" class="form-control">
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="modicarProgramador"></label>
+                    <div class="col-md-4">
+                        <button id="modicarProgramador" name="modicarProgramador" class="btn btn-primary">Modificar Programador</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
 
 </div>
 
