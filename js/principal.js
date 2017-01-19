@@ -20,6 +20,10 @@ var a=oConsultoria.anadeAnalista(new Analista('Andres','24358543B','Rodriguez Ma
 
 oConsultoria.anadeProgramador(new Programador('Roberto','34259087M','Lopez Lopez',678945672,'Pasaje Antonino',100036,a));
 
+oConsultoria.anadeProyecto(new Proyecto('Proyecto Uno',[], []));
+
+oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo',[], []));
+
 // LISTA DE EVENTOS
 
 // Eventos de Capas
@@ -126,7 +130,7 @@ function modificaCliente() {
         oFormu[i].setAttribute('readonly', 'readonly');
     }
 
-    vaciarComboModCliente();  //Vaciar el combo por si contiene algo anterior
+    vaciarCombo('#selectCliente_ModCli');  //Vaciar el combo por si contiene algo anterior
     cargaComboClientes('#selectCliente_ModCli');   //Cargar lista de clientes existentes
 }
 
@@ -166,18 +170,23 @@ function nuevoContrato() {
     document.getElementById('divFormNuevoContrato').style.display = 'block';
     document.getElementById('formuNuevoContrato').reset();
 
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuNuevoContrato').querySelectorAll('input');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
+
+    vaciarCombo('#nombreProyecto_NueCon');
+    vaciarCombo('#cliente_NueCon');
+
     if(oConsultoria.clientes.length > 0 && oConsultoria.proyectos.length > 0){
 
         //Combo proyectos: '#nombreProyecto_NueCon'
         cargaComboProyectos('#nombreProyecto_NueCon');
         //Combo clientes:
         cargaComboClientes('#cliente_NueCon');
-
-
-
-
-
-
     }else{
         toastr.error("Aun no se han registrado Proyectos y/o Clientes en el sistema. <br>" +
                      "No es posible firmar contratos")
@@ -216,7 +225,7 @@ function modificarAdministrador() {
         oFormu[i].setAttribute('readonly', 'readonly');
     }
 
-    vaciarComboModAdmin();  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
+    vaciarCombo('#selectAdmin_ModAdm');  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
     cargaComboAdministradores('#selectAdmin_ModAdm'); //Cargar los administradores existentes
 }
 
@@ -310,7 +319,8 @@ var oExRegNombre = /^[a-záéíóúñA-ZÑÁÉÍÓÚ]{3}([a-záéíóúñA-ZÑÁ
 var oExRegApellido = /^[a-záéíóúñA-ZÁÉÍÓÚ]{4}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}/; //Apellidos
 var oExRegDireccion = /^([a-záéíóúñA-ZÑÁÉÍÓÚ]{1})([a-záéíóúñA-ZÑÁÉÍÓÚ\s\d\.\,\º\ª\-\/]{0,39})$/; //Direccion
 var oExRegDni = /^[0-9]{8}[A-Z]{1}$/;
-var oExRegFechas = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/; //Fechas: 2013-12-14 o 2013/12/14 o 2013.12.14
+// var oExRegFechas = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/; //Fechas: 2013-12-14 o 2013/12/14 o 2013.12.14
+var oExRegFechas = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;
 var oExRegPrecio = /^([0-9]{1,10}[\,\.][0-9]{1,2})$/;  //Precio con dos decimales obligatorios.
 var oExRegAsunto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,60}$/;  // Asunto
 var oExRegNombreProyecto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,20}$/;  // Nombre proyecto
@@ -943,9 +953,9 @@ function validaFormNuevoContrato(oEvento){
     var sErrores = "";
 
     var precio = document.getElementById('precio_NueCon').value.trim();
-    document.getElementById('precio_NueCon').value = nombre;
+    document.getElementById('precio_NueCon').value = precio;
 
-    if(validaNombre(precio) == false){
+    if(validaPrecio(precio) == false){
 
         if(bValido == true){
             bValido = false;
@@ -975,7 +985,7 @@ function validaFormNuevoContrato(oEvento){
             //Este campo obtiene el foco
             document.getElementById('formuNuevoContrato').fechaIni.focus();
         }
-        sErrores += "<br><br> FECHA INICIO del Contrato incorrecto (formato: 13-01-2013 o 13/01/2013 o 13.01.2013)";
+        sErrores += "<br><br> FECHA INICIO del Contrato incorrecto (formato: 2015-05-01)";
 
         //Marcar error
         document.getElementById('formuNuevoContrato').fechaIni.className = "form-control input-md error";
@@ -988,14 +998,14 @@ function validaFormNuevoContrato(oEvento){
     var fechaFin = document.getElementById('fechaFin_NueCon').value.trim();
     document.getElementById('fechaFin_NueCon').value = fechaFin;
 
-    if(validaDni(fechaFin) == false){
+    if(validaFechas(fechaFin) == false){
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
             document.getElementById('formuNuevoContrato').fechaFin.focus();
         }
-        sErrores += "<br><br> FECHA FIN del Contrato incorrecto (formato: 13-01-2013 o 13/01/2013 o 13.01.2013)";
+        sErrores += "<br><br> FECHA FIN del Contrato incorrecto (formato: 2015-05-01)";
 
         //Marcar error
         document.getElementById('formuNuevoContrato').fechaFin.className = "form-control input-md error";
@@ -1013,33 +1023,51 @@ function validaFormNuevoContrato(oEvento){
         toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
-        //Comprobar si existe el cliente
 
+        //Comprobar que fecha fin es posterior a fecha inicio
 
-        //HACER LAS INSERCIONES DE NUEVO CONTRATO
+        var fI = new Date(fechaInicio);
+        var fF = new Date(fechaFin);
 
+        if(fI < fF){
+            //Comprobar que se ha seleccionado cliente y proyecto
 
-        var sMensaje = "";
+            var select1 = document.querySelector('#nombreProyecto_NueCon');
+            var select2 = document.querySelector('#cliente_NueCon');
 
-        if(!oConsultoria.existeCliente(dni)){
-            var contratos = [];  //Array de contratos que pueda tener este cliente
-            var oCliente = new Cliente(nombre, dni, apellido, direccion, tlf, contratos);
-            sMensaje = oConsultoria.anadeCliente(oCliente);
+            if(select1.selectedIndex != 0 && select2.selectedIndex != 0){
+
+                //Comprobar que no existe un contrato para ese proyecto
+
+                if(oConsultoria.existeContrato(select1.value)){
+                    oEvNuevoContrato.preventDefault();
+                    toastr.error("El proyecto seleccionado ya tiene contrato");
+                }else{
+                    //Guardar el contrato
+
+                    var cliente = select2.value;
+                    var proyecto = select1.value;
+
+                    oContrato = new Contrato(proyecto,precio,fI,fF,cliente);
+
+                    for(var i=0;i<oConsultoria.clientes.length; i++){
+                        if(select2.value == oConsultoria.clientes[i].dniCliente){
+                            oConsultoria.clientes[i].contratosCliente.push(oContrato);
+                        }
+                    }
+                    var sMensaje = oConsultoria.anadeContrato(oContrato);
+
+                    toastr.success(sMensaje);
+                }
+            }else{
+                oEvNuevoContrato.preventDefault();
+                toastr.error("Debe seleccionar un cliente y un proyecto");
+            }
         }else{
-            sMensaje = "Imposible añadir. El Cliente que intenta añadir al sistema ya estaba registrado";
+            toastr.error("Error, la fecha fin es anterior a la fecha inicio introducida.");
         }
-
-        toastr.error(sMensaje);
     }
-
-
 }
-
-
-
-
-
-
 
 
 
@@ -1100,9 +1128,9 @@ function muestraDatosDeEsteAdmin(){
 }
 
 //Vacia combo antes de ser cargado
-function vaciarComboModAdmin() {
+function vaciarCombo(id) {
 
-    var select = document.querySelector('#selectAdmin_ModAdm');
+    var select = document.querySelector(id);
 
     var longitud = select.length;
     for(var i=0;i<longitud; i++){
@@ -1163,17 +1191,16 @@ function muestraDatosDeEsteCliente(){
     }
 }
 
-
-//Vacia combo antes de ser cargado
-function vaciarComboModCliente() {
-
-    var select = document.querySelector('#selectCliente_ModCli');
-
-    var longitud = select.length;
-    for(var i=0;i<longitud; i++){
-        select.options.remove(0);
-    }
-}
+// //Vacia combo antes de ser cargado
+// function vaciarComboModCliente() {
+//
+//     var select = document.querySelector('#selectCliente_ModCli');
+//
+//     var longitud = select.length;
+//     for(var i=0;i<longitud; i++){
+//         select.options.remove(0);
+//     }
+// }
 
 //Cargar combo de Incidencias
 function cargaComboIncidencias(){
@@ -1203,7 +1230,6 @@ function cargaComboProyectos(id){
         oOption.value = oConsultoria.proyectos[i].nombreProyecto;
         miCombo.add(oOption);
     }
-    miCombo.ordenaArrayString('nombreProyecto',1,true);
 }
 
 

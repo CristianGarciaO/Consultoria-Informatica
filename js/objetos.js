@@ -94,7 +94,19 @@ Consultoria.prototype.existeCliente = function(sDni){
     return bEncontrado;
 };
 
+/***** COMPROBAR EXISTENCIA DE CONTRATO *****/
 
+Consultoria.prototype.existeContrato = function(nombreProycto){
+    /*Recibe un nombre de proyecto y devuelve TRUE si existe o FALSE si no existe.*/
+    var bEnc = false;
+
+    for(var i=0; i< this.contratos.length && bEnc == false; i++){
+        if(this.contratos[i].nombreProyecto == nombreProycto){
+            bEnc = true;
+        }
+    }
+    return bEnc;
+}
 
 
 
@@ -141,6 +153,8 @@ function Contrato(sNombreProyecto, iPrecio, fechaInicio, fechaFin, sDniCliente) 
 
 Consultoria.prototype.anadeContrato= function(oContrato){
     this.contratos.push(oContrato);
+    var sMensaje = "Guardado";
+    return sMensaje;
 };
 
 Consultoria.prototype.contratosDeEsteCliente = function(sDniCliente, tipoOrdenacion){
@@ -155,6 +169,9 @@ Consultoria.prototype.contratosDeEsteCliente = function(sDniCliente, tipoOrdenac
     listaContratos.ordenaArrayString('nombreProyecto', tipoOrdenacion, true);
     return listaContratos;
 };
+
+
+
 
 
 //---------------------------------------------------------
@@ -193,6 +210,8 @@ Consultoria.prototype.dameCliente = function (dniCli) {
     }
     return oCliente;
 }
+
+
 
 
 
