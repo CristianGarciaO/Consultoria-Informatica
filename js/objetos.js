@@ -96,6 +96,8 @@ Consultoria.prototype.existeCliente = function(sDni){
 
 
 
+
+
 //************************************************************************************************************
 //OBJETOS ALEX ***********************************************************************************************
 //************************************************************************************************************
@@ -233,6 +235,7 @@ Administrador.prototype.constructor = Administrador;
 // *********************
 
 Consultoria.prototype.anadeAdministrador = function(oAdministrador){
+
     this.administradores.push(oAdministrador);
     this.trabajadores.push(oAdministrador);
     var sMensaje = "Guardado";
@@ -274,7 +277,6 @@ function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, 
 Consultoria.prototype.anadeIncidencia = function(oIncidencia){
     this.incidencias.push(oIncidencia);
 };
-
 
 
 Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacion){

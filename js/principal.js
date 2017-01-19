@@ -8,7 +8,7 @@ oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez 
 oConsultoria.anadeAdministrador(new Administrador('Juan','22334455G','Rosa Moreno',677331909,'Avda del Kiko',2));
 
 oConsultoria.anadeCliente(new Cliente('Manolo', '11032393X', 'Cruz de la vega', 'Callejon del 7', 943382941, []));
-oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'de Miguel', 'Calle Cuesta', 989556443, []));
+oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'Castillejo Caserón', 'Calle Cuesta', 989556443, []));
 
 oConsultoria.anadeIncidencia(new Incidencia(1,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2));
 
@@ -115,7 +115,7 @@ function modificaCliente() {
     }
 
     vaciarComboModCliente();  //Vaciar el combo por si contiene algo anterior
-    cargaComboClientes();   //Cargar lista de clientes existentes
+    cargaComboClientes('#selectCliente_ModCli');   //Cargar lista de clientes existentes
 }
 
 function nuevaIncidencia() {
@@ -153,6 +153,25 @@ function nuevoContrato() {
     ocultarFormularios();
     document.getElementById('divFormNuevoContrato').style.display = 'block';
     document.getElementById('formuNuevoContrato').reset();
+
+    if(oConsultoria.clientes.length > 0 && oConsultoria.proyectos.length > 0){
+
+        //Combo proyectos: '#nombreProyecto_NueCon'
+        cargaComboProyectos('#nombreProyecto_NueCon');
+        //Combo clientes:
+        cargaComboClientes('#cliente_NueCon');
+
+
+
+
+
+
+    }else{
+        toastr.error("Aun no se han registrado Proyectos y/o Clientes en el sistema. <br>" +
+                     "No es posible firmar contratos")
+    }
+
+
 }
 
 function modificarContrato() {
@@ -586,9 +605,9 @@ function validaFormModAdmin(oEvento){
         oAdmin.telefonoTrabajador = tlf;
         oAdmin.direccionTrabajador = direccion;
 
-        var sMensaje;
-        sMensaje = oConsultoria.anadeAdministrador(oAdmin);
-        toastr.error(sMensaje);
+        toastr.success("Datos modificados correctamente");
+
+        modificarAdministrador();
     }
 
 
@@ -858,15 +877,121 @@ function validaFormModCliente(oEvento){
         oCliente.telefonoCliente = tlf;
         oCliente.direccionCliente = direccion;
 
-        var sMensaje;
 
-        sMensaje = oConsultoria.anadeCliente(oCliente);
+        toastr.success("Datos modificados correctamente");
 
-        toastr.error(sMensaje);
+        modificaCliente();
     }
 
 }
 
+
+
+
+// NUEVO CONTRATO ******************************************************
+// ********************************************************************
+
+document.querySelector('#guardar_NueCon').addEventListener('click', validaFormNuevoContrato, false);
+
+document.querySelector('#limpiar_NueCon').addEventListener('click', nuevoContrato, false);
+
+function validaFormNuevoContrato(oEvento){
+    var oEvNuevoContrato = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+    var precio = document.getElementById('precio_NueCon').value.trim();
+    document.getElementById('precio_NueCon').value = nombre;
+
+    if(validaNombre(precio) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoContrato').precio.focus();
+        }
+        sErrores += "PRECIO del Contrato incorrecto (formato: Hasta 10 digitos mas 1 o 2 decimales)";
+
+        //Marcar error
+        document.getElementById('formuNuevoContrato').precio.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevoContrato').precio.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    var fechaInicio = document.getElementById('fechaIni_NueCon').value.trim();
+    document.getElementById('fechaIni_NueCon').value = fechaInicio;
+
+
+    if(validaFechas(fechaInicio) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoContrato').fechaIni.focus();
+        }
+        sErrores += "<br><br> FECHA INICIO del Contrato incorrecto (formato: 13-01-2013 o 13/01/2013 o 13.01.2013)";
+
+        //Marcar error
+        document.getElementById('formuNuevoContrato').fechaIni.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevoContrato').fechaIni.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var fechaFin = document.getElementById('fechaFin_NueCon').value.trim();
+    document.getElementById('fechaFin_NueCon').value = fechaFin;
+
+    if(validaDni(fechaFin) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoContrato').fechaFin.focus();
+        }
+        sErrores += "<br><br> FECHA FIN del Contrato incorrecto (formato: 13-01-2013 o 13/01/2013 o 13.01.2013)";
+
+        //Marcar error
+        document.getElementById('formuNuevoContrato').fechaFin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevoContrato').fechaFin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvNuevoContrato.preventDefault();
+        //Mostrar errores
+        toastr.error(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+        //Comprobar si existe el cliente
+
+
+        //HACER LAS INSERCIONES DE NUEVO CONTRATO
+
+
+        var sMensaje = "";
+
+        if(!oConsultoria.existeCliente(dni)){
+            var contratos = [];  //Array de contratos que pueda tener este cliente
+            var oCliente = new Cliente(nombre, dni, apellido, direccion, tlf, contratos);
+            sMensaje = oConsultoria.anadeCliente(oCliente);
+        }else{
+            sMensaje = "Imposible añadir. El Cliente que intenta añadir al sistema ya estaba registrado";
+        }
+
+        toastr.error(sMensaje);
+    }
+
+
+}
 
 
 
@@ -944,9 +1069,9 @@ function vaciarComboModAdmin() {
 }
 
 
-function cargaComboClientes(){
+function cargaComboClientes(id){
 
-    var miCombo = document.querySelector('#selectCliente_ModCli');
+    var miCombo = document.querySelector(id);
     var oOption = document.createElement('option');
     oOption.text = 'Seleccione un Cliente';
     miCombo.add(oOption);
@@ -1021,6 +1146,22 @@ function cargaComboIncidencias(){
         oOption.value = oConsultoria.administradores[i].codigoAdmin;
         miCombo.add(oOption);
     }
+}
+
+
+function cargaComboProyectos(id){
+
+    var miCombo = document.querySelector(id);
+    var oOption = document.createElement('option');
+    oOption.text = 'Seleccione un Proyecto';
+    miCombo.add(oOption);
+    for(var i=0; i<oConsultoria.proyectos.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.proyectos[i].nombreProyecto;
+        oOption.value = oConsultoria.proyectos[i].nombreProyecto;
+        miCombo.add(oOption);
+    }
+    miCombo.ordenaArrayString('nombreProyecto',1,true);
 }
 
 
