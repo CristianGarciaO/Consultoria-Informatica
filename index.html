@@ -659,66 +659,53 @@
 
         <form id="formuModificarContrato" class="form-horizontal">
 
-
             <legend class="text-center">Modificar Contrato</legend>
-
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="selectContrato_ModCon">Selecciona Contrato</label>
                 <div class="col-md-5">
                     <select id="selectContrato_ModCon" name="selectContrato" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
+                       
                     </select>
                 </div>
             </div>
 
             <!-- AL SELECCIONAR EL CONTRATO, EL RESTO DE CAMPOS DE DEBEN AUTOCOMPLETAR CON LOS DATOS DEL CONTRATO SELECCIONADO -->
 
-
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="nombreProyecto_ModCon">Selecciona Proyecto:</label>
+			<div class="form-group">
+                <label class="col-md-4 control-label" for="nombreProyecto_ModCon">Proyecto: </label>
                 <div class="col-md-5">
-                    <select id="nombreProyecto_ModCon" name="nombreProyecto" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
-                    </select>
+                    <input id="nombreProyecto_ModCon" name="nombreProyecto" type="text" placeholder="Máx 20 caracteres" class="form-control input-md">
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="cliente_ModCon">Selecciona Cliente:</label>
+			
+			<div class="form-group">
+                <label class="col-md-4 control-label" for="cliente_ModCon">Cliente: </label>
                 <div class="col-md-5">
-                    <select id="cliente_ModCon" name="cliente" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
-                    </select>
+                    <input id="cliente_ModCon" name="cliente" type="text" placeholder="Máx 30 caracteres" class="form-control input-md">
                 </div>
             </div>
-
-
+			
             <div class="form-group">
                 <label class="col-md-4 control-label" for="precio_ModCon">Precio del Proyecto: </label>
                 <div class="col-md-5">
-                    <input id="precio_ModCon" name="precio" type="text" placeholder="Sólo dígitos..." class="form-control input-md" required="">
+                    <input id="precio_ModCon" name="precio" type="text" placeholder="Sólo dígitos..." class="form-control input-md">
 
                 </div>
             </div>
-
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="fechaIni_ModCon">Fecha Inicio:</label>
                 <div class="col-md-5">
-                    <input id="fechaIni_ModCon" name="fechaIni" type="date" placeholder="aaaa-mm-dd" class="form-control input-md" required="">
+                    <input id="fechaIni_ModCon" name="fechaIni" type="text" placeholder="aaaa-mm-dd" class="form-control input-md">
 
                 </div>
             </div>
 
-
             <div class="form-group">
                 <label class="col-md-4 control-label" for="fechaFin_ModCon">Fecha Fin:</label>
                 <div class="col-md-5">
-                    <input id="fechaFin_ModCon" name="fechaFin" type="date" placeholder="aaaa-mm-dd" class="form-control input-md" required="">
+                    <input id="fechaFin_ModCon" name="fechaFin" type="text" placeholder="aaaa-mm-dd" class="form-control input-md">
 
                 </div>
             </div>
@@ -726,8 +713,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="guardar_ModCon"></label>
                 <div class="col-md-8">
-                    <button id="guardar_ModCon" name="guardar" class="btn btn-success">Guardar</button>
-                    <button id="limpiar_ModCon" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
+                    <button type="button" id="guardar_ModCon" name="guardar" class="btn btn-success">Guardar</button>
+                    <button type="button" id="limpiar_ModCon" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
                 </div>
             </div>
 
@@ -1119,6 +1106,7 @@
 
     <!-- ********** MODIFICAR TAREA ********** -->
 
+	
     <div class="container" id="divFormModificaTarea">
 
         <form class="form-horizontal" id="formuModificaTarea">
@@ -1235,7 +1223,6 @@
 
 
     <!-- ********** NUEVO ANALISTA ********** -->
-
 
     <div class="container" id="divFormNuevoAnalista">
     <form class="form-horizontal" id="formuNuevoAnalista">
@@ -1561,8 +1548,6 @@
     </div>
 
 </div>
-
-
 
 
 <!--SCRIPTS-->

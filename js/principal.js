@@ -189,7 +189,7 @@ function nuevoContrato() {
         cargaComboClientes('#cliente_NueCon');
     }else{
         toastr.error("Aun no se han registrado Proyectos y/o Clientes en el sistema. <br>" +
-                     "No es posible firmar contratos")
+                     "No es posible firmar contratos");
     }
 
 
@@ -199,6 +199,29 @@ function modificarContrato() {
     ocultarFormularios();
     document.getElementById('divFormModificarContrato').style.display = 'block';
     document.getElementById('formuModificarContrato').reset();
+	
+	 //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuNuevoContrato').querySelectorAll('input');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
+	
+	vaciarCombo('#selectContrato_ModCon');	
+	
+	if(oConsultoria.contratos.length > 0){
+		
+		cargaComboContratos('#selectContrato_ModCon');
+		
+		
+	}else{
+		 toastr.error("Aun no se han registrado Contratos en el sistema. <br>" +
+                     "No es posible modificar contratos");
+	}
+	
+	
+	
 }
 
 function nuevoAdministrador() {
@@ -314,13 +337,13 @@ function crearTarea() {
 
 // EXPRESIONES REGULARES Y FUNCIONES *******************************************************************************
 
-var oExRegTelefono = /^([9|6]{1})[0-9]{8}/;  // Teñefonos
+var oExRegTelefono = /^([9|6]{1})[0-9]{8}/;  // Telefonos
 var oExRegNombre = /^[a-záéíóúñA-ZÑÁÉÍÓÚ]{3}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}$/; //Nombres (nombre mas corto permitido 3 caracteres
 var oExRegApellido = /^[a-záéíóúñA-ZÁÉÍÓÚ]{4}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}/; //Apellidos
 var oExRegDireccion = /^([a-záéíóúñA-ZÑÁÉÍÓÚ]{1})([a-záéíóúñA-ZÑÁÉÍÓÚ\s\d\.\,\º\ª\-\/]{0,39})$/; //Direccion
 var oExRegDni = /^[0-9]{8}[A-Z]{1}$/;
 // var oExRegFechas = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/; //Fechas: 2013-12-14 o 2013/12/14 o 2013.12.14
-var oExRegFechas = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;
+var oExRegFechas = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;  //Fechas: 2013-12-14
 var oExRegPrecio = /^([0-9]{1,10}[\,\.][0-9]{1,2})$/;  //Precio con dos decimales obligatorios.
 var oExRegAsunto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,60}$/;  // Asunto
 var oExRegNombreProyecto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,20}$/;  // Nombre proyecto
@@ -1071,6 +1094,140 @@ function validaFormNuevoContrato(oEvento){
 
 
 
+// MODIFICAR CONTRATO ******************************************************
+// ********************************************************************
+
+document.querySelector('#guardar_ModCon').addEventListener('click', validaFormModContrato, false);
+
+document.querySelector('#limpiar_ModCon').addEventListener('click', modificarContrato, false);
+
+function validaFormModContrato(oEvento){
+    var oEvModContrato = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+    var precio = document.getElementById('precio_ModCon').value.trim();
+    document.getElementById('precio_ModCon').value = precio;
+
+    if(validaPrecio(precio) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarContrato').precio.focus();
+        }
+        sErrores += "PRECIO del Contrato incorrecto (formato: Hasta 10 digitos mas 1 o 2 decimales)";
+
+        //Marcar error
+        document.getElementById('formuModificarContrato').precio.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarContrato').precio.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    var fechaInicio = document.getElementById('fechaIni_ModCon').value.trim();
+    document.getElementById('fechaIni_ModCon').value = fechaInicio;
+
+
+    if(validaFechas(fechaInicio) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarContrato').fechaIni.focus();
+        }
+        sErrores += "<br><br> FECHA INICIO del Contrato incorrecto (formato: 2015-05-01)";
+
+        //Marcar error
+        document.getElementById('formuModificarContrato').fechaIni.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarContrato').fechaIni.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var fechaFin = document.getElementById('fechaFin_ModCon').value.trim();
+    document.getElementById('fechaFin_ModCon').value = fechaFin;
+
+    if(validaFechas(fechaFin) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificarContrato').fechaFin.focus();
+        }
+        sErrores += "<br><br> FECHA FIN del Contrato incorrecto (formato: 2015-05-01)";
+
+        //Marcar error
+        document.getElementById('formuModificarContrato').fechaFin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuModificarContrato').fechaFin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvModContrato.preventDefault();
+        //Mostrar errores
+        toastr.error(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+
+        //Comprobar que fecha fin es posterior a fecha inicio
+
+        var fI = new Date(fechaInicio);
+        var fF = new Date(fechaFin);
+
+        if(fI < fF){
+            //Comprobar que se ha seleccionado cliente y proyecto
+
+            var select1 = document.querySelector('#nombreProyecto_NueCon');
+            var select2 = document.querySelector('#cliente_NueCon');
+
+            if(select1.selectedIndex != 0 && select2.selectedIndex != 0){
+
+                //Comprobar que no existe un contrato para ese proyecto
+
+                if(oConsultoria.existeContrato(select1.value)){
+                    oEvNuevoContrato.preventDefault();
+                    toastr.error("El proyecto seleccionado ya tiene contrato");
+                }else{
+                    //Guardar el contrato
+
+                    var cliente = select2.value;
+                    var proyecto = select1.value;
+
+                    oContrato = new Contrato(proyecto,precio,fI,fF,cliente);
+
+                    for(var i=0;i<oConsultoria.clientes.length; i++){
+                        if(select2.value == oConsultoria.clientes[i].dniCliente){
+                            oConsultoria.clientes[i].contratosCliente.push(oContrato);
+                        }
+                    }
+                    var sMensaje = oConsultoria.anadeContrato(oContrato);
+
+                    toastr.success(sMensaje);
+                }
+            }else{
+                oEvNuevoContrato.preventDefault();
+                toastr.error("Debe seleccionar un cliente y un proyecto");
+            }
+        }else{
+            toastr.error("Error, la fecha fin es anterior a la fecha inicio introducida.");
+        }
+    }
+}
+
+
+
+
+
+
 // *******************************************************************************************************************
 // Funciones Varias
 
@@ -1191,16 +1348,61 @@ function muestraDatosDeEsteCliente(){
     }
 }
 
-// //Vacia combo antes de ser cargado
-// function vaciarComboModCliente() {
-//
-//     var select = document.querySelector('#selectCliente_ModCli');
-//
-//     var longitud = select.length;
-//     for(var i=0;i<longitud; i++){
-//         select.options.remove(0);
-//     }
-// }
+
+function cargaComboContratos(id){
+
+    var miCombo = document.querySelector(id);
+    var oOption = document.createElement('option');
+    oOption.text = 'Seleccione un Contrato';
+    miCombo.add(oOption);
+    for(var i=0; i<oConsultoria.contratos.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.contratos[i].nombreProyecto + ' - ' + oConsultoria.contratos[i].fechaInicio;
+        oOption.value = oConsultoria.contratos[i].nombreProyecto;
+        miCombo.add(oOption);
+    }
+}
+
+//Completa los campos de texto
+function muestraDatosDeEsteContrato(){
+
+    //Obtener valor del option seleccionado
+    var select = document.querySelector('#selectContrato_ModCon');
+
+    if(select.selectedIndex != 0){
+
+        var nombreDelContrato = select.value;
+        var oContrato = oConsultoria.dameConctrato(nombreDelContrato);  //PENDIENTE DE IMPLEMENTAR EL METODO: dameContrato();
+
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+
+        var nomProyecto = document.querySelector('#nombreProyecto_ModCon');
+        nomProyecto.value = oContrato.nombreProyecto;
+        //nomProyecto.removeAttribute('readonly');
+
+		
+		
+		
+		//Obtener el cliente (dameCliente) para aportar el Nombre del cliente y su DNI
+		oCliente = dameCliente();
+	
+        var client = document.querySelector('#cliente_ModCon');
+        client.value = oContrato.nombreCliente + oCliente.dniCliente;
+        //client.removeAttribute('readonly');
+		
+		
+
+        var fIni = document.querySelector('#fechaIni_ModCon');
+        fIni.value = oContrato.fechaInicio;
+
+        var fFin = document.querySelector('#fechaFin_ModCon');
+        fFin.value = oContrato.fechaFin;
+        tlfCli.removeAttribute('readonly');
+
+
+    }
+}
+
 
 //Cargar combo de Incidencias
 function cargaComboIncidencias(){
