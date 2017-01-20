@@ -672,14 +672,14 @@
 
             <!-- AL SELECCIONAR EL CONTRATO, EL RESTO DE CAMPOS DE DEBEN AUTOCOMPLETAR CON LOS DATOS DEL CONTRATO SELECCIONADO -->
 
-			<div class="form-group">
+			<div id="nomCon" class="form-group oculto">
                 <label class="col-md-4 control-label" for="nombreProyecto_ModCon">Proyecto: </label>
                 <div class="col-md-5">
                     <input id="nombreProyecto_ModCon" name="nombreProyecto" type="text" placeholder="Máx 20 caracteres" class="form-control input-md">
                 </div>
             </div>
 			
-			<div class="form-group">
+			<div id="nomCli" class="form-group oculto">
                 <label class="col-md-4 control-label" for="cliente_ModCon">Cliente: </label>
                 <div class="col-md-5">
                     <input id="cliente_ModCon" name="cliente" type="text" placeholder="Máx 30 caracteres" class="form-control input-md">
@@ -689,7 +689,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="precio_ModCon">Precio del Proyecto: </label>
                 <div class="col-md-5">
-                    <input id="precio_ModCon" name="precio" type="text" placeholder="Sólo dígitos..." class="form-control input-md">
+                    <input id="precio_ModCon" name="precio" type="text" placeholder="Máximo 10 digitos y entre 1 y 2 decimales" class="form-control input-md">
 
                 </div>
             </div>

@@ -170,7 +170,19 @@ Consultoria.prototype.contratosDeEsteCliente = function(sDniCliente, tipoOrdenac
     return listaContratos;
 };
 
-
+Consultoria.prototype.dameContrato = function (nombreDelContrato) {
+    var bEnc = false;
+    var oContrato;
+    var i = 0;
+    while(i < this.contratos.length && bEnc == false){
+        if(this.contratos[i].nombreProyecto == nombreDelContrato){
+            oContrato = this.contratos[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oContrato;
+}
 
 
 

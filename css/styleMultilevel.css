@@ -16,6 +16,12 @@
 .error {
     background-color:yellow;
 }
+
+.oculto{
+    display: none;
+}
+
+
 /*** FIN FORMULARIOS ***/
 
 

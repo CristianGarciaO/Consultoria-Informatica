@@ -12,7 +12,7 @@ oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'Castillejo Caserón'
 
 oConsultoria.anadeIncidencia(new Incidencia(1,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2));
 
-oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, 2016-9-25, 2016-11-5,'11032393X'));
+oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, new Date('2016-9-25'), new Date('2016-11-5'),'11032393X'));
 
 oConsultoria.anadeAdministrador(new Administrador('Cristian','34537865X','Garcia Ocaña',655589624,'Avenida del Paraiso',131313));
 
@@ -77,6 +77,17 @@ document.getElementById('selectAdmin_ModAdm').addEventListener('change', muestra
 
 document.getElementById('selectCliente_ModCli').addEventListener('change', muestraDatosDeEsteCliente, false);
 
+document.getElementById('selectContrato_ModCon').addEventListener('change', muestraDatosDeEsteContrato, true);
+
+
+
+//Ocultar inputs
+
+function mostrarCampos(selector){
+    for (var i=0; i<selector.length; i++){
+        selector[i].classList.remove('oculto');
+    }
+}
 
 
 //evento para generar codigos
@@ -201,26 +212,24 @@ function modificarContrato() {
     document.getElementById('formuModificarContrato').reset();
 	
 	 //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
-    var oFormu = document.getElementById('formuNuevoContrato').querySelectorAll('input');
+    var oFormu = document.getElementById('formuModificarContrato').querySelectorAll('input');
     for(var i=0; i<oFormu.length; i++){
         if(oFormu[i].classList.contains('error')){
             oFormu[i].classList.remove('error');
         }
     }
-	
-	vaciarCombo('#selectContrato_ModCon');	
+
+	vaciarCombo('#selectContrato_ModCon');
+
+    document.querySelector('#nomCon').setAttribute('class', 'form-group oculto');
+    document.querySelector('#nomCli').setAttribute('class', 'form-group oculto');
 	
 	if(oConsultoria.contratos.length > 0){
-		
 		cargaComboContratos('#selectContrato_ModCon');
-		
-		
 	}else{
 		 toastr.error("Aun no se han registrado Contratos en el sistema. <br>" +
                      "No es posible modificar contratos");
 	}
-	
-	
 	
 }
 
@@ -1180,6 +1189,8 @@ function validaFormModContrato(oEvento){
 
         //Comprobar que fecha fin es posterior a fecha inicio
 
+
+
         var fI = new Date(fechaInicio);
         var fF = new Date(fechaFin);
 
@@ -1369,36 +1380,47 @@ function muestraDatosDeEsteContrato(){
     //Obtener valor del option seleccionado
     var select = document.querySelector('#selectContrato_ModCon');
 
+    if(select.selectedIndex != 0) {
+        mostrarCampos(document.querySelectorAll('#formuModificarContrato div.oculto'));
+    }else{
+        modificarContrato();
+    }
+
+
     if(select.selectedIndex != 0){
 
         var nombreDelContrato = select.value;
-        var oContrato = oConsultoria.dameConctrato(nombreDelContrato);  //PENDIENTE DE IMPLEMENTAR EL METODO: dameContrato();
+        var oContrato = oConsultoria.dameContrato(nombreDelContrato);
 
         //Extraer los valores de sus atributos y colocarlos en los campos de texto.
 
         var nomProyecto = document.querySelector('#nombreProyecto_ModCon');
         nomProyecto.value = oContrato.nombreProyecto;
-        //nomProyecto.removeAttribute('readonly');
+        nomProyecto.setAttribute('readonly', 'readonly');
 
-		
-		
-		
+
 		//Obtener el cliente (dameCliente) para aportar el Nombre del cliente y su DNI
-		oCliente = dameCliente();
-	
+
+		var oCliente = oConsultoria.dameCliente(oContrato.dniCliente);
+
+
         var client = document.querySelector('#cliente_ModCon');
-        client.value = oContrato.nombreCliente + oCliente.dniCliente;
-        //client.removeAttribute('readonly');
-		
-		
+        client.value = oCliente.nombreCliente + " - " + oContrato.dniCliente;
+        client.setAttribute('readonly', 'readonly');
+
+        var prec = document.querySelector('#precio_ModCon');
+        prec.value = oContrato.precio;
+        prec.removeAttribute('readonly');
+
+
 
         var fIni = document.querySelector('#fechaIni_ModCon');
         fIni.value = oContrato.fechaInicio;
+        fIni.removeAttribute('readonly');
 
         var fFin = document.querySelector('#fechaFin_ModCon');
         fFin.value = oContrato.fechaFin;
-        tlfCli.removeAttribute('readonly');
-
+        fFin.removeAttribute('readonly');
 
     }
 }
