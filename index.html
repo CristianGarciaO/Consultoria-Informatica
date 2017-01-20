@@ -305,7 +305,7 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="prioridad_NueInc">Asunto</label>
                 <div class="controls col-md-5">
-                    <input id="prioridad_NueInc" name="prioridad" type="text" placeholder="escribe aquí el asunto" class="form-control input-md">
+                    <input id="prioridad_NueInc" name="asunto" type="text" placeholder="Máximo 60 caracteres" class="form-control input-md">
 
                 </div>
             </div>
@@ -324,20 +324,17 @@
                 <div class="controls col-md-5">
                     <label class="radio inline" for="prioridad-0">
                         <input type="radio" name="prioridad" id="prioridad-0" value="1" checked="checked">
-                        Error del sistema
+                            Grave
                     </label>
                     <label class="radio inline" for="prioridad-1">
                         <input type="radio" name="prioridad" id="prioridad-1" value="2">
-                        Problema con proyectos
+                            Media
                     </label>
                     <label class="radio inline" for="prioridad-3">
                         <input type="radio" name="prioridad" id="prioridad-3" value="3">
-                        Problemas con trabajadores
+                        Leve
                     </label>
-                    <label class="radio inline" for="prioridad-4">
-                        <input type="radio" name="prioridad" id="prioridad-4" value="4">
-                        Mejoras
-                    </label>
+
                 </div>
             </div>
 
@@ -351,7 +348,7 @@
                 </div>
             </div>
 
-
+<!-- SI LA INCIDENCIA ES NUEVA, EL ESTADO POR DEFECTO ES ABIERTA. NO HACE FALTA MOSTRAR ESTA OPCION DE FORMULARIO
             <div class="form-group">
                 <label class="control-label col-md-4" >Estado: </label>
                 <div class="controls col-md-5">
@@ -369,12 +366,12 @@
                     </label>
                 </div>
             </div>
-
+-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="guardar_NueInc"></label>
                 <div class="col-md-8">
-                    <button id="guardar_NueInc" name="guardar" class="btn btn-success">Guardar</button>
-                    <button id="limpiar_NueInc" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
+                    <button type="button" id="guardar_NueInc" name="guardar" class="btn btn-success">Guardar</button>
+                    <button type="button" id="limpiar_NueInc" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
                 </div>
             </div>
 
@@ -386,13 +383,13 @@
     </div>
 
 
-    <!-- ********** MODIFICA INCIDENCIA ********** -->
+    <!-- ********** CERRAR INCIDENCIA ********** -->
 
     <div class="container" id="divFormModificaIncidencia">
 
         <form id="formuModificaIncidencia" class="form-horizontal">
 
-            <legend class="text-center">Modificar Incidencia</legend>
+            <legend class="text-center">Cerrar Incidencia</legend>
 
             <!-- SELECCIONAR UNA INCIDENCIA EXISTENTE -->
 
@@ -409,43 +406,31 @@
 
             <!-- Al seleccionar, los demas campos se autocompletan con los datos correspondientes a la incidencia seleccionada -->
 
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="prioridad_ModInc">Asunto</label>
+            <div class="form-group oculto">
+                <label class="col-md-4 control-label" for="asun_ModInc">Asunto</label>
                 <div class="col-md-5 controls">
-                    <input id="prioridad_ModInc" name="prioridad" type="text" placeholder="escribe aquí el asunto" class="form-control input-md">
+                    <input id="asun_ModInc" name="prioridad" type="text" class="form-control input-md" readonly="readonly">
 
                 </div>
             </div>
 
-
-            <div class="form-group">
+            <div class="form-group oculto">
                 <label class="col-md-4 control-label" for="descripcion_ModInc">Descripción</label>
                 <div class="col-md-5 controls">
-                    <textarea id="descripcion_ModInc" class="form-control textarea-md" name="desc_inc" placeholder="Describa minuciosamente el motivo de la incidencia"></textarea>
+                    <textarea id="descripcion_ModInc" class="form-control textarea-md" name="desc_inc" readonly="readonly"></textarea>
                 </div>
             </div>
 
             <!-- Multiple Radios (inline) -->
-            <div class="form-group">
+            <div class="form-group oculto">
                 <label class="col-md-4 control-label">Prioridad: </label>
                 <div class="col-md-5 controls">
-                    <label class="radio inline" for="prioridad-0_ModInc">
-                        <input type="radio" name="prioridad" id="prioridad-0_ModInc" value="Grave" checked="checked">
-                        Grave
-                    </label>
-                    <label class="radio inline" for="prioridad-1_ModInc">
-                        <input type="radio" name="prioridad" id="prioridad-1_ModInc" value="Media">
-                        Media
-                    </label>
-                    <label class="radio inline" for="prioridad-2_ModInc">
-                        <input type="radio" name="prioridad" id="prioridad-2_ModInc" value="Leve">
-                        Leve
-                    </label>
+                    <input id="prioridad_ModInc" name="prioridad" type="text" class="form-control input-md" readonly="readonly">
                 </div>
             </div>
 
             <!-- Select Basic -->
-            <div class="form-group">
+            <div class="form-group oculto" >
                 <label class="col-md-4 control-label" for="administradores_ModInc">Administrador</label>
                 <div class="col-md-5 controls">
                     <input id="administradores_ModInc" name="administradores" class="form-control input-large" readonly="readonly">
@@ -454,30 +439,12 @@
                 </div>
             </div>
 
-            <!-- Multiple Radios (inline) -->
-            <div class="form-group">
-                <label class="col-md-4 control-label">Estado: </label>
-                <div class="col-md-5 controls">
-                    <label class="radio inline" for="estado-0_ModInc">
-                        <input type="radio" name="estado" id="estado-0_ModInc" value="Abierta" checked="checked">
-                        Abierta
-                    </label>
-                    <label class="radio inline" for="estado-1_ModInc">
-                        <input type="radio" name="estado" id="estado-1_ModInc" value="Pendiente Revisar">
-                        Pendiente Revisar
-                    </label>
-                    <label class="radio inline" for="estado-2_ModInc">
-                        <input type="radio" name="estado" id="estado-2_ModInc" value="Cerrada">
-                        Cerrada
-                    </label>
-                </div>
-            </div>
 
-            <div class="form-group">
+            <div id="botones" class="form-group">
                 <label class="col-md-4 control-label" for="guardar_ModInc"></label>
                 <div class="col-md-8">
-                    <button id="guardar_ModInc" name="guardar" class="btn btn-success">Guardar</button>
-                    <button id="limpiar_ModInc" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
+                    <button type="button" id="guardar_ModInc" name="cerrar" class="btn btn-success">Cerrar</button>
+                    <button type="button" id="limpiar_ModInc" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
                 </div>
             </div>
 

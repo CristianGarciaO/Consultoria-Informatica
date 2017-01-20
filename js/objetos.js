@@ -293,12 +293,13 @@ Consultoria.prototype.dameAdministrador = function (codigoAdmin) {
 
 // INCIDENCIA
 
-function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, sDescripcionIncidencia, iCodAdmin){
+function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, sDescripcionIncidencia, iCodAdmin, sEstado){
     this.numeroIncidencia = iNumeroIncidencia;
     this.prioridadIncidencia = sPrioridadIncidencia;
     this.asuntoIncidencia = sAsuntoIncidencia;
     this.descripcionIncidencia = sDescripcionIncidencia;
     this.codAdmin = iCodAdmin;                //Codigo del administrador que la abre;
+    this.estadoIncidencia = sEstado;
 }
 
 
@@ -307,8 +308,23 @@ function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, 
 
 Consultoria.prototype.anadeIncidencia = function(oIncidencia){
     this.incidencias.push(oIncidencia);
+    var sMensaje = "Guardado";
+    return sMensaje;
 };
 
+Consultoria.prototype.dameIncidencia = function (codigoIncidencia) {
+    var bEnc = false;
+    var oIncidencia;
+    var i = 0;
+    while(i < this.incidencias.length && bEnc == false){
+        if(this.incidencias[i].numeroIncidencia == codigoIncidencia){
+            oIncidencia = this.incidencias[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oIncidencia;
+};
 
 Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacion){
     /*Devuelve listado de las incidencias ordenado por numero de incidencia (segundo paramentro)
