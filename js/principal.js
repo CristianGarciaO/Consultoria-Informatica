@@ -4,14 +4,17 @@ var oConsultoria = new Consultoria();
 
 //Cargar Datos Prueba
 
-oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez Marin',653923909,'Calle Perico',1));
+oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez Marin',653923909,'Calle Perico',3));
 oConsultoria.anadeAdministrador(new Administrador('Juan','22334455G','Rosa Moreno',677331909,'Avda del Kiko',2));
 
 oConsultoria.anadeCliente(new Cliente('Manolo', '11032393X', 'Cruz de la vega', 'Callejon del 7', 943382941, []));
 oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'Castillejo Caserón', 'Calle Cuesta', 989556443, []));
 
 oConsultoria.anadeIncidencia(new Incidencia(1598,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2, "Abierta"));
-oConsultoria.anadeIncidencia(new Incidencia(3584,2,'Fallo de Login', 'Imposible logearse en la web', 3, "Cerrada"));
+oConsultoria.anadeIncidencia(new Incidencia(3584,2,'Fallo de Login', 'Imposible logearse en la web', 3, "Abierta"));
+
+oConsultoria.anadePublicidad(new Publicidad(4856,"Email", "Envío de Spam", 3, '44110022F'));
+
 
 oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, new Date('2016-9-25'), new Date('2016-11-5'),'11032393X'));
 
@@ -108,6 +111,8 @@ function pantallaInicio (){
 //evento para generar codigos
 document.getElementById('eventGenerarCodigoTarea').addEventListener('click', generarCodigoTarea, false);
 
+
+
 // FUNCIONES PARA MANEJO DE CAPAS
 
 function ocultarFormularios() {
@@ -194,24 +199,63 @@ function modificaIncidencia() {
     var elementos = document.getElementById('formuModificaIncidencia').querySelectorAll('div.form-group');
     for(var i=0;i<elementos.length;i++){
         if(elementos[i].classList.contains('oculto'))
-        elementos[i].setAttribute('class', 'form-group oculto');
+            elementos[i].setAttribute('class', 'form-group oculto');
+
     }
 
-    document.getElementById('#botones').removeAttribute('oculto');
+    var elementosVisibles = document.getElementsByClassName('form-group botones');
+    for(var j=0;j<elementosVisibles.length;j++){
+        elementosVisibles[j].classList.remove('oculto');
+    }
 
-
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuModificaIncidencia').querySelectorAll('select');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
 }
 
 function nuevaPublicidad() {
     ocultarFormularios();
     document.getElementById('divFormNuevaPublioidad').style.display = 'block';
     document.getElementById('formuNuevaPublicidad').reset();
+
+    vaciarCombo('#selectAdmin_NuePub');
+    vaciarCombo('#cliente_NuePub');
+
+    cargaComboAdministradores('#selectAdmin_NuePub');
+    cargaComboClientes('#cliente_NuePub');
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuNuevaPublicidad').querySelectorAll('select, input, textarea');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
 }
 
 function eliminarPublicidad() {
     ocultarFormularios();
     document.getElementById('divFormEliminaPublicidad').style.display = 'block';
     document.getElementById('formuElimiarPublicidad').reset();
+
+    vaciarCombo('#selectPublicidad_EliPub');
+
+    cargarComboPublicidad('#selectPublicidad_EliPub');
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    var oFormu = document.getElementById('formuElimiarPublicidad').querySelectorAll('select');
+    for(var i=0; i<oFormu.length; i++){
+        if(oFormu[i].classList.contains('error')){
+            oFormu[i].classList.remove('error');
+        }
+    }
+
+
+
 }
 
 function nuevoContrato() {
@@ -401,7 +445,6 @@ var oExRegNombre = /^[a-záéíóúñA-ZÑÁÉÍÓÚ]{3}([a-záéíóúñA-ZÑÁ
 var oExRegApellido = /^[a-záéíóúñA-ZÁÉÍÓÚ]{4}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}/; //Apellidos
 var oExRegDireccion = /^([a-záéíóúñA-ZÑÁÉÍÓÚ]{1})([a-záéíóúñA-ZÑÁÉÍÓÚ\s\d\.\,\º\ª\-\/]{0,39})$/; //Direccion
 var oExRegDni = /^[0-9]{8}[A-Z]{1}$/;
-// var oExRegFechas = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/; //Fechas: 2013-12-14 o 2013/12/14 o 2013.12.14
 var oExRegFechas = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;  //Fechas: 2013-12-14
 var oExRegPrecio = /^([0-9]{1,10}[\,\.][0-9]{1,2})$/;  //Precio con dos decimales obligatorios.
 var oExRegAsunto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,60}$/;  // Asunto
@@ -1432,13 +1475,13 @@ function validaFormModIncidencia(oEvento){
         //Recoger datos del formulario
 
 
-        var numInc = document.querySelector('#incidencia_ModInc').value;
+        var numInc = parseInt(document.querySelector('#incidencia_ModInc').value);
 
         var estado = "Cerrada";
 
-        for(var i=0; oConsultoria.incidencias.length; i++){
-            if(oConsultoria.incidencias[i].numeroIncidencia == numInc){
-                oConsultoria.incidencias[i].estado == estado;
+        for(var i=0; i<oConsultoria.incidencias.length; i++){
+            if(oConsultoria.incidencias[i].numeroIncidencia === numInc){
+                oConsultoria.incidencias[i].estadoIncidencia = estado;
             }
         }
 
@@ -1496,12 +1539,68 @@ function validaFormNuevoProgramador(oEvento){
     var apellido = document.getElementById(idApellidos).value.trim();
     document.getElementById(idApellidos).value = apellido;
 
+// NUEVA PUBLICIDAD ************************************************
+// ********************************************************************
 
-    if(validaApellido(apellido) == false){
+document.querySelector('#guardar_NuePub').addEventListener('click', validaFormNuevaPublicidad, false);
+
+document.querySelector('#limpiar_NuePub').addEventListener('click', nuevaPublicidad, false);
+
+function validaFormNuevaPublicidad(oEvento){
+    var oEvNuevoPublicidad = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+
+    var admin = document.getElementById('selectAdmin_NuePub').selectedIndex.value;
+
+    if(document.getElementById('selectAdmin_NuePub').selectedIndex == 0){
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
+            document.getElementById('formuNuevaPublicidad').selectAdmin.focus();
+        }
+        sErrores += "Debe seleccionar un administrador";
+
+        //Marcar error
+        document.getElementById('formuNuevaPublicidad').selectAdmin.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevaPublicidad').selectAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    var cliente = document.getElementById('cliente_NuePub').selectedIndex.value;
+
+<<<<<<< HEAD
+    if(document.getElementById('cliente_NuePub').selectedIndex == 0){
+=======
+    if(validaApellido(apellido) == false){
+>>>>>>> origin/master
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+<<<<<<< HEAD
+            document.getElementById('formuNuevaPublicidad').cliente.focus();
+        }
+        sErrores += "<br><br> Debe seleccionar un cliente al que asignar la publicidad.";
+
+        //Marcar error
+        document.getElementById('formuNuevaPublicidad').cliente.className = "form-control textarea-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevaPublicidad').cliente.className = "form-control textarea-md";  //Pone esta class a la etiqueta.
+    }
+
+    var descripcion = document.getElementById('descripcion_NuePub').value;
+
+    if(descripcion == ""){
+=======
             document.getElementById('formuNuevoProgramador').apellidosProgramador.focus();
         }
         sErrores += "<br><br> APELLIDO del "+trabajador+" incorrecto (formato: Máx 30 caracteres)";
@@ -1518,10 +1617,89 @@ function validaFormNuevoProgramador(oEvento){
     document.getElementById(idDNI).value = dni;
 
     if(validaDni(dni) == false){
+>>>>>>> origin/master
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
+<<<<<<< HEAD
+            document.getElementById('formuNuevaPublicidad').descripcionPublicidad.focus();
+        }
+        sErrores += "<br><br> Debe aportar una breve descripcion de la publicidad.";
+
+        //Marcar error
+        document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvNuevoPublicidad.preventDefault();
+        //Mostrar errores
+        toastr.error(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+        //Recoger datos del formulario
+
+
+        var codPubli = generaCodigos();
+        var admin = document.querySelector('#administradores_NueInc').value;
+        var elementos = document.getElementById('formuNuevaPublicidad').elements;
+        var longitud = document.getElementById('formuNuevaPublicidad').length;
+
+        for (var i = 0; i < longitud; i++){
+            if(elementos[i].name == "tipo" && elementos[i].type == "radio" && elementos[i].checked == true){
+                var tipo = elementos[i].value;
+            }
+        }
+
+        //Crear objeto incidencia y añadirlo al array Incidencias
+
+        var oPublicidad = new Publicidad(codPubli, tipo, descripcion, admin, cliente);
+
+        var sMensaje;
+        sMensaje = oConsultoria.anadePublicidad(oPublicidad);
+        toastr.success(sMensaje);
+    }
+
+
+}
+
+
+
+// ELIMINAR PUBLICIDAD ************************************************
+// ********************************************************************
+
+document.querySelector('#eliminar_EliPub').addEventListener('click', validaFormEliminaPublicidad, false);
+
+document.querySelector('#limpiar_EliPub').addEventListener('click', eliminarPublicidad, false);
+
+function validaFormEliminaPublicidad(oEvento){
+    var oEvEliminaPubli = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+    if(document.querySelector('#selectPublicidad_EliPub').selectedIndex == 0){
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector('#incidencia_ModInc').focus();
+        }
+        sErrores += "PUBLICIDAD no seleccionada. Debe seleccionar uno)";
+
+        //Marcar error
+        document.querySelector('#selectPublicidad_EliPub').className = "form-control error";
+
+    }else{
+        //Desmarcar error
+        document.querySelector('#selectPublicidad_EliPub').className = "form-control";  //Pone esta class a la etiqueta.
+    }
+=======
             document.getElementById(idFormulario).dniProgramador.focus();
         }
         sErrores += "<br><br> DNI del "+trabajador+" incorrecto (formato: 8 digitos más letra mayuscula)";
@@ -1592,15 +1770,40 @@ function validaFormNuevoProgramador(oEvento){
     }
 */
 
+>>>>>>> origin/master
 
 
     if (bValido == false){
         //Cancelar envio del formulario
+<<<<<<< HEAD
+        oEvEliminaPubli.preventDefault();
+=======
         oEvNuevoProg.preventDefault();
+>>>>>>> origin/master
         //Mostrar errores
         toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
+<<<<<<< HEAD
+        //Recoger datos del formulario
+
+
+        var sMensaje = "";
+
+        var codPubli = document.querySelector('#selectPublicidad_EliPub').value;
+        alert(codPubli);
+        var oPublicidad = oConsultoria.damePublicidad(codPubli);
+
+        for(var i=0; i<oConsultoria.publicidades.length; i++){
+            if(oConsultoria.publicidades[i].codigoPublicidad === codPubli){
+                sMensaje = oConsultoria.eliminaPublicidad(oPublicidad);
+            }
+        }
+        toastr.success(sMensaje);
+    }
+
+}
+=======
         //Comprobar si existe el trabajador
 
         var sMensaje = "";
@@ -1618,12 +1821,12 @@ function validaFormNuevoProgramador(oEvento){
 
 }
 
+>>>>>>> origin/master
 
 
 
 // *******************************************************************************************************************
 // Funciones Varias
-
 
 
 //Cargar combo de Administradores en funcion del id
@@ -1807,18 +2010,15 @@ function muestraDatosDeEsteContrato(){
     }
 }
 
-
-//Cargar combo de Incidencias
-function cargaComboIncidencias(){
-
-    var miCombo = document.querySelector('#incidencia_ModInc');
+function cargarComboPublicidad(id) {
+    var miCombo = document.querySelector(id);
     var oOption = document.createElement('option');
-    oOption.text = 'Seleccione una Incidencia';
+    oOption.text = 'Seleccione un Contrato';
     miCombo.add(oOption);
-    for(var i=0; i<oConsultoria.incidencias.length; i++){
+    for(var i=0; i<oConsultoria.publicidades.length; i++){
         var oOption = document.createElement('option');
-        oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
-        oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
+        oOption.text = oConsultoria.publicidades[i].tipo + ' - ' + oConsultoria.publicidades[i].dniCliente;
+        oOption.value = oConsultoria.publicidades[i].codigoPublicidad;
         miCombo.add(oOption);
     }
 }
@@ -1855,9 +2055,26 @@ function muestraDatosDeEstaIncidencia(){
         var admin = document.querySelector('#administradores_ModInc');
         admin.value = oIncidencia.codAdmin;
 
+        var estado = "Cerrada";
+        estado.value = oIncidencia.codAdmin;
     }
 }
 
+
+//Cargar combo de Incidencias
+function cargaComboIncidencias(){
+
+    var miCombo = document.querySelector('#incidencia_ModInc');
+    var oOption = document.createElement('option');
+    oOption.text = 'Seleccione una Incidencia';
+    miCombo.add(oOption);
+    for(var i=0; i<oConsultoria.incidencias.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
+        oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
+        miCombo.add(oOption);
+    }
+}
 
 function cargaComboProyectos(id){
 
@@ -1872,7 +2089,6 @@ function cargaComboProyectos(id){
         miCombo.add(oOption);
     }
 }
-
 
 //Cargar combo de Analistas
 function cargaComboAnalista(id){

@@ -424,7 +424,7 @@
 
             <!-- SELECCIONAR UNA INCIDENCIA EXISTENTE -->
 
-            <div class="form-group">
+            <div  class="form-group botones">
                 <label class="col-md-4 control-label" for="incidencia_ModInc">Selecciona Incidencia:</label>
                 <div class="col-md-5">
                     <select id="incidencia_ModInc" name="incidencia" class="form-control">
@@ -471,7 +471,7 @@
             </div>
 
 
-            <div id="botones" class="form-group">
+            <div class="form-group botones">
                 <label class="col-md-4 control-label" for="guardar_ModInc"></label>
                 <div class="col-md-8">
                     <button type="button" id="guardar_ModInc" name="cerrar" class="btn btn-success">Cerrar</button>
@@ -495,8 +495,7 @@
                 <label class="col-md-4 control-label" for="selectAdmin_NuePub">Selecciona Administrador</label>
                 <div class="col-md-5">
                     <select id="selectAdmin_NuePub" name="selectAdmin" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
+
                     </select>
                 </div>
             </div>
@@ -506,26 +505,25 @@
                 <label class="col-md-4 control-label" for="cliente_NuePub">Selecciona Cliente:</label>
                 <div class="col-md-5">
                     <select id="cliente_NuePub" name="cliente" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
+
                     </select>
                 </div>
             </div>
 
-            <!-- Multiple Checkboxes (inline) -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label">Tipo:</label>
-                <div class="col-md-4">
-                    <label class="checkbox-inline" for="tipo-1_NuePub">
-                        <input type="checkbox" name="tipo" id="tipo-1_NuePub" value="1">
+                <div class="col-md-5">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo"  value="Twitter" checked="checked">
                         Twitter
                     </label>
-                    <label class="checkbox-inline" for="tipo-2_NuePub">
-                        <input type="checkbox" name="tipo" id="tipo-2_NuePub" value="2">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo" value="Facebook">
                         Facebook
                     </label>
-                    <label class="checkbox-inline" for="tipo-3_NuePub">
-                        <input type="checkbox" name="tipo" id="tipo-3_NuePub" value="3">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo" value="Email">
                         Email
                     </label>
                 </div>
@@ -534,7 +532,7 @@
             <!-- Textarea -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="descripcion_NuePub">Descripción</label>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <textarea class="form-control" id="descripcion_NuePub" name="descripcionPublicidad"></textarea>
                 </div>
             </div>
@@ -543,8 +541,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="guardar_NuePub"></label>
                 <div class="col-md-8">
-                    <button id="guardar_NuePub" name="guardar" class="btn btn-success">Guardar</button>
-                    <button id="limpiar_NuePub" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
+                    <button type="button" id="guardar_NuePub" name="guardar" class="btn btn-success">Guardar</button>
+                    <button type="button" id="limpiar_NuePub" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
                 </div>
             </div>
 
@@ -565,8 +563,7 @@
                 <label class="col-md-4 control-label" for="selectPublicidad_EliPub">Selecciona Publicidad:</label>
                 <div class="col-md-5">
                     <select id="selectPublicidad_EliPub" name="selectPublicidad" class="form-control">
-                        <option value="1">Option one</option>
-                        <option value="2">Option two</option>
+
                     </select>
                 </div>
             </div>
@@ -574,8 +571,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="eliminar_EliPub"></label>
                 <div class="col-md-8">
-                    <button id="eliminar_EliPub" name="guardar" class="btn btn-success">Eliminar</button>
-                    <button id="limpiar_EliPub" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
+                    <button type="button" id="eliminar_EliPub" name="guardar" class="btn btn-success">Eliminar</button>
+                    <button type="button" id="limpiar_EliPub" name="limpiar" class="btn btn-warning">Limpiar Campos</button>
                 </div>
             </div>
         </form>
