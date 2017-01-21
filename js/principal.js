@@ -111,8 +111,6 @@ function pantallaInicio (){
 //evento para generar codigos
 document.getElementById('eventGenerarCodigoTarea').addEventListener('click', generarCodigoTarea, false);
 
-
-
 // FUNCIONES PARA MANEJO DE CAPAS
 
 function ocultarFormularios() {
@@ -282,7 +280,7 @@ function nuevoContrato() {
         cargaComboClientes('#cliente_NueCon');
     }else{
         toastr.error("Aun no se han registrado Proyectos y/o Clientes en el sistema. <br>" +
-                     "No es posible firmar contratos");
+            "No es posible firmar contratos");
     }
 
 
@@ -292,8 +290,8 @@ function modificarContrato() {
     ocultarFormularios();
     document.getElementById('divFormModificarContrato').style.display = 'block';
     document.getElementById('formuModificarContrato').reset();
-	
-	 //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
     var oFormu = document.getElementById('formuModificarContrato').querySelectorAll('input');
     for(var i=0; i<oFormu.length; i++){
         if(oFormu[i].classList.contains('error')){
@@ -301,18 +299,18 @@ function modificarContrato() {
         }
     }
 
-	vaciarCombo('#selectContrato_ModCon');
+    vaciarCombo('#selectContrato_ModCon');
 
     document.querySelector('#nomCon').setAttribute('class', 'form-group oculto');
     document.querySelector('#nomCli').setAttribute('class', 'form-group oculto');
-	
-	if(oConsultoria.contratos.length > 0){
-		cargaComboContratos('#selectContrato_ModCon');
-	}else{
-		 toastr.error("Aun no se han registrado Contratos en el sistema. <br>" +
-                     "No es posible modificar contratos");
-	}
-	
+
+    if(oConsultoria.contratos.length > 0){
+        cargaComboContratos('#selectContrato_ModCon');
+    }else{
+        toastr.error("Aun no se han registrado Contratos en el sistema. <br>" +
+            "No es posible modificar contratos");
+    }
+
 }
 
 function nuevoAdministrador() {
@@ -537,22 +535,22 @@ function validaFormNuevoAdmin(oEvento){
     var nombre = document.getElementById('nombreAdmin_NueAdm').value.trim();
     document.getElementById('nombreAdmin_NueAdm').value = nombre;
 
-   if(validaNombre(nombre) == false){
+    if(validaNombre(nombre) == false){
 
-       if(bValido == true){
-           bValido = false;
-           //Este campo obtiene el foco
-           document.getElementById('formuNuevoAdmin').nombreAdmin.focus();
-       }
-       sErrores += "NOMBRE del Administrador incorrecto (formato: Máx 30 caracteres)";
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoAdmin').nombreAdmin.focus();
+        }
+        sErrores += "NOMBRE del Administrador incorrecto (formato: Máx 30 caracteres)";
 
-       //Marcar error
-       document.getElementById('formuNuevoAdmin').nombreAdmin.className = "form-control input-md error";
+        //Marcar error
+        document.getElementById('formuNuevoAdmin').nombreAdmin.className = "form-control input-md error";
 
-   }else {
-       //Desmarcar error
-      document.getElementById('formuNuevoAdmin').nombreAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
-   }
+    }else {
+        //Desmarcar error
+        document.getElementById('formuNuevoAdmin').nombreAdmin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
 
 
 
@@ -1534,6 +1532,129 @@ function validaFormNuevoProgramador(oEvento){
     var apellido = document.getElementById(idApellidos).value.trim();
     document.getElementById(idApellidos).value = apellido;
 
+
+    if(validaApellido(apellido) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoProgramador').apellidosProgramador.focus();
+        }
+        sErrores += "<br><br> APELLIDO del "+trabajador+" incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).apellidosProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).apellidosProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var dni = document.getElementById(idDNI).value.trim();
+    document.getElementById(idDNI).value = dni;
+
+    if(validaDni(dni) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).dniProgramador.focus();
+        }
+        sErrores += "<br><br> DNI del "+trabajador+" incorrecto (formato: 8 digitos más letra mayuscula)";
+
+        //Marcar error
+        document.getElementById(idFormulario).dniProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).dniProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var tlf = document.getElementById(idTelefono).value.trim();
+    document.getElementById(idTelefono).value = tlf;
+
+    if(validaTelefono(tlf) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).telefonoProgramador.focus();
+        }
+        sErrores += "<br><br> TELEFONO del "+trabajador+" incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+
+        //Marcar error
+        document.getElementById(idFormulario).telefonoProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).telefonoProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var direccion = document.getElementById(idDireccion).value.trim();
+    document.getElementById(idDireccion).value = direccion;
+
+    if(validaDireccion(direccion) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).direccionProgramador.focus();
+        }
+        sErrores += "<br><br> DIRECCION del"+trabajador+" incorrecto (formato: 40 caracteres maximo)";
+
+        //Marcar error
+        document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+    /*
+     if(validaDireccion(direccion) == false){
+
+     if(bValido == true){
+     bValido = false;
+     //Este campo obtiene el foco
+     document.getElementById(idFormulario).direccionProgramador.focus();
+     }
+     sErrores += "<br><br> DIRECCION del"+trabajador+" incorrecto (formato: 40 caracteres maximo)";
+
+     //Marcar error
+     document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md error";
+
+     }else {
+     //Desmarcar error
+     document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+     }
+     */
+
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvNuevoProg.preventDefault();
+        //Mostrar errores
+        toastr.error(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+        //Comprobar si existe el trabajador
+
+        var sMensaje = "";
+
+        if(!oConsultoria.existeTrabajador(dni)){
+
+            var oAdministrador = new trabajador(nombre, dni, apellido, tlf, direccion);
+            sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
+        }else{
+            sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
+        }
+        toastr.error(sMensaje);
+    }
+
+
+}
+
+
 // NUEVA PUBLICIDAD ************************************************
 // ********************************************************************
 
@@ -1570,16 +1691,23 @@ function validaFormNuevaPublicidad(oEvento){
 
     var cliente = document.getElementById('cliente_NuePub').selectedIndex.value;
 
+<<<<<<< HEAD
 
     if(document.getElementById('cliente_NuePub').selectedIndex == 0){
 
     if(validaApellido(apellido) == false){
 
+=======
+    if(document.getElementById('cliente_NuePub').selectedIndex == 0){
+>>>>>>> origin/master
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
             document.getElementById('formuNuevaPublicidad').cliente.focus();
         }
         sErrores += "<br><br> Debe seleccionar un cliente al que asignar la publicidad.";
@@ -1595,6 +1723,7 @@ function validaFormNuevaPublicidad(oEvento){
     var descripcion = document.getElementById('descripcion_NuePub').value;
 
     if(descripcion == ""){
+<<<<<<< HEAD
 
             document.getElementById('formuNuevoProgramador').apellidosProgramador.focus();
         }
@@ -1613,11 +1742,16 @@ function validaFormNuevaPublicidad(oEvento){
 
     if(validaDni(dni) == false){
 
+=======
+>>>>>>> origin/master
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
             document.getElementById('formuNuevaPublicidad').descripcionPublicidad.focus();
         }
         sErrores += "<br><br> Debe aportar una breve descripcion de la publicidad.";
@@ -1694,6 +1828,7 @@ function validaFormEliminaPublicidad(oEvento){
         //Desmarcar error
         document.querySelector('#selectPublicidad_EliPub').className = "form-control";  //Pone esta class a la etiqueta.
     }
+<<<<<<< HEAD
 
             document.getElementById(idFormulario).dniProgramador.focus();
         }
@@ -1765,20 +1900,29 @@ function validaFormEliminaPublicidad(oEvento){
     }
 */
 
+=======
+>>>>>>> origin/master
 
 
     if (bValido == false){
         //Cancelar envio del formulario
+<<<<<<< HEAD
 
         oEvEliminaPubli.preventDefault();
 
         oEvNuevoProg.preventDefault();
 
+=======
+        oEvEliminaPubli.preventDefault();
+>>>>>>> origin/master
         //Mostrar errores
         toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         //Recoger datos del formulario
 
 
@@ -1796,6 +1940,7 @@ function validaFormEliminaPublicidad(oEvento){
         toastr.success(sMensaje);
     }
 
+<<<<<<< HEAD
 
 
         //Comprobar si existe el trabajador
@@ -1816,11 +1961,15 @@ function validaFormEliminaPublicidad(oEvento){
 }
 
 
+=======
+}
+>>>>>>> origin/master
 
 
 
 // *******************************************************************************************************************
 // Funciones Varias
+
 
 
 //Cargar combo de Administradores en funcion del id
@@ -1895,8 +2044,8 @@ function cargaComboClientes(id){
     for(var i=0; i<oConsultoria.clientes.length; i++){
         var oOption = document.createElement('option');
         oOption.text = oConsultoria.clientes[i].nombreCliente + ' ' +
-                       oConsultoria.clientes[i].apellidosCliente + ' - ' +
-                       oConsultoria.clientes[i].dniCliente;
+            oConsultoria.clientes[i].apellidosCliente + ' - ' +
+            oConsultoria.clientes[i].dniCliente;
         oOption.value = oConsultoria.clientes[i].dniCliente;
         miCombo.add(oOption);
     }
@@ -1978,9 +2127,9 @@ function muestraDatosDeEsteContrato(){
         nomProyecto.setAttribute('readonly', 'readonly');
 
 
-		//Obtener el cliente (dameCliente) para aportar el Nombre del cliente y su DNI
+        //Obtener el cliente (dameCliente) para aportar el Nombre del cliente y su DNI
 
-		var oCliente = oConsultoria.dameCliente(oContrato.dniCliente);
+        var oCliente = oConsultoria.dameCliente(oContrato.dniCliente);
 
 
         var client = document.querySelector('#cliente_ModCon');
@@ -2004,6 +2153,7 @@ function muestraDatosDeEsteContrato(){
     }
 }
 
+
 function cargarComboPublicidad(id) {
     var miCombo = document.querySelector(id);
     var oOption = document.createElement('option');
@@ -2013,6 +2163,21 @@ function cargarComboPublicidad(id) {
         var oOption = document.createElement('option');
         oOption.text = oConsultoria.publicidades[i].tipo + ' - ' + oConsultoria.publicidades[i].dniCliente;
         oOption.value = oConsultoria.publicidades[i].codigoPublicidad;
+        miCombo.add(oOption);
+    }
+}
+
+//Cargar combo de Incidencias
+function cargaComboIncidencias(){
+
+    var miCombo = document.querySelector('#incidencia_ModInc');
+    var oOption = document.createElement('option');
+    oOption.text = 'Seleccione una Incidencia';
+    miCombo.add(oOption);
+    for(var i=0; i<oConsultoria.incidencias.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
+        oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
         miCombo.add(oOption);
     }
 }
@@ -2084,6 +2249,7 @@ function cargaComboProyectos(id){
     }
 }
 
+
 //Cargar combo de Analistas
 function cargaComboAnalista(id){
 
@@ -2114,12 +2280,12 @@ function cargaComboProgramador(id){
     }
 }
 //Completa los campos de texto
-function muestraDatosDeEsteProgramador(){
+function muestraDatosDeEsteProgramador() {
 
     //Obtener valor del option seleccionado
     var select = document.querySelector('#selectProgram_Mod');
 
-    if(select.selectedIndex != 0){
+    if (select.selectedIndex != 0) {
 
         var dni = select.value;
         var oProgr = oConsultoria.dameProgramador(dni);
