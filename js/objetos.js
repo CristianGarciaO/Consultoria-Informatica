@@ -245,7 +245,45 @@ function Publicidad(codigoPublicidad, tipoPublicidad, descripcionPublicidad, cod
 
 Consultoria.prototype.anadePublicidad = function(oPublicidad){
     this.publicidades.push(oPublicidad);
+    var sMensaje = "Guardado";
+    return sMensaje;
 };
+
+
+Consultoria.prototype.eliminaPublicidad = function (oPublicidad) {
+
+    function eliminaEstaPubli(array,publi) {
+        var i = array.indexOf( publi );
+
+        if ( i !== -1 ) {
+            array.splice( i, 1 );
+        }
+    }
+    var array = this.publicidades;
+    eliminaEstaPubli(array,oPublicidad);
+
+
+    var sMensaje = "Eliminada";
+    return sMensaje;
+}
+
+
+Consultoria.prototype.damePublicidad = function (codPubli){
+    alert(codPubli);
+    var bEnc = false;
+    var oPubli;
+    var i = 0;
+
+    for (var i=0; i < this.publicidades.length && bEnc == false; i++){
+        alert(this.publicidades[i].codigoPublicidad);
+        if(this.publicidades[i].codigoPublicidad == codPubli) {
+            oPubli = this.publicidades[i];
+            bEnc = true;
+        }
+    }
+    return oPubli;
+}
+
 
 //---------------------------------------------------------
 // ADMINISTRADOR
