@@ -182,7 +182,7 @@ Consultoria.prototype.dameContrato = function (nombreDelContrato) {
         i++;
     }
     return oContrato;
-}
+};
 
 
 
@@ -221,7 +221,7 @@ Consultoria.prototype.dameCliente = function (dniCli) {
         i++;
     }
     return oCliente;
-}
+};
 
 
 
@@ -405,9 +405,8 @@ Analista.prototype.constructor = Analista;
 
 
 //PROGRAMADOR
-function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idProgramador,oAnalista) {
+function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador,oAnalista) {
     Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
-    this.id = idProgramador;
     this.analista = oAnalista;
 
 }

@@ -29,6 +29,8 @@ oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo',[], []));
 
 // Eventos de Capas
 
+document.getElementById('eventInicio').addEventListener('click',pantallaInicio,false);
+
 document.getElementById('eventNuevoCliente').addEventListener('click', nuevoCliente, false);
 
 document.getElementById('eventModificaCliente').addEventListener('click', modificaCliente, false);
@@ -89,6 +91,15 @@ function mostrarCampos(selector){
         selector[i].classList.remove('oculto');
     }
 }
+//pagina de inicio
+
+function pantallaInicio (){
+
+    ocultarFormularios();
+    document.getElementById('myCarousel').style.display='block';
+    document.getElementById('clearfix').style.display='none';
+}
+
 
 
 //evento para generar codigos
@@ -97,7 +108,7 @@ document.getElementById('eventGenerarCodigoTarea').addEventListener('click', gen
 // FUNCIONES PARA MANEJO DE CAPAS
 
 function ocultarFormularios() {
-
+    document.getElementById('clearfix').style.display='block';
     document.getElementById('divFormNuevoCliente').style.display = 'none';
     document.getElementById('divFormModificaCliente').style.display = 'none';
     document.getElementById('divFormNuevaIncidencia').style.display = 'none';
@@ -116,6 +127,7 @@ function ocultarFormularios() {
     document.getElementById('divFormModificaAnalista').style.display='none';
     document.getElementById('divFormNuevoProgramador').style.display='none';
     document.getElementById('divFormModificaProgramador').style.display='none';
+    document.getElementById('myCarousel').style.display='none';
 }
 
 function nuevoCliente() {
@@ -1422,8 +1434,176 @@ function validaFormModIncidencia(oEvento){
 
 
 }
+// NUEVO PROGRAMADOR ******************************************************
+
+document.querySelector('#añadirProgramador').addEventListener('click', validaFormNuevoProgramador, false);
+
+//document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
 
 
+
+// ********************************************************************
+
+function validaFormNuevoProgramador(oEvento){
+    var oEvNuevoProg = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
+
+    var idFormulario="formuNuevoProgramador";
+    var idNombre="nombreProgr_NueProgr";
+    var idApellidos="apellidosProgr_NueProgr";
+    var idDNI="dniProgr_NueProgr";
+    var idTelefono="telefonoProgr_NueProgr";
+    var idDireccion="direccioProgr_NueProgr";
+    var trabajador="Programador";
+
+
+    var nombre = document.getElementById(idNombre).value.trim();
+    document.getElementById(idNombre).value = nombre;
+
+    if(validaNombre(nombre) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).nombreProgramador.focus();
+        }
+        sErrores += "NOMBRE del Programador incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).nombreProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).nombreProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+    var apellido = document.getElementById(idApellidos).value.trim();
+    document.getElementById(idApellidos).value = apellido;
+
+
+    if(validaApellido(apellido) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoProgramador').apellidosProgramador.focus();
+        }
+        sErrores += "<br><br> APELLIDO del "+trabajador+" incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).apellidosProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).apellidosProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var dni = document.getElementById(idDNI).value.trim();
+    document.getElementById(idDNI).value = dni;
+
+    if(validaDni(dni) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).dniProgramador.focus();
+        }
+        sErrores += "<br><br> DNI del "+trabajador+" incorrecto (formato: 8 digitos más letra mayuscula)";
+
+        //Marcar error
+        document.getElementById(idFormulario).dniProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).dniProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var tlf = document.getElementById(idTelefono).value.trim();
+    document.getElementById(idTelefono).value = tlf;
+
+    if(validaTelefono(tlf) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).telefonoProgramador.focus();
+        }
+        sErrores += "<br><br> TELEFONO del "+trabajador+" incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+
+        //Marcar error
+        document.getElementById(idFormulario).telefonoProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).telefonoProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var direccion = document.getElementById(idDireccion).value.trim();
+    document.getElementById(idDireccion).value = direccion;
+
+    if(validaDireccion(direccion) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).direccionProgramador.focus();
+        }
+        sErrores += "<br><br> DIRECCION del"+trabajador+" incorrecto (formato: 40 caracteres maximo)";
+
+        //Marcar error
+        document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+/*
+    if(validaDireccion(direccion) == false){
+
+        if(bValido == true){
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).direccionProgramador.focus();
+        }
+        sErrores += "<br><br> DIRECCION del"+trabajador+" incorrecto (formato: 40 caracteres maximo)";
+
+        //Marcar error
+        document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md error";
+
+    }else {
+        //Desmarcar error
+        document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+*/
+
+
+
+    if (bValido == false){
+        //Cancelar envio del formulario
+        oEvNuevoProg.preventDefault();
+        //Mostrar errores
+        toastr.error(sErrores);
+    }else{
+        //Aqui estan los datos correctos, los guardamos
+        //Comprobar si existe el trabajador
+
+        var sMensaje = "";
+
+        if(!oConsultoria.existeTrabajador(dni)){
+            
+            var oAdministrador = new trabajador(nombre, dni, apellido, tlf, direccion);
+            sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
+        }else{
+            sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
+        }
+        toastr.error(sMensaje);
+    }
+
+
+}
 
 
 

@@ -8,7 +8,7 @@
 #divFormNuevoAdministrador, #divFormModificarAdministrador,
 #divFormNuevoProyecto,#divFormModificaProyecto,#divFormNuevaTarea,
 #divFormModificaTarea,#divFormNuevoAnalista,#divFormModificaAnalista,
-#divFormNuevoProgramador,#divFormModificaProgramador{
+#divFormNuevoProgramador,#divFormModificaProgramador,#clearfix{
     display:none;
 }
 
