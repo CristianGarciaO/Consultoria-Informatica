@@ -413,7 +413,24 @@ function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telef
 Consultoria.prototype.anadeProgramador = function(oProgramador){
     this.programadores.push(oProgramador);
 };
+
+Consultoria.prototype.dameProgramador = function (dniTrabajador) {
+    var bEnc = false;
+    var oProg;
+    var i = 0;
+    while(i < this.programadores.length && bEnc == false){
+        if(this.programadores[i].dniTrabajador == dniTrabajador){
+            oProg = this.programadores[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oProg;
+};
+
+
 // Herencia Trabajador-PROGRAMADOR
 
 Programador.prototype = Object.create(Trabajador.prototype);
 Programador.prototype.constructor = Programador;
+

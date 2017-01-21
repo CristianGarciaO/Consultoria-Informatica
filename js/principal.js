@@ -84,6 +84,9 @@ document.getElementById('selectContrato_ModCon').addEventListener('change', mues
 
 document.getElementById('incidencia_ModInc').addEventListener('change', muestraDatosDeEstaIncidencia, true);
 
+
+document.getElementById('selectProgram_Mod').addEventListener('change', muestraDatosDeEsteProgramador, true);
+
 //Ocultar inputs
 
 function mostrarCampos(selector){
@@ -96,7 +99,7 @@ function mostrarCampos(selector){
 function pantallaInicio (){
 
     ocultarFormularios();
-    document.getElementById('myCarousel').style.display='block';
+    document.getElementById('pantallaInicial').style.display='block';
     document.getElementById('clearfix').style.display='none';
 }
 
@@ -177,7 +180,6 @@ function nuevaIncidencia() {
     cargaComboAdministradores('#administradores_NueInc');
 
 }
-
 function modificaIncidencia() {
 
     ocultarFormularios();
@@ -368,6 +370,12 @@ function modificaProgramador() {
     ocultarFormularios();
     document.getElementById('divFormModificaProgramador').style.display = 'block';
     document.getElementById('formuModificaProgramador').reset();
+
+
+    //carga combos programador y analista
+    vaciarCombo('#selectProgram_Mod');
+    cargaComboProgramador('#selectProgram_Mod');
+    cargaComboAnalista('#selectAnalistaProgrMod');
 
 }
 
@@ -1873,5 +1881,55 @@ function cargaComboAnalista(id){
         oOption.text = oConsultoria.analistas[i].nombreTrabajador + ' - ' + oConsultoria.analistas[i].id;
         oOption.value = oConsultoria.analistas[i].id;
         miCombo.add(oOption);
+    }
+}
+
+//Cargar combo de Programador
+function cargaComboProgramador(id){
+
+    var miCombo = document.querySelector(id);
+    var oOptions = document.createElement('option');
+    oOptions.text = 'Seleccione un Programador';
+    miCombo.add(oOptions);
+    for(var i=0; i<oConsultoria.programadores.length; i++){
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.programadores[i].nombreTrabajador;
+        oOption.value = oConsultoria.programadores[i].dniTrabajador;
+        miCombo.add(oOption);
+    }
+}
+//Completa los campos de texto
+function muestraDatosDeEsteProgramador(){
+
+    //Obtener valor del option seleccionado
+    var select = document.querySelector('#selectProgram_Mod');
+
+    if(select.selectedIndex != 0){
+
+        var dni = select.value;
+        var oProgr = oConsultoria.dameProgramador(dni);
+
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+
+        var nom = document.querySelector('#nombreProgr_ModProgr');
+        nom.value = oProgr.nombreTrabajador;
+        nom.removeAttribute('readonly');
+
+        var ape = document.querySelector('#apellidosProgr_ModProgr');
+        ape.value = oProgr.apellidosTrabajador;
+        ape.removeAttribute('readonly');
+
+        //Este campo es unico(DNI), no debe poderse modificar. Dejamos el atributo readonly
+        var dniS = document.querySelector('#dniProgr_ModProgr');
+        dniS.value = oProgr.dniTrabajador;
+
+        var tlf = document.querySelector('#telefonoProgr_ModProgr');
+        tlf.value = oProgr.telefonoTrabajador;
+        tlf.removeAttribute('readonly');
+
+        var dir = document.querySelector('#direccioProgr_ModProgr');
+        dir.value = oProgr.direccionTrabajador;
+        dir.removeAttribute('readonly');
+
     }
 }
