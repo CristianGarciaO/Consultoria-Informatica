@@ -371,6 +371,10 @@ function nuevoAnalista() {
     ocultarFormularios();
     document.getElementById('divFormNuevoAnalista').style.display = 'block';
     document.getElementById('formuNuevoAnalista').reset();
+
+
+    vaciarCombo('#selectPrograAnalista');
+    cargaComboProgramador('#selectPrograAnalista');
 }
 
 function modificaAnalista() {
@@ -406,6 +410,10 @@ function nuevoProgramador() {
     ocultarFormularios();
     document.getElementById('divFormNuevoProgramador').style.display = 'block';
     document.getElementById('formuNuevoProgramador').reset();
+    
+    //carga combos programador y analista
+    vaciarCombo('#selectAnalistaProgr');
+    cargaComboAnalista('#selectAnalistaProgr');
 }
 
 function modificaProgramador() {
@@ -1643,12 +1651,14 @@ function validaFormNuevoProgramador(oEvento){
 
         if(!oConsultoria.existeTrabajador(dni)){
 
-            var oAdministrador = new trabajador(nombre, dni, apellido, tlf, direccion);
-            sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
+            var oProgramador = new trabajador(nombre, dni, apellido, tlf, direccion);
+            sMensaje = oConsultoria.anadeProgramador(oProgramador);
+            toastr.success(sMensaje);
         }else{
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
+            toastr.error(sMensaje);
         }
-        toastr.error(sMensaje);
+
     }
 
 
