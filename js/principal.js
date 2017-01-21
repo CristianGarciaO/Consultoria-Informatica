@@ -1570,16 +1570,16 @@ function validaFormNuevaPublicidad(oEvento){
 
     var cliente = document.getElementById('cliente_NuePub').selectedIndex.value;
 
-<<<<<<< HEAD
+
     if(document.getElementById('cliente_NuePub').selectedIndex == 0){
-=======
+
     if(validaApellido(apellido) == false){
->>>>>>> origin/master
+
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
-<<<<<<< HEAD
+
             document.getElementById('formuNuevaPublicidad').cliente.focus();
         }
         sErrores += "<br><br> Debe seleccionar un cliente al que asignar la publicidad.";
@@ -1595,7 +1595,7 @@ function validaFormNuevaPublicidad(oEvento){
     var descripcion = document.getElementById('descripcion_NuePub').value;
 
     if(descripcion == ""){
-=======
+
             document.getElementById('formuNuevoProgramador').apellidosProgramador.focus();
         }
         sErrores += "<br><br> APELLIDO del "+trabajador+" incorrecto (formato: Máx 30 caracteres)";
@@ -1612,12 +1612,12 @@ function validaFormNuevaPublicidad(oEvento){
     document.getElementById(idDNI).value = dni;
 
     if(validaDni(dni) == false){
->>>>>>> origin/master
+
 
         if(bValido == true){
             bValido = false;
             //Este campo obtiene el foco
-<<<<<<< HEAD
+
             document.getElementById('formuNuevaPublicidad').descripcionPublicidad.focus();
         }
         sErrores += "<br><br> Debe aportar una breve descripcion de la publicidad.";
@@ -1694,7 +1694,7 @@ function validaFormEliminaPublicidad(oEvento){
         //Desmarcar error
         document.querySelector('#selectPublicidad_EliPub').className = "form-control";  //Pone esta class a la etiqueta.
     }
-=======
+
             document.getElementById(idFormulario).dniProgramador.focus();
         }
         sErrores += "<br><br> DNI del "+trabajador+" incorrecto (formato: 8 digitos más letra mayuscula)";
@@ -1765,21 +1765,20 @@ function validaFormEliminaPublicidad(oEvento){
     }
 */
 
->>>>>>> origin/master
 
 
     if (bValido == false){
         //Cancelar envio del formulario
-<<<<<<< HEAD
+
         oEvEliminaPubli.preventDefault();
-=======
+
         oEvNuevoProg.preventDefault();
->>>>>>> origin/master
+
         //Mostrar errores
         toastr.error(sErrores);
     }else{
         //Aqui estan los datos correctos, los guardamos
-<<<<<<< HEAD
+
         //Recoger datos del formulario
 
 
@@ -1797,8 +1796,8 @@ function validaFormEliminaPublicidad(oEvento){
         toastr.success(sMensaje);
     }
 
-}
-=======
+
+
         //Comprobar si existe el trabajador
 
         var sMensaje = "";
@@ -1811,12 +1810,12 @@ function validaFormEliminaPublicidad(oEvento){
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
         }
         toastr.error(sMensaje);
-    }
+
 
 
 }
 
->>>>>>> origin/master
+
 
 
 
