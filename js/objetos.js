@@ -182,7 +182,7 @@ Consultoria.prototype.dameContrato = function (nombreDelContrato) {
         i++;
     }
     return oContrato;
-}
+};
 
 
 
@@ -221,7 +221,7 @@ Consultoria.prototype.dameCliente = function (dniCli) {
         i++;
     }
     return oCliente;
-}
+};
 
 
 
@@ -443,16 +443,32 @@ Analista.prototype.constructor = Analista;
 
 
 //PROGRAMADOR
-function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idProgramador,oAnalista) {
+function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador,oAnalista) {
     Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
-    this.id = idProgramador;
     this.analista = oAnalista;
 
 }
 Consultoria.prototype.anadeProgramador = function(oProgramador){
     this.programadores.push(oProgramador);
 };
+
+Consultoria.prototype.dameProgramador = function (dniTrabajador) {
+    var bEnc = false;
+    var oProg;
+    var i = 0;
+    while(i < this.programadores.length && bEnc == false){
+        if(this.programadores[i].dniTrabajador == dniTrabajador){
+            oProg = this.programadores[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oProg;
+};
+
+
 // Herencia Trabajador-PROGRAMADOR
 
 Programador.prototype = Object.create(Trabajador.prototype);
 Programador.prototype.constructor = Programador;
+
