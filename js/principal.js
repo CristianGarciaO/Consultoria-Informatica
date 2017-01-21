@@ -127,7 +127,7 @@ function ocultarFormularios() {
     document.getElementById('divFormModificaAnalista').style.display='none';
     document.getElementById('divFormNuevoProgramador').style.display='none';
     document.getElementById('divFormModificaProgramador').style.display='none';
-    document.getElementById('myCarousel').style.display='none';
+    document.getElementById('pantallaInicial').style.display='none';
 }
 
 function nuevoCliente() {
