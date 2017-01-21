@@ -364,6 +364,11 @@ function nuevoProgramador() {
     ocultarFormularios();
     document.getElementById('divFormNuevoProgramador').style.display = 'block';
     document.getElementById('formuNuevoProgramador').reset();
+
+    //carga combos programador y analista
+    vaciarCombo('#selectAnalistaProgr');
+    cargaComboAnalista('#selectAnalistaProgr');
+    
 }
 
 function modificaProgramador() {
