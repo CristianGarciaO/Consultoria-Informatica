@@ -24,7 +24,8 @@ function cargaDatos() {
     var oXML = loadXMLDoc("datosConsultoria.xml");
 
     cargarAdministradores(oXML.getElementsByTagName('administrador'));
-    cargarAnalistas(oXML.getElementsByTagName('analista'));
+    //cargarAnalistas(oXML.getElementsByTagName('analista'));
+    cargarAnalistas(oXML.querySelectorAll('analistas analista'));
     cargarProgramadores(oXML.getElementsByTagName('programador'));
     cargarClientes(oXML.getElementsByTagName('cliente'));
     cargarPublicidad(oXML.getElementsByTagName('publicidad'));
@@ -127,7 +128,7 @@ function cargarIncidencias(arrayIncidencias) {
 
     for (var i = 0; i < arrayIncidencias.length; i++) {
         var numInc = arrayIncidencias[i].children[0].textContent;
-        var priInc = arrayIncidencias[i].children[1].textContent
+        var priInc = arrayIncidencias[i].children[1].textContent;
         var asuInc = arrayIncidencias[i].children[2].textContent;
         var desInc = arrayIncidencias[i].children[3].textContent;
         var codAdmInc = arrayIncidencias[i].children[4].textContent;

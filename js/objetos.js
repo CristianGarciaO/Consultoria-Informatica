@@ -411,7 +411,7 @@ function Tarea(iCodigo, sNombreTarea, dFechaIni, oProyecto, dFechaFin, bEstado) 
 }
 
 Consultoria.prototype.anadeTarea = function (oTarea) {
-    this.tareas.push(oProyecto);
+    this.tareas.push(oTarea);
 };
 Consultoria.prototype.dameCodigos = function () {
 
