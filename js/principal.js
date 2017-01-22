@@ -659,10 +659,12 @@ function validaFormNuevoAdmin(oEvento){
             var codAdmin = oConsultoria.administradores.length + 1;
             var oAdministrador = new Administrador(nombre, dni, apellido, tlf, direccion, codAdmin);
             sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
+            toastr.success(sMensaje);
         }else{
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
+            toastr.error(sMensaje);
         }
-        toastr.error(sMensaje);
+
     }
 
 
