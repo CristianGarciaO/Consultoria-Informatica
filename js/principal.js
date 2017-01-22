@@ -1678,7 +1678,7 @@ function validaFormNuevaPublicidad(oEvento){
     var sErrores = "";
 
 
-    var admin = document.getElementById('selectAdmin_NuePub').selectedIndex.value;
+    var admin = parseInt(document.querySelector('#selectAdmin_NuePub').value);
 
     if(document.getElementById('selectAdmin_NuePub').selectedIndex == 0){
 
@@ -1699,7 +1699,7 @@ function validaFormNuevaPublicidad(oEvento){
 
 
 
-    var cliente = document.getElementById('cliente_NuePub').selectedIndex.value;
+    var cliente = document.querySelector('#cliente_NuePub').value;
 
     if(document.getElementById('cliente_NuePub').selectedIndex == 0){
 
@@ -1750,7 +1750,6 @@ function validaFormNuevaPublicidad(oEvento){
 
 
         var codPubli = generaCodigos();
-        var admin = document.querySelector('#administradores_NueInc').value;
         var elementos = document.getElementById('formuNuevaPublicidad').elements;
         var longitud = document.getElementById('formuNuevaPublicidad').length;
 
@@ -1815,7 +1814,7 @@ function validaFormEliminaPublicidad(oEvento){
 
         var sMensaje = "";
 
-        var codPubli = document.querySelector('#selectPublicidad_EliPub').value;
+        var codPubli = parseInt(document.querySelector('#selectPublicidad_EliPub').value);
         alert(codPubli);
         var oPublicidad = oConsultoria.damePublicidad(codPubli);
 
