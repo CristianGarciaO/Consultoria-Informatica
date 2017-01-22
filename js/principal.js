@@ -2,6 +2,34 @@
 var oConsultoria = new Consultoria();
 
 
+//Funcion para cargar el XML
+function loadXMLDoc(filename)
+{
+    if (window.XMLHttpRequest)
+    {
+        xhttp=new XMLHttpRequest();
+    }
+    else // code for IE5 and IE6
+    {
+        xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET",filename,false);
+
+    xhttp.send();
+
+    return xhttp.responseXML;
+}
+
+
+function cargaDatos() {
+
+    var oXML = loadXMLDoc("consultoria.xml");
+
+
+
+}
+
+
 //Cargar Datos Prueba
 
 oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez Marin',653923909,'Calle Perico',3));
