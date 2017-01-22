@@ -20,41 +20,201 @@ function loadXMLDoc(filename)
     return xhttp.responseXML;
 }
 
+cargaDatos();
 
 function cargaDatos() {
 
-    var oXML = loadXMLDoc("consultoria.xml");
+    var oXML = loadXMLDoc("datosConsultoria.xml");
+
+    cargarAdministradores(oXML.getElementsByTagName('administrador'));
+    cargarAnalistas(oXML.getElementsByTagName('analista'));
+    cargarProgramadores(oXML.getElementsByTagName('programador'));
+    cargarClientes(oXML.getElementsByTagName('cliente'));
+    cargarPublicidad(oXML.getElementsByTagName('publicidad'));
+    cargarIncidencias(oXML.getElementsByTagName('incidencia'));
+    cargarProyectos(oXML.getElementsByTagName('incidencia'));
+    cargarTareas(oXML.getElementsByTagName('tarea'));
+}
+
+function cargarAdministradores(arrayAdministradores){
+
+    for(var i=0; i<arrayAdministradores.length; i++){
+            var nomAdm = arrayAdministradores[i].children[0].textContent;
+            var dniAdm = arrayAdministradores[i].children[1].textContent;
+            var apeAdm = arrayAdministradores[i].children[2].textContent;
+            var tlfAdm = arrayAdministradores[i].children[3].textContent;
+            var dirAdm = arrayAdministradores[i].children[4].textContent;
+            var codAdm = arrayAdministradores[i].children[5].textContent;
+
+        var oAdministrador = new Administrador(nomAdm, dniAdm, apeAdm, tlfAdm, dirAdm, codAdm);
+        oConsultoria.anadeAdministrador(oAdministrador);
+    }
+
+}
+
+function cargarAnalistas(arrayAnalistas){
+
+    for(var i=0; i<arrayAnalistas.length; i++){
+        var nomAna = arrayAnalistas[i].children[0].textContent;
+        var dniAna = arrayAnalistas[i].children[1].textContent;
+        var apeAna = arrayAnalistas[i].children[2].textContent;
+        var tlfAna = arrayAnalistas[i].children[3].textContent;
+        var dirAna = arrayAnalistas[i].children[4].textContent;
+        var codAna = arrayAnalistas[i].children[5].textContent;
+        var proAna = [];
+
+        var listaProgAna = arrayAnalistas[i].children[6];
+        for(var j=0; j<listaProgAna.length; j++){
+            proAna.push(listaProgAna[j].textContent);
+        }
+
+        var oAnalista = new Analista(nomAna, dniAna, apeAna, tlfAna, dirAna, codAna, proAna);
+        oConsultoria.anadeAnalista(oAnalista);
+    }
+
+}
+
+function cargarProgramadores(arrayProgramadores){
+    for(var i=0; i<arrayProgramadores.length; i++){
+        var nomPro = arrayProgramadores[i].children[0].textContent;
+        var dniPro = arrayProgramadores[i].children[1].textContent;
+        var apePro = arrayProgramadores[i].children[2].textContent;
+        var tlfPro = arrayProgramadores[i].children[3].textContent;
+        var dirPro = arrayProgramadores[i].children[4].textContent;
+        var codAnaPro= arrayProgramadores[i].children[5].textContent;
+
+        var oProgramador = new Programador(nomPro, dniPro, apePro, tlfPro, dirPro, codAnaPro);
+        oConsultoria.anadeProgramador(oProgramador);
+    }
+}
+
+function cargarClientes(arrayClientes){
+
+    for(var i=0; i<arrayClientes.length; i++){
+        var nomCli = arrayClientes[i].children[0].textContent;
+        var dniCli = arrayClientes[i].children[1].textContent;
+        var apeCli = arrayClientes[i].children[2].textContent;
+        var tlfCli = arrayClientes[i].children[3].textContent;
+        var dirCli = arrayClientes[i].children[4].textContent;
+        var conCli = [];
+
+        var listaContratos = arrayClientes[i].children[5];
+        for(var j=0; j<listaContratos.length; j++){
+            conCli.push(listaContratos[j].textContent);
+        }
+
+        var oCliente = new Cliente(nomCli, dniCli, apeCli, tlfCli, dirCli, conCli);
+        oConsultoria.anadeCliente(oCliente);
+    }
+
+}
+
+function cargarPublicidad(arrayPublicidades){
+
+    for(var i=0; i<arrayPublicidades.length; i++){
+        var codPub = arrayPublicidades[i].children[0].textContent;
+        var tipPub = arrayPublicidades[i].children[1].textContent;
+        var decPub = arrayPublicidades[i].children[2].textContent;
+        var codAdmPub = arrayPublicidades[i].children[3].textContent;
+        var dniCliPub = arrayPublicidades[i].children[4].textContent;
 
 
+        var oPublicidad = new Publicidad(codPub, tipPub, decPub, codAdmPub, dniCliPub);
+        oConsultoria.anadePublicidad(oPublicidad);
+    }
 
 }
 
 
+function cargarIncidencias(arrayIncidencias){
+
+    for(var i=0; i<arrayIncidencias.length; i++){
+        var numInc = arrayIncidencias[i].children[0].textContent;
+        var priInc = arrayIncidencias[i].children[1].textContent
+        var asuInc = arrayIncidencias[i].children[2].textContent;
+        var desInc = arrayIncidencias[i].children[3].textContent;
+        var codAdmInc = arrayIncidencias[i].children[4].textContent;
+        var estInc = arrayIncidencias[i].children[5].textContent;
+
+        var oIncidencia = new Incidencia(numInc, priInc, asuInc, desInc, codAdmInc, estInc);
+        oConsultoria.anadeIncidencia(oIncidencia);
+    }
+
+}
+
+
+function cargarProyectos(arrayProyectos){
+
+    for(var i=0; i<arrayProyectos.length; i++){
+        var nomPro = arrayProyectos[i].children[0].textContent;
+        var anaPro = [];
+        var tarPro = [];
+
+        var listaAnalistas = arrayProyectos[i].children[1];
+        for(var j=0; j<listaAnalistas.length; j++){
+            anaPro.push(listaAnalistas[j].textContent);
+        }
+
+        var listaTareas = arrayProyectos[i].children[2];
+        for(var k=0; k<listaTareas.length; k++){
+            tarPro.push(listaTareas[k].textContent);
+        }
+
+        var oProyecto = new Proyecto(nomPro, anaPro, tarPro);
+        oConsultoria.anadeProyecto(oProyecto);
+    }
+
+}
+
+
+function cargarTareas(arrayTareas){
+
+    for(var i=0; i<arrayTareas.length; i++){
+        var codTar = arrayTareas[i].children[0].textContent;
+        var nomProTar = arrayTareas[i].children[1].textContent;
+        var fIniTar = arrayTareas[i].children[2].textContent;
+        var fFinTar = arrayTareas[i].children[3].textContent;
+        var nomTar = arrayTareas[i].children[4].textContent;
+        var estTar = arrayTareas[i].children[5].textContent;
+
+        var oTarea = new Tarea(codTar, nomProTar, fIniTar, fFinTar, nomTar, estTar);
+        oConsultoria.anadeTarea(oTarea);
+    }
+
+}
+
+
+
+
 //Cargar Datos Prueba
 
-oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez Marin',653923909,'Calle Perico',3));
-oConsultoria.anadeAdministrador(new Administrador('Juan','22334455G','Rosa Moreno',677331909,'Avda del Kiko',2));
+// oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez Marin',653923909,'Calle Perico',398598));
+// oConsultoria.anadeAdministrador(new Administrador('Juan','22334455G','Rosa Moreno',677331909,'Avda del Kiko',212458));
+//
+// oConsultoria.anadeCliente(new Cliente('Manolo', '11032393X', 'Cruz de la vega', 'Callejon del 7', 943382941, []));
+// oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'Castillejo Caserón', 'Calle Cuesta', 989556443, []));
+//
+// oConsultoria.anadeIncidencia(new Incidencia(1598,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2, "Abierta"));
+// oConsultoria.anadeIncidencia(new Incidencia(3584,2,'Fallo de Login', 'Imposible logearse en la web', 3, "Abierta"));
+//
+// oConsultoria.anadePublicidad(new Publicidad(4856,"Email", "Envío de Spam", 3, '44110022F'));
+//
+//
+// oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, new Date('2016-9-25'), new Date('2016-11-5'),'11032393X'));
+//
+// oConsultoria.anadeAdministrador(new Administrador('Cristian','34537865X','Garcia Ocaña',655589624,'Avenida del Paraiso',131313));
+//
+// var a=oConsultoria.anadeAnalista(new Analista('Andres','24358543B','Rodriguez Martin',698521596,'Calle Rodriguez Sexto',100933,null));
+//
+// oConsultoria.anadeProgramador(new Programador('Roberto','34259087M','Lopez Lopez',678945672,'Pasaje Antonino',100036,a));
+//
+// oConsultoria.anadeProyecto(new Proyecto('Proyecto Uno',[], []));
+//
+// oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo',[], []));
 
-oConsultoria.anadeCliente(new Cliente('Manolo', '11032393X', 'Cruz de la vega', 'Callejon del 7', 943382941, []));
-oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'Castillejo Caserón', 'Calle Cuesta', 989556443, []));
-
-oConsultoria.anadeIncidencia(new Incidencia(1598,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2, "Abierta"));
-oConsultoria.anadeIncidencia(new Incidencia(3584,2,'Fallo de Login', 'Imposible logearse en la web', 3, "Abierta"));
-
-oConsultoria.anadePublicidad(new Publicidad(4856,"Email", "Envío de Spam", 3, '44110022F'));
 
 
-oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, new Date('2016-9-25'), new Date('2016-11-5'),'11032393X'));
 
-oConsultoria.anadeAdministrador(new Administrador('Cristian','34537865X','Garcia Ocaña',655589624,'Avenida del Paraiso',131313));
-
-var a=oConsultoria.anadeAnalista(new Analista('Andres','24358543B','Rodriguez Martin',698521596,'Calle Rodriguez Sexto',100933,null));
-
-oConsultoria.anadeProgramador(new Programador('Roberto','34259087M','Lopez Lopez',678945672,'Pasaje Antonino',100036,a));
-
-oConsultoria.anadeProyecto(new Proyecto('Proyecto Uno',[], []));
-
-oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo',[], []));
 
 // LISTA DE EVENTOS
 
