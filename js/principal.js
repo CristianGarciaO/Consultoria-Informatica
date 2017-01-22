@@ -33,28 +33,25 @@ function cargaDatos() {
     cargarTareas(oXML.getElementsByTagName('tarea'));
 }
 
-function cargarAdministradores(arrayAdministradores){
+function cargarAdministradores(arrayAdministradores) {
 
-<<<<<<< HEAD
-    for(var i=0; i<arrayAdministradores.length; i++){
-            var nomAdm = arrayAdministradores[i].children[0].textContent;
-            var dniAdm = arrayAdministradores[i].children[1].textContent;
-            var apeAdm = arrayAdministradores[i].children[2].textContent;
-            var tlfAdm = arrayAdministradores[i].children[3].textContent;
-            var dirAdm = arrayAdministradores[i].children[4].textContent;
-            var codAdm = arrayAdministradores[i].children[5].textContent;
+    for (var i = 0; i < arrayAdministradores.length; i++) {
+        var nomAdm = arrayAdministradores[i].children[0].textContent;
+        var dniAdm = arrayAdministradores[i].children[1].textContent;
+        var apeAdm = arrayAdministradores[i].children[2].textContent;
+        var tlfAdm = arrayAdministradores[i].children[3].textContent;
+        var dirAdm = arrayAdministradores[i].children[4].textContent;
+        var codAdm = arrayAdministradores[i].children[5].textContent;
 
         var oAdministrador = new Administrador(nomAdm, dniAdm, apeAdm, tlfAdm, dirAdm, codAdm);
         oConsultoria.anadeAdministrador(oAdministrador);
     }
 
-=======
->>>>>>> origin/master
 }
 
-function cargarAnalistas(arrayAnalistas){
+function cargarAnalistas(arrayAnalistas) {
 
-    for(var i=0; i<arrayAnalistas.length; i++){
+    for (var i = 0; i < arrayAnalistas.length; i++) {
         var nomAna = arrayAnalistas[i].children[0].textContent;
         var dniAna = arrayAnalistas[i].children[1].textContent;
         var apeAna = arrayAnalistas[i].children[2].textContent;
@@ -64,7 +61,7 @@ function cargarAnalistas(arrayAnalistas){
         var proAna = [];
 
         var listaProgAna = arrayAnalistas[i].children[6];
-        for(var j=0; j<listaProgAna.length; j++){
+        for (var j = 0; j < listaProgAna.length; j++) {
             proAna.push(listaProgAna[j].textContent);
         }
 
@@ -74,23 +71,23 @@ function cargarAnalistas(arrayAnalistas){
 
 }
 
-function cargarProgramadores(arrayProgramadores){
-    for(var i=0; i<arrayProgramadores.length; i++){
+function cargarProgramadores(arrayProgramadores) {
+    for (var i = 0; i < arrayProgramadores.length; i++) {
         var nomPro = arrayProgramadores[i].children[0].textContent;
         var dniPro = arrayProgramadores[i].children[1].textContent;
         var apePro = arrayProgramadores[i].children[2].textContent;
         var tlfPro = arrayProgramadores[i].children[3].textContent;
         var dirPro = arrayProgramadores[i].children[4].textContent;
-        var codAnaPro= arrayProgramadores[i].children[5].textContent;
+        var codAnaPro = arrayProgramadores[i].children[5].textContent;
 
         var oProgramador = new Programador(nomPro, dniPro, apePro, tlfPro, dirPro, codAnaPro);
         oConsultoria.anadeProgramador(oProgramador);
     }
 }
 
-function cargarClientes(arrayClientes){
+function cargarClientes(arrayClientes) {
 
-    for(var i=0; i<arrayClientes.length; i++){
+    for (var i = 0; i < arrayClientes.length; i++) {
         var nomCli = arrayClientes[i].children[0].textContent;
         var dniCli = arrayClientes[i].children[1].textContent;
         var apeCli = arrayClientes[i].children[2].textContent;
@@ -99,7 +96,7 @@ function cargarClientes(arrayClientes){
         var conCli = [];
 
         var listaContratos = arrayClientes[i].children[5];
-        for(var j=0; j<listaContratos.length; j++){
+        for (var j = 0; j < listaContratos.length; j++) {
             conCli.push(listaContratos[j].textContent);
         }
 
@@ -109,9 +106,9 @@ function cargarClientes(arrayClientes){
 
 }
 
-function cargarPublicidad(arrayPublicidades){
+function cargarPublicidad(arrayPublicidades) {
 
-    for(var i=0; i<arrayPublicidades.length; i++){
+    for (var i = 0; i < arrayPublicidades.length; i++) {
         var codPub = arrayPublicidades[i].children[0].textContent;
         var tipPub = arrayPublicidades[i].children[1].textContent;
         var decPub = arrayPublicidades[i].children[2].textContent;
@@ -126,9 +123,9 @@ function cargarPublicidad(arrayPublicidades){
 }
 
 
-function cargarIncidencias(arrayIncidencias){
+function cargarIncidencias(arrayIncidencias) {
 
-    for(var i=0; i<arrayIncidencias.length; i++){
+    for (var i = 0; i < arrayIncidencias.length; i++) {
         var numInc = arrayIncidencias[i].children[0].textContent;
         var priInc = arrayIncidencias[i].children[1].textContent
         var asuInc = arrayIncidencias[i].children[2].textContent;
@@ -142,33 +139,21 @@ function cargarIncidencias(arrayIncidencias){
 
 }
 
-<<<<<<< HEAD
-=======
-oConsultoria.anadeAdministrador(new Administrador('Pedro', '12121212E', 'Gonzalez Marin', 653923909, 'Calle Perico', 3));
-oConsultoria.anadeAdministrador(new Administrador('Juan', '22334455G', 'Rosa Moreno', 677331909, 'Avda del Kiko', 2));
->>>>>>> origin/master
 
-function cargarProyectos(arrayProyectos){
+function cargarProyectos(arrayProyectos) {
 
-<<<<<<< HEAD
-    for(var i=0; i<arrayProyectos.length; i++){
+    for (var i = 0; i < arrayProyectos.length; i++) {
         var nomPro = arrayProyectos[i].children[0].textContent;
         var anaPro = [];
         var tarPro = [];
 
         var listaAnalistas = arrayProyectos[i].children[1];
-        for(var j=0; j<listaAnalistas.length; j++){
+        for (var j = 0; j < listaAnalistas.length; j++) {
             anaPro.push(listaAnalistas[j].textContent);
         }
-=======
-oConsultoria.anadeIncidencia(new Incidencia(1598, 3, 'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2, "Abierta"));
-oConsultoria.anadeIncidencia(new Incidencia(3584, 2, 'Fallo de Login', 'Imposible logearse en la web', 3, "Abierta"));
-
-oConsultoria.anadePublicidad(new Publicidad(4856, "Email", "Envío de Spam", 3, '44110022F'));
->>>>>>> origin/master
 
         var listaTareas = arrayProyectos[i].children[2];
-        for(var k=0; k<listaTareas.length; k++){
+        for (var k = 0; k < listaTareas.length; k++) {
             tarPro.push(listaTareas[k].textContent);
         }
 
@@ -176,13 +161,12 @@ oConsultoria.anadePublicidad(new Publicidad(4856, "Email", "Envío de Spam", 3, 
         oConsultoria.anadeProyecto(oProyecto);
     }
 
-<<<<<<< HEAD
 }
 
 
-function cargarTareas(arrayTareas){
+function cargarTareas(arrayTareas) {
 
-    for(var i=0; i<arrayTareas.length; i++){
+    for (var i = 0; i < arrayTareas.length; i++) {
         var codTar = arrayTareas[i].children[0].textContent;
         var nomProTar = arrayTareas[i].children[1].textContent;
         var fIniTar = arrayTareas[i].children[2].textContent;
@@ -195,8 +179,6 @@ function cargarTareas(arrayTareas){
     }
 
 }
-
-
 
 
 //Cargar Datos Prueba
@@ -225,22 +207,6 @@ function cargarTareas(arrayTareas){
 //
 // oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo',[], []));
 
-
-
-
-=======
-oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, new Date('2016-9-25'), new Date('2016-11-5'), '11032393X'));
-
-oConsultoria.anadeAdministrador(new Administrador('Cristian', '34537865X', 'Garcia Ocaña', 655589624, 'Avenida del Paraiso', 131313));
-
-var a = oConsultoria.anadeAnalista(new Analista('Andres', '24358543B', 'Rodriguez Martin', 698521596, 'Calle Rodriguez Sexto', 100933, null));
-
-oConsultoria.anadeProgramador(new Programador('Roberto', '34259087M', 'Lopez Lopez', 678945672, 'Pasaje Antonino', 100036, a));
-
-oConsultoria.anadeProyecto(new Proyecto('Proyecto Uno', [], []));
-
-oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo', [], []));
->>>>>>> origin/master
 
 // LISTA DE EVENTOS
 
@@ -2370,8 +2336,7 @@ function listaProgramadores() {
     ocultarFormularios();
 
 
-
-   var oCabecera=["Nombre", "DNI", "Apellidos", "Telefono", "Direccion","Analista"];
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
     pintaTabla(oCabecera);
 
 
@@ -2419,7 +2384,7 @@ function pintaTabla(oCabecera) {
         oTh.appendChild(oTexto);
         oFila.appendChild(oTh);
     }
-   // var oTBody = oTabla.createt;
+    // var oTBody = oTabla.createt;
     var posicion = document.querySelector("#tablas");
     // oTabla.createCaption();
     divTabla.appendChild(oTabla);

@@ -3,21 +3,21 @@
 //Se trata de mantener la información recogida en este objeto, de manera que se pueda acceder
 //desde el a todos los objetos (como en la biblioteca)
 
-function Consultoria(){
+function Consultoria() {
 
     //Cristian
-    this.trabajadores = [ ];
-    this.programadores = [ ];
-    this.analistas = [ ];
-    this.proyectos = [ ];
-    this.tareas = [ ];
+    this.trabajadores = [];
+    this.programadores = [];
+    this.analistas = [];
+    this.proyectos = [];
+    this.tareas = [];
 
     //Alex
-    this.administradores = [ ];
-    this.incidencias = [ ];
-    this.clientes = [ ];
-    this.contratos = [ ];
-    this.publicidades = [ ];
+    this.administradores = [];
+    this.incidencias = [];
+    this.clientes = [];
+    this.contratos = [];
+    this.publicidades = [];
 
 }
 
@@ -27,53 +27,55 @@ function Consultoria(){
  atributo = nombre del atributo o propiedad entre ' '
  tipoOrdenacion = Ascendente (1) o Descendente (-1)
  ingnoreCase = Si se desea ingnorar mayusculas o no (pasar true o false)
-*/
+ */
 
 /*! Ordenar elementos del ARRAY por una propiedad numérica. */
-Array.prototype.ordenaArrayInteger = function(atributo,tipoOrdenacion){
+Array.prototype.ordenaArrayInteger = function (atributo, tipoOrdenacion) {
     // Primero se verifica que la propiedad tipoOrdenacion tenga un dato válido.
-    if (tipoOrdenacion!=-1 && tipoOrdenacion!=1) tipoOrdenacion=1;
-    this.sort(function(a,b){
+    if (tipoOrdenacion != -1 && tipoOrdenacion != 1) tipoOrdenacion = 1;
+    this.sort(function (a, b) {
         // La función de ordenamiento devuelve la comparación entre atributo de a y b.
         // El resultado será afectado por tipoOrdenacion.
-        return (a[atributo]-b[atributo])*tipoOrdenacion;
+        return (a[atributo] - b[atributo]) * tipoOrdenacion;
     })
 };
 /*! Ordenar elementos del ARRAY por una propiedad de tipo String */
-Array.prototype.ordenaArrayString=function(atributo,tipoOrdenacion,ignoreCase){
-    if (tipoOrdenacion!=-1 && tipoOrdenacion!=1) tipoOrdenacion=1;
-    this.sort(function(a,b){
-        var stringA=a[atributo],stringB=b[atributo];
+Array.prototype.ordenaArrayString = function (atributo, tipoOrdenacion, ignoreCase) {
+    if (tipoOrdenacion != -1 && tipoOrdenacion != 1) tipoOrdenacion = 1;
+    this.sort(function (a, b) {
+        var stringA = a[atributo], stringB = b[atributo];
         // Si un valor es null o undefined, se convierte a cadena vacía.
-        if (stringA==null) stringA = '';
-        if (stringB==null) stringB = '';
+        if (stringA == null) stringA = '';
+        if (stringB == null) stringB = '';
         // Si ignoreCase es true, se convierten ambas variables a minúsculas.
-        if (ignoreCase==true){stringA=stringA.toLowerCase();stringB=stringB.toLowerCase()}
+        if (ignoreCase == true) {
+            stringA = stringA.toLowerCase();
+            stringB = stringB.toLowerCase()
+        }
         var res = 0;
-        if (stringA<stringB) res = -1;
-        else if (stringA>stringB) res = 1;
-        return res*tipoOrdenacion;
+        if (stringA < stringB) res = -1;
+        else if (stringA > stringB) res = 1;
+        return res * tipoOrdenacion;
     })
 };
 /*! Ordenar elementos de ARRAY  */
-Array.prototype.ordenaArrayDate=function(atributo,tipoOrdenacion){
-    if (tipoOrdenacion!=-1 && tipoOrdenacion!=1) tipoOrdenacion=1;
-    this.sort(function(a,b){
-        var dateA=new Date(a[atributo]),dateB=new Date(b[atributo]);
-        return (dateA-dateB)*tipoOrdenacion;
+Array.prototype.ordenaArrayDate = function (atributo, tipoOrdenacion) {
+    if (tipoOrdenacion != -1 && tipoOrdenacion != 1) tipoOrdenacion = 1;
+    this.sort(function (a, b) {
+        var dateA = new Date(a[atributo]), dateB = new Date(b[atributo]);
+        return (dateA - dateB) * tipoOrdenacion;
     })
 };
-
 
 
 /**** COMPROBAR EXISTENCIA TRABAJADOR ****/
 
-Consultoria.prototype.existeTrabajador = function(sDni){
+Consultoria.prototype.existeTrabajador = function (sDni) {
     /*Recibe un DNI y devuelve TRUE si existe o FALSE si no existe.*/
     var bEncontrado = false;
 
-    for(var i=0; i< this.trabajadores.length && bEncontrado == false; i++){
-        if(this.trabajadores[i].dniTrabajador == sDni){
+    for (var i = 0; i < this.trabajadores.length && bEncontrado == false; i++) {
+        if (this.trabajadores[i].dniTrabajador == sDni) {
             bEncontrado = true;
         }
     }
@@ -82,12 +84,12 @@ Consultoria.prototype.existeTrabajador = function(sDni){
 
 /**** COMPROBAR EXISTENCIA CLIENTE ****/
 
-Consultoria.prototype.existeCliente = function(sDni){
+Consultoria.prototype.existeCliente = function (sDni) {
     /*Recibe un DNI y devuelve TRUE si existe o FALSE si no existe.*/
     var bEncontrado = false;
 
-    for(var i=0; i< this.clientes && bEncontrado == false; i++){
-        if(this.clientes[i].dniCliente == sDni){
+    for (var i = 0; i < this.clientes && bEncontrado == false; i++) {
+        if (this.clientes[i].dniCliente == sDni) {
             bEncontrado = true;
         }
     }
@@ -96,18 +98,17 @@ Consultoria.prototype.existeCliente = function(sDni){
 
 /***** COMPROBAR EXISTENCIA DE CONTRATO *****/
 
-Consultoria.prototype.existeContrato = function(nombreProycto){
+Consultoria.prototype.existeContrato = function (nombreProycto) {
     /*Recibe un nombre de proyecto y devuelve TRUE si existe o FALSE si no existe.*/
     var bEnc = false;
 
-    for(var i=0; i< this.contratos.length && bEnc == false; i++){
-        if(this.contratos[i].nombreProyecto == nombreProycto){
+    for (var i = 0; i < this.contratos.length && bEnc == false; i++) {
+        if (this.contratos[i].nombreProyecto == nombreProycto) {
             bEnc = true;
         }
     }
     return bEnc;
-}
-
+};
 
 
 //************************************************************************************************************
@@ -117,7 +118,7 @@ Consultoria.prototype.existeContrato = function(nombreProycto){
 
 // TRABAJADOR
 
-function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTelefonoTrabajador,sDireccionTrabajador){
+function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTelefonoTrabajador, sDireccionTrabajador) {
     this.nombreTrabajador = sNombreTrabajador;
     this.dniTrabajador = iDniTrabajador;
     this.apellidosTrabajador = sApellidosTrabajador;
@@ -128,7 +129,7 @@ function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTe
 // Metodos Trabajador
 // ******************
 
-Consultoria.prototype.anadeTrabajador = function(oTrabajador){
+Consultoria.prototype.anadeTrabajador = function (oTrabajador) {
     this.trabajadores.push(oTrabajador);
 };
 
@@ -151,18 +152,18 @@ function Contrato(sNombreProyecto, iPrecio, fechaInicio, fechaFin, sDniCliente) 
 // Metodos Contrato
 // ****************
 
-Consultoria.prototype.anadeContrato= function(oContrato){
+Consultoria.prototype.anadeContrato = function (oContrato) {
     this.contratos.push(oContrato);
     var sMensaje = "Guardado";
     return sMensaje;
 };
 
-Consultoria.prototype.contratosDeEsteCliente = function(sDniCliente, tipoOrdenacion){
+Consultoria.prototype.contratosDeEsteCliente = function (sDniCliente, tipoOrdenacion) {
     /*Devuelve listado de los contratos del cliente pasado por parametro, con la ordenacion que se le indique*/
 
     var listaContratos = [];
-    for(var i=0; i<this.contratos.length; i++){
-        if(this.contratos[i].codAdmin == sDniCliente){
+    for (var i = 0; i < this.contratos.length; i++) {
+        if (this.contratos[i].codAdmin == sDniCliente) {
             listaContratos.push(this.contratos[i]);
         }
     }
@@ -174,8 +175,8 @@ Consultoria.prototype.dameContrato = function (nombreDelContrato) {
     var bEnc = false;
     var oContrato;
     var i = 0;
-    while(i < this.contratos.length && bEnc == false){
-        if(this.contratos[i].nombreProyecto == nombreDelContrato){
+    while (i < this.contratos.length && bEnc == false) {
+        if (this.contratos[i].nombreProyecto == nombreDelContrato) {
             oContrato = this.contratos[i];
             bEnc = true;
         }
@@ -183,7 +184,6 @@ Consultoria.prototype.dameContrato = function (nombreDelContrato) {
     }
     return oContrato;
 };
-
 
 
 //---------------------------------------------------------
@@ -197,13 +197,13 @@ function Cliente(sNombreCliente, sDniCliente, sApellidosCliente, sDireccionClien
     this.direccionCliente = sDireccionCliente;
     this.telefonoCliente = iTelefonoCliente;
     this.contratosCliente = aContratosCliente;    //Lista de contratos que puede tener el cliente
-                                                 // (nombres de los contratos,que son los nombres de los proyectos asociados);
+    // (nombres de los contratos,que son los nombres de los proyectos asociados);
 }
 
 // Metodos Cliente
 // ***************
 
-Consultoria.prototype.anadeCliente= function(oCliente){
+Consultoria.prototype.anadeCliente = function (oCliente) {
     this.clientes.push(oCliente);
     var sMensaje = "Guardado";
     return sMensaje;
@@ -213,8 +213,8 @@ Consultoria.prototype.dameCliente = function (dniCli) {
     var bEnc = false;
     var oCliente;
     var i = 0;
-    while(i < this.clientes.length && bEnc == false){
-        if(this.clientes[i].dniCliente == dniCli){
+    while (i < this.clientes.length && bEnc == false) {
+        if (this.clientes[i].dniCliente == dniCli) {
             oCliente = this.clientes[i];
             bEnc = true;
         }
@@ -222,9 +222,6 @@ Consultoria.prototype.dameCliente = function (dniCli) {
     }
     return oCliente;
 };
-
-
-
 
 
 //---------------------------------------------------------
@@ -243,7 +240,7 @@ function Publicidad(codigoPublicidad, tipoPublicidad, descripcionPublicidad, cod
 // Metodos Publicidad
 // ******************
 
-Consultoria.prototype.anadePublicidad = function(oPublicidad){
+Consultoria.prototype.anadePublicidad = function (oPublicidad) {
     this.publicidades.push(oPublicidad);
     var sMensaje = "Guardado";
     return sMensaje;
@@ -252,37 +249,38 @@ Consultoria.prototype.anadePublicidad = function(oPublicidad){
 
 Consultoria.prototype.eliminaPublicidad = function (oPublicidad) {
 
-    function eliminaEstaPubli(array,publi) {
-        var i = array.indexOf( publi );
+    function eliminaEstaPubli(array, publi) {
+        var i = array.indexOf(publi);
 
-        if ( i !== -1 ) {
-            array.splice( i, 1 );
+        if (i !== -1) {
+            array.splice(i, 1);
         }
     }
+
     var array = this.publicidades;
-    eliminaEstaPubli(array,oPublicidad);
+    eliminaEstaPubli(array, oPublicidad);
 
 
     var sMensaje = "Eliminada";
     return sMensaje;
-}
+};
 
 
-Consultoria.prototype.damePublicidad = function (codPubli){
+Consultoria.prototype.damePublicidad = function (codPubli) {
     alert(codPubli);
     var bEnc = false;
     var oPubli;
     var i = 0;
 
-    for (var i=0; i < this.publicidades.length && bEnc == false; i++){
+    for (var i = 0; i < this.publicidades.length && bEnc == false; i++) {
         alert(this.publicidades[i].codigoPublicidad);
-        if(this.publicidades[i].codigoPublicidad == codPubli) {
+        if (this.publicidades[i].codigoPublicidad == codPubli) {
             oPubli = this.publicidades[i];
             bEnc = true;
         }
     }
     return oPubli;
-}
+};
 
 
 //---------------------------------------------------------
@@ -303,7 +301,7 @@ Administrador.prototype.constructor = Administrador;
 // Metodos Administrador
 // *********************
 
-Consultoria.prototype.anadeAdministrador = function(oAdministrador){
+Consultoria.prototype.anadeAdministrador = function (oAdministrador) {
 
     this.administradores.push(oAdministrador);
     this.trabajadores.push(oAdministrador);
@@ -316,8 +314,8 @@ Consultoria.prototype.dameAdministrador = function (codigoAdmin) {
     var bEnc = false;
     var oAdmin;
     var i = 0;
-    while(i < this.administradores.length && bEnc == false){
-        if(this.administradores[i].codigoAdmin == codigoAdmin){
+    while (i < this.administradores.length && bEnc == false) {
+        if (this.administradores[i].codigoAdmin == codigoAdmin) {
             oAdmin = this.administradores[i];
             bEnc = true;
         }
@@ -331,7 +329,7 @@ Consultoria.prototype.dameAdministrador = function (codigoAdmin) {
 
 // INCIDENCIA
 
-function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, sDescripcionIncidencia, iCodAdmin, sEstado){
+function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, sDescripcionIncidencia, iCodAdmin, sEstado) {
     this.numeroIncidencia = iNumeroIncidencia;
     this.prioridadIncidencia = sPrioridadIncidencia;
     this.asuntoIncidencia = sAsuntoIncidencia;
@@ -344,7 +342,7 @@ function Incidencia(iNumeroIncidencia, sPrioridadIncidencia, sAsuntoIncidencia, 
 // Metodos Incidencia
 // ******************
 
-Consultoria.prototype.anadeIncidencia = function(oIncidencia){
+Consultoria.prototype.anadeIncidencia = function (oIncidencia) {
     this.incidencias.push(oIncidencia);
     var sMensaje = "Guardado";
     return sMensaje;
@@ -354,8 +352,8 @@ Consultoria.prototype.dameIncidencia = function (codigoIncidencia) {
     var bEnc = false;
     var oIncidencia;
     var i = 0;
-    while(i < this.incidencias.length && bEnc == false){
-        if(this.incidencias[i].numeroIncidencia == codigoIncidencia){
+    while (i < this.incidencias.length && bEnc == false) {
+        if (this.incidencias[i].numeroIncidencia == codigoIncidencia) {
             oIncidencia = this.incidencias[i];
             bEnc = true;
         }
@@ -364,20 +362,19 @@ Consultoria.prototype.dameIncidencia = function (codigoIncidencia) {
     return oIncidencia;
 };
 
-Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacion){
+Consultoria.prototype.incidenciasDeEsteAdmin = function (iCodAdmin, tipoOrdenacion) {
     /*Devuelve listado de las incidencias ordenado por numero de incidencia (segundo paramentro)
-    del administrador que se le pasa como primer parametro*/
+     del administrador que se le pasa como primer parametro*/
 
     var listaIncidencias = [];
-    for(var i=0; i<this.incidencias.length; i++){
-        if(this.incidencias[i].codAdmin == iCodAdmin){
+    for (var i = 0; i < this.incidencias.length; i++) {
+        if (this.incidencias[i].codAdmin == iCodAdmin) {
             listaIncidencias.push(this.incidencias[i]);
         }
     }
     listaIncidencias.ordenaArrayInteger('numeroIncidencia', tipoOrdenacion);
     return listaIncidencias;
 };
-
 
 
 //---------------------------------------------------------
@@ -388,49 +385,47 @@ Consultoria.prototype.incidenciasDeEsteAdmin = function(iCodAdmin, tipoOrdenacio
 //************************************************************************************************************
 
 
-
-
 //---------------------------------------------------------
 
 // PROYECTOS
 
-function Proyecto(sNombreProyecto, aAnalistasProyecto, aTareasProyecto){
+function Proyecto(sNombreProyecto, aAnalistasProyecto, aTareasProyecto) {
     this.nombreProyecto = sNombreProyecto;
     this.analistasProyecto = aAnalistasProyecto;
     this.tareasProyecto = aTareasProyecto;
 }
 
-Consultoria.prototype.anadeProyecto = function(oProyecto){
+Consultoria.prototype.anadeProyecto = function (oProyecto) {
     this.proyectos.push(oProyecto);
 };
 
 // TAREAS
 
-function Tarea(iCodigo,sNombreTarea, dFechaIni, oProyecto,dFechaFin,bEstado){
-    this.codigoTarea=iCodigo;
+function Tarea(iCodigo, sNombreTarea, dFechaIni, oProyecto, dFechaFin, bEstado) {
+    this.codigoTarea = iCodigo;
     this.nombreProyecto = oProyecto;
     this.fechaInicio = dFechaIni;
     this.fechaFin = dFechaFin;
-    this.nombreTarea=sNombreTarea;
-    this.estado=bEstado;
+    this.nombreTarea = sNombreTarea;
+    this.estado = bEstado;
 }
 
-Consultoria.prototype.anadeTarea = function(oTarea){
+Consultoria.prototype.anadeTarea = function (oTarea) {
     this.tareas.push(oProyecto);
 };
-Consultoria.prototype.dameCodigos = function(){
-    
+Consultoria.prototype.dameCodigos = function () {
+
 };
 
 //ANALISTA
 
-function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idAnalista,oProgramadores) {
+function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idAnalista, oProgramadores) {
     Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
     this.id = idAnalista;
-    this.programadores = oProgramadores; 
+    this.programadores = oProgramadores;
 
 }
-Consultoria.prototype.anadeAnalista = function(oAnalista){
+Consultoria.prototype.anadeAnalista = function (oAnalista) {
     this.analistas.push(oAnalista);
 };
 // Herencia Trabajador-ANALISTA
@@ -439,16 +434,13 @@ Analista.prototype = Object.create(Trabajador.prototype);
 Analista.prototype.constructor = Analista;
 
 
-
-
-
 //PROGRAMADOR
-function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador,oAnalista) {
+function Programador(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, oAnalista) {
     Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
     this.analista = oAnalista;
 
 }
-Consultoria.prototype.anadeProgramador = function(oProgramador){
+Consultoria.prototype.anadeProgramador = function (oProgramador) {
     this.programadores.push(oProgramador);
 };
 
@@ -456,8 +448,8 @@ Consultoria.prototype.dameProgramador = function (dniTrabajador) {
     var bEnc = false;
     var oProg;
     var i = 0;
-    while(i < this.programadores.length && bEnc == false){
-        if(this.programadores[i].dniTrabajador == dniTrabajador){
+    while (i < this.programadores.length && bEnc == false) {
+        if (this.programadores[i].dniTrabajador == dniTrabajador) {
             oProg = this.programadores[i];
             bEnc = true;
         }
