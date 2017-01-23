@@ -182,6 +182,10 @@ function cargarTareas(arrayTareas) {
 }
 
 
+
+
+
+
 function cargarContratos(arrayContratos) {
 
     for (var i = 0; i < arrayContratos.length; i++) {
