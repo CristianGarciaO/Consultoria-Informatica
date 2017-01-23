@@ -59,7 +59,7 @@ function cargarAnalistas(arrayAnalistas) {
         var dirAna = arrayAnalistas[i].children[4].textContent;
         var proAna = [];
 
-        var listaProgAna = arrayAnalistas[i].children[6];
+        var listaProgAna = arrayAnalistas[i].children[5];
         for (var j = 0; j < listaProgAna.length; j++) {
             proAna.push(listaProgAna[j].textContent);
         }
@@ -2206,20 +2206,6 @@ function cargarComboPublicidad(id) {
     }
 }
 
-//Cargar combo de Incidencias
-function cargaComboIncidencias() {
-
-    var miCombo = document.querySelector('#incidencia_ModInc');
-    var oOption = document.createElement('option');
-    oOption.text = 'Seleccione una Incidencia';
-    miCombo.add(oOption);
-    for (var i = 0; i < oConsultoria.incidencias.length; i++) {
-        var oOption = document.createElement('option');
-        oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
-        oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
-        miCombo.add(oOption);
-    }
-}
 
 
 //Completa los campos de texto
@@ -2298,8 +2284,8 @@ function cargaComboAnalista(id) {
     miCombo.add(oOptions);
     for (var i = 0; i < oConsultoria.analistas.length; i++) {
         var oOption = document.createElement('option');
-        oOption.text = oConsultoria.analistas[i].nombreTrabajador + ' - ' + oConsultoria.analistas[i].id;
-        oOption.value = oConsultoria.analistas[i].id;
+        oOption.text = oConsultoria.analistas[i].nombreTrabajador + ' - ' + oConsultoria.analistas[i].dniTrabajador;
+        oOption.value = oConsultoria.analistas[i].dniTrabajador;
         miCombo.add(oOption);
     }
 }
