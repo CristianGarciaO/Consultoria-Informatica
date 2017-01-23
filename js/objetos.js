@@ -419,9 +419,9 @@ Consultoria.prototype.dameCodigos = function () {
 
 //ANALISTA
 
-function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, idAnalista, oProgramadores) {
+function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, oProgramadores) {
     Trabajador.call(this, nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador);
-    this.id = idAnalista;
+
     this.programadores = oProgramadores;
 
 }

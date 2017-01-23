@@ -2345,9 +2345,9 @@ function listaProgramadores() {
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
     var arrayProgramadores = oConsultoria.dameListaProgramadores();
-
+    var tipo=1;
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
-    pintaTabla(oCabecera, arrayProgramadores);
+    pintaTabla(oCabecera, arrayProgramadores,tipo);
 
 
 }
@@ -2355,6 +2355,7 @@ function listaAnalistas() {
 
 
     ocultarFormularios();
+    var tipo=2;
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
     pintaTabla(oCabecera);
 
@@ -2363,7 +2364,7 @@ function listaAnalistas() {
 
 //TABLAS CON DOM
 
-function pintaTabla(oCabecera, array) {
+function pintaTabla(oCabecera, array, tipo) {
 
     //Se crean los contenedores
     var divContainer = document.createElement("div");
@@ -2385,15 +2386,18 @@ function pintaTabla(oCabecera, array) {
 
     //se crea la tabla en cuestion
     var oTabla = document.createElement("table");
-
-    oTabla.setAttribute("class", "table");
+    oTabla.setAttribute("class", "table table-responsive table-bordered table-hover");
+  /*  oTabla.setAttribute("class","");
+    oTabla.setAttribute("class","");
+    oTabla.setAttribute("class","");*/
     oTabla.setAttribute("id", "TablaCreada");
 
     // Cabecera
     var oTHead = oTabla.createTHead();
+
     // Fila cabecera
     var oFila = oTHead.insertRow(-1);
-
+    oFila.classList.add("info");
 
     //Identificamos los th que son necesarios
     for (var i = 0; i < oCabecera.length; i++) {
@@ -2413,8 +2417,12 @@ function pintaTabla(oCabecera, array) {
     for (var p = 0; p < array.length; p++) {
 
         oFila = oTBody.insertRow(-1);
-var objeto= array[p];
-        for (var dentro = 0; dentro < array.length; dentro++) {
+//var objeto= array[p].attributes.length;
+alert(typeof array);
+        alert(array instanceof Programador);
+var objetoActual=array[p];
+
+        for (var dentro = 0; dentro < 6; dentro++) {
             //Insertar datos de los objetos
             var info;
             switch (dentro) {
@@ -2449,8 +2457,23 @@ var objeto= array[p];
 
             }
             if(info == ""){
-                info=array[p].analista;
-                oTexto = document.createTextNode(info);
+
+                if(tipo==1)
+                {
+
+                    info = array[p].analista;
+                    oTexto = document.createTextNode(info);
+                }
+                if(tipo==2)
+                {
+
+                    info = array[p].programadores;
+                    oTexto = document.createTextNode(info);
+
+                }
+
+
+
 
             }else
             {
