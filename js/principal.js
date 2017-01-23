@@ -855,6 +855,8 @@ function validaFormNuevoAdmin(oEvento) {
             var oAdministrador = new Administrador(nombre, dni, apellido, tlf, direccion, codAdmin);
             sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
             toastr.success(sMensaje);
+
+            nuevoAdministrador();
         } else {
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
             toastr.error(sMensaje);
@@ -1119,11 +1121,14 @@ function validaFormNuevoCliente(oEvento) {
             var contratos = [];  //Array de contratos que pueda tener este cliente
             var oCliente = new Cliente(nombre, dni, apellido, direccion, tlf, contratos);
             sMensaje = oConsultoria.anadeCliente(oCliente);
+            toastr.success(sMensaje);
+            nuevoCliente();
         } else {
             sMensaje = "Imposible añadir. El Cliente que intenta añadir al sistema ya estaba registrado";
+            toastr.error(sMensaje);
         }
 
-        toastr.error(sMensaje);
+
     }
 
 
@@ -1364,7 +1369,7 @@ function validaFormNuevoContrato(oEvento) {
                     var cliente = select2.value;
                     var proyecto = select1.value;
 
-                    oContrato = new Contrato(proyecto, precio, fI, fF, cliente);
+                    var oContrato = new Contrato(proyecto, precio, fI, fF, cliente);
 
                     for (var i = 0; i < oConsultoria.clientes.length; i++) {
                         if (select2.value == oConsultoria.clientes[i].dniCliente) {
@@ -1374,6 +1379,7 @@ function validaFormNuevoContrato(oEvento) {
                     var sMensaje = oConsultoria.anadeContrato(oContrato);
 
                     toastr.success(sMensaje);
+                    nuevoContrato();
                 }
             } else {
                 oEvNuevoContrato.preventDefault();
@@ -1476,38 +1482,24 @@ function validaFormModContrato(oEvento) {
         var fF = new Date(fechaFin);
 
         if (fI < fF) {
-            //Comprobar que se ha seleccionado cliente y proyecto
+            //Comprobar que se ha seleccionado contrato
 
-            var select1 = document.querySelector('#nombreProyecto_NueCon');
-            var select2 = document.querySelector('#cliente_NueCon');
+            var select1 = document.querySelector('#selectContrato_ModCon');
 
-            if (select1.selectedIndex != 0 && select2.selectedIndex != 0) {
+            if (select1.selectedIndex != 0) {
 
-                //Comprobar que no existe un contrato para ese proyecto
+                var nombreContratoModificado = select1.value;
+                var oContrato = oConsultoria.dameContrato(nombreContratoModificado);
 
-                if (oConsultoria.existeContrato(select1.value)) {
-                    oEvNuevoContrato.preventDefault();
-                    toastr.error("El proyecto seleccionado ya tiene contrato");
-                } else {
-                    //Guardar el contrato
+                oContrato.precio = precio;
+                oContrato.fechaInicio = fechaInicio;
+                oContrato.fechaFin = fechaFin;
 
-                    var cliente = select2.value;
-                    var proyecto = select1.value;
+                toastr.success("Datos de contrato modificados correctamente");
+                modificarContrato();
 
-                    oContrato = new Contrato(proyecto, precio, fI, fF, cliente);
-
-                    for (var i = 0; i < oConsultoria.clientes.length; i++) {
-                        if (select2.value == oConsultoria.clientes[i].dniCliente) {
-                            oConsultoria.clientes[i].contratosCliente.push(oContrato);
-                        }
-                    }
-                    var sMensaje = oConsultoria.anadeContrato(oContrato);
-
-                    toastr.success(sMensaje);
-                }
             } else {
-                oEvNuevoContrato.preventDefault();
-                toastr.error("Debe seleccionar un cliente y un proyecto");
+                toastr.error("Debe seleccionar un Contrato");
             }
         } else {
             toastr.error("Error, la fecha fin es anterior a la fecha inicio introducida.");
@@ -1616,6 +1608,7 @@ function validaFormNuevaIncidencia(oEvento) {
         var sMensaje;
         sMensaje = oConsultoria.anadeIncidencia(oIncidencia);
         toastr.success(sMensaje);
+        nuevaIncidencia();
     }
 
 
@@ -1664,14 +1657,21 @@ function validaFormModIncidencia(oEvento) {
         var numInc = parseInt(document.querySelector('#incidencia_ModInc').value);
 
         var estado = "Cerrada";
-
-        for (var i = 0; i < oConsultoria.incidencias.length; i++) {
-            if (oConsultoria.incidencias[i].numeroIncidencia === numInc) {
-                oConsultoria.incidencias[i].estadoIncidencia = estado;
+        var Enc = false;
+        for (var i = 0; i < oConsultoria.incidencias.length && Enc == false; i++) {
+            if (oConsultoria.incidencias[i].numeroIncidencia == numInc) {
+                Enc = true;
+                if(oConsultoria.incidencias[i].estadoIncidencia == "Cerrada"){
+                    toastr.error("La incidencia seleccionada ya se encuentra cerrada");
+                }else{
+                    oConsultoria.incidencias[i].estadoIncidencia = estado;
+                    toastr.success("Incidencia cerrada");
+                    modificaIncidencia();
+                }
             }
         }
 
-        toastr.success("Incidencia cerrada");
+
     }
 
 
