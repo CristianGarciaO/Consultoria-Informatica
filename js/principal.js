@@ -2429,7 +2429,7 @@ function pintaTabla(oCabecera, array) {
 
         oFila = oTBody.insertRow(-1);
 var objeto= array[p];
-        for (var dentro = 0; dentro < 5; dentro++) {
+        for (var dentro = 0; dentro < array.length; dentro++) {
             //Insertar datos de los objetos
             var info;
             switch (dentro) {
