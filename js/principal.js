@@ -24,7 +24,6 @@ function cargaDatos() {
     var oXML = loadXMLDoc("datosConsultoria.xml");
 
     cargarAdministradores(oXML.getElementsByTagName('administrador'));
-    //cargarAnalistas(oXML.getElementsByTagName('analista'));
     cargarAnalistas(oXML.querySelectorAll('analistas analista'));
     cargarProgramadores(oXML.getElementsByTagName('programador'));
     cargarClientes(oXML.getElementsByTagName('cliente'));
@@ -32,6 +31,7 @@ function cargaDatos() {
     cargarIncidencias(oXML.getElementsByTagName('incidencia'));
     cargarProyectos(oXML.getElementsByTagName('incidencia'));
     cargarTareas(oXML.getElementsByTagName('tarea'));
+    cargarContratos(oXML.getElementsByTagName('contrato'));
 }
 
 function cargarAdministradores(arrayAdministradores) {
@@ -177,6 +177,22 @@ function cargarTareas(arrayTareas) {
 
         var oTarea = new Tarea(codTar, nomProTar, fIniTar, fFinTar, nomTar, estTar);
         oConsultoria.anadeTarea(oTarea);
+    }
+
+}
+
+
+function cargarContratos(arrayContratos) {
+
+    for (var i = 0; i < arrayContratos.length; i++) {
+        var nomCon = arrayContratos[i].children[0].textContent;
+        var preCon = arrayContratos[i].children[1].textContent;
+        var fIniCon = arrayContratos[i].children[2].textContent;
+        var fFinCon = arrayContratos[i].children[3].textContent;
+        var dniCliCon = arrayContratos[i].children[4].textContent;
+
+        var oContrato = new Contrato(nomCon, preCon, fIniCon, fFinCon, dniCliCon);
+        oConsultoria.anadeContrato(oContrato);
     }
 
 }
