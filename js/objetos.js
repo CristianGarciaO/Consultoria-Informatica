@@ -444,6 +444,17 @@ Consultoria.prototype.anadeProgramador = function (oProgramador) {
     this.programadores.push(oProgramador);
 };
 
+Consultoria.prototype.dameListaProgramadores = function () {
+   var array=[];
+    var i = 0;
+    while (i < this.programadores.length) {
+          array[i]=this.programadores[i];        
+        i++;
+    }
+    return array;
+};
+
+
 Consultoria.prototype.dameProgramador = function (dniTrabajador) {
     var bEnc = false;
     var oProg;

@@ -1,5 +1,5 @@
 var oConsultoria = new Consultoria();
-
+var oXML = loadXMLDoc("datosConsultoria.xml");
 
 //Funcion para cargar el XML
 function loadXMLDoc(filename) {
@@ -21,8 +21,7 @@ cargaDatos();
 
 function cargaDatos() {
 
-    var oXML = loadXMLDoc("datosConsultoria.xml");
-
+    // var oXML = loadXMLDoc("datosConsultoria.xml");
     cargarAdministradores(oXML.getElementsByTagName('administrador'));
     cargarAnalistas(oXML.querySelectorAll('analistas analista'));
     cargarProgramadores(oXML.getElementsByTagName('programador'));
@@ -182,10 +181,6 @@ function cargarTareas(arrayTareas) {
 }
 
 
-
-
-
-
 function cargarContratos(arrayContratos) {
 
     for (var i = 0; i < arrayContratos.length; i++) {
@@ -272,6 +267,14 @@ document.getElementById('eventNuevoProgramador').addEventListener('click', nuevo
 document.getElementById('eventModificaProgramador').addEventListener('click', modificaProgramador, false);
 
 document.getElementById('eventListarProgramadores').addEventListener('click', listaProgramadores, false);
+
+//document.getElementById('eventListarAnalistas').addEventListener('click', listaAnalistas, false);
+
+//document.getElementById('eventListarAdministradores').addEventListener('click', listaAdministradores, false);
+
+//document.getElementById('eventListarClientes').addEventListener('click', listaCliente, false);
+
+
 //CREACION DE OBJETOS
 
 //document.getElementById('CrearTarea').addEventListener('click', crearTarea, false);
@@ -333,6 +336,7 @@ function ocultarFormularios() {
     document.getElementById('divFormNuevoProgramador').style.display = 'none';
     document.getElementById('divFormModificaProgramador').style.display = 'none';
     document.getElementById('pantallaInicial').style.display = 'none';
+    document.getElementById('tablas').style.display = 'none';
 }
 
 function nuevoCliente() {
@@ -2353,20 +2357,28 @@ function muestraDatosDeEsteProgramador() {
 
 function listaProgramadores() {
 
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+    var arrayProgramadores = oConsultoria.dameListaProgramadores();
+
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
+    pintaTabla(oCabecera, arrayProgramadores);
+
+
+}
+function listaAnalistas() {
+
 
     ocultarFormularios();
-
-
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
     pintaTabla(oCabecera);
 
 
 }
 
-
 //TABLAS CON DOM
 
-function pintaTabla(oCabecera) {
+function pintaTabla(oCabecera, array) {
 
     //Se crean los contenedores
     var divContainer = document.createElement("div");
@@ -2405,10 +2417,80 @@ function pintaTabla(oCabecera) {
         oTh.appendChild(oTexto);
         oFila.appendChild(oTh);
     }
-    // var oTBody = oTabla.createt;
+
+    var oTBody = oTabla.createTBody();
+
     var posicion = document.querySelector("#tablas");
     // oTabla.createCaption();
+
+    //var cont=0;
+
+    for (var p = 0; p < array.length; p++) {
+
+        oFila = oTBody.insertRow(-1);
+var objeto= array[p];
+        for (var dentro = 0; dentro < 5; dentro++) {
+            //Insertar datos de los objetos
+            var info;
+            switch (dentro) {
+
+                case 0:
+                {
+                    info = array[p].nombreTrabajador;
+                    break
+                }
+                case 1:
+                {
+                    info = array[p].dniTrabajador;
+                    break;
+                }
+                case 2:
+                {
+                    info = array[p].apellidosTrabajador;
+                    break;
+                }
+                case 3:
+                {
+                    info = array[p].telefonoTrabajador;
+                    break;
+                }
+                case 4:
+                {
+                    info = array[p].direccionTrabajador;
+                    break;
+                }
+                default:
+                    info = "";
+
+            }
+            if(info == ""){
+                info=array[p].analista;
+                oTexto = document.createTextNode(info);
+
+            }else
+            {
+
+                oTexto = document.createTextNode(info);
+
+            }
+
+
+
+
+            var oCelda = oFila.insertCell(-1);
+            oCelda.appendChild(oTexto);
+            oFila.appendChild(oCelda);
+        }
+        // var nombre= array[p].nombreTrabajador;
+
+    }
+
+
     divTabla.appendChild(oTabla);
+    //borramos antes lo anterior
+    while (posicion.hasChildNodes()) {
+        posicion.removeChild(posicion.lastChild);
+    }
     posicion.appendChild(divContainer);
 
 }
