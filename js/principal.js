@@ -57,7 +57,6 @@ function cargarAnalistas(arrayAnalistas) {
         var apeAna = arrayAnalistas[i].children[2].textContent;
         var tlfAna = arrayAnalistas[i].children[3].textContent;
         var dirAna = arrayAnalistas[i].children[4].textContent;
-        var codAna = arrayAnalistas[i].children[5].textContent;
         var proAna = [];
 
         var listaProgAna = arrayAnalistas[i].children[6];
@@ -65,7 +64,7 @@ function cargarAnalistas(arrayAnalistas) {
             proAna.push(listaProgAna[j].textContent);
         }
 
-        var oAnalista = new Analista(nomAna, dniAna, apeAna, tlfAna, dirAna, codAna, proAna);
+        var oAnalista = new Analista(nomAna, dniAna, apeAna, tlfAna, dirAna, proAna);
         oConsultoria.anadeAnalista(oAnalista);
     }
 
@@ -78,9 +77,9 @@ function cargarProgramadores(arrayProgramadores) {
         var apePro = arrayProgramadores[i].children[2].textContent;
         var tlfPro = arrayProgramadores[i].children[3].textContent;
         var dirPro = arrayProgramadores[i].children[4].textContent;
-        var codAnaPro = arrayProgramadores[i].children[5].textContent;
+        var dniAnaPro = arrayProgramadores[i].children[5].textContent;
 
-        var oProgramador = new Programador(nomPro, dniPro, apePro, tlfPro, dirPro, codAnaPro);
+        var oProgramador = new Programador(nomPro, dniPro, apePro, tlfPro, dirPro, dniAnaPro);
         oConsultoria.anadeProgramador(oProgramador);
     }
 }

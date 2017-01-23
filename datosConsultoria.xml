@@ -47,9 +47,8 @@
 			<apellidosTrabajador>Richardson Gonzalves</apellidosTrabajador>
 			<telefonoTrabajador>698755612</telefonoTrabajador>
 			<direccionTrabajador>Rúa do Castelo 12, Lisboa</direccionTrabajador>
-			<id>100933</id>
 			<programadores>
-				<progr>78859588F</progr>
+				<progr>68658518F</progr>
 				<progr>45893311T</progr>
 			</programadores>
 		</analista>
@@ -59,7 +58,6 @@
 			<apellidosTrabajador>Makkinen</apellidosTrabajador>
 			<telefonoTrabajador>632255888</telefonoTrabajador>
 			<direccionTrabajador>Katu korvalainen, Turku</direccionTrabajador>
-			<id>106583</id>
 			<programadores>
 				<progr>55879988L</progr>
 				<progr>78859588F</progr>
@@ -77,7 +75,7 @@
 			<apellidosTrabajador>Lopez Torres</apellidosTrabajador>
 			<telefonoTrabajador>987568898</telefonoTrabajador>
 			<direccionTrabajador>Calle La tercera, Valencia</direccionTrabajador>
-			<analista>106583</analista>
+			<analista>98785877A</analista>
 		</programador>
 		<programador>
 			<nombreTrabajador>Carlos Jesús</nombreTrabajador>
@@ -85,7 +83,7 @@
 			<apellidosTrabajador>Romero Torrado</apellidosTrabajador>
 			<telefonoTrabajador>987588898</telefonoTrabajador>
 			<direccionTrabajador>Calle La primera, Albacete</direccionTrabajador>
-			<analista>106583</analista>
+			<analista>7854488K</analista>
 		</programador>
 		<programador>
 			<nombreTrabajador>Francisco</nombreTrabajador>
@@ -93,7 +91,7 @@
 			<apellidosTrabajador>Rebollo Gómez</apellidosTrabajador>
 			<telefonoTrabajador>987588898</telefonoTrabajador>
 			<direccionTrabajador>Calle La Segunda, Murcia</direccionTrabajador>
-			<analista>106583</analista>
+			<analista>98785877A</analista>
 		</programador>
 		<programador>
 			<nombreTrabajador>Mario</nombreTrabajador>
@@ -101,7 +99,7 @@
 			<apellidosTrabajador>Ruíz Celma</apellidosTrabajador>
 			<telefonoTrabajador>644115526</telefonoTrabajador>
 			<direccionTrabajador>Calle La Tercera, Valencia</direccionTrabajador>
-			<analista>106583</analista>
+			<analista>7854488K</analista>
 		</programador>
 		<programador>
 			<nombreTrabajador>Fernando</nombreTrabajador>
@@ -109,7 +107,7 @@
 			<apellidosTrabajador>Carrasco Murillo</apellidosTrabajador>
 			<telefonoTrabajador>666777888</telefonoTrabajador>
 			<direccionTrabajador>Calle La Cuarta, Bilbao</direccionTrabajador>
-			<analista>100933</analista>
+			<analista>7854488K</analista>
 		</programador>
 	</programadores>
 	
