@@ -2262,10 +2262,13 @@ function cargaComboIncidencias() {
     oOption.text = 'Seleccione una Incidencia';
     miCombo.add(oOption);
     for (var i = 0; i < oConsultoria.incidencias.length; i++) {
-        var oOption = document.createElement('option');
-        oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
-        oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
-        miCombo.add(oOption);
+        if(oConsultoria.incidencias[i].estadoIncidencia != "Cerrada"){
+            var oOption = document.createElement('option');
+            oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
+            oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
+            miCombo.add(oOption);
+        }
+
     }
 }
 

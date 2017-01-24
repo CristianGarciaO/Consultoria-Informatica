@@ -157,7 +157,7 @@
 	<incidencias>
 		<incidencia>
 			<numeroIncidencia>1598</numeroIncidencia>
-			<prioridadIncidencia>3</prioridadIncidencia>
+			<prioridadIncidencia>Leve</prioridadIncidencia>
 			<asuntoIncidencia>Algoritmo erroneo</asuntoIncidencia>
 			<descripcionIncidencia>Pues eso, mal algoritmo, no va ni para atrás</descripcionIncidencia>
 			<codAdmin>2544</codAdmin>
@@ -165,7 +165,7 @@
 		</incidencia>
 		<incidencia>
 			<numeroIncidencia>3584</numeroIncidencia>
-			<prioridadIncidencia>2</prioridadIncidencia>
+			<prioridadIncidencia>Media</prioridadIncidencia>
 			<asuntoIncidencia>Fallo de Login</asuntoIncidencia>
 			<descripcionIncidencia>Imposible logearse en la web</descripcionIncidencia>
 			<codAdmin>1578</codAdmin>
@@ -173,7 +173,7 @@
 		</incidencia>
 		<incidencia>
 			<numeroIncidencia>2789</numeroIncidencia>
-			<prioridadIncidencia>1</prioridadIncidencia>
+			<prioridadIncidencia>Grave</prioridadIncidencia>
 			<asuntoIncidencia>Fallo al guardar Pedido</asuntoIncidencia>
 			<descripcionIncidencia>El carrito de la compra no guarda los pedidos para poseteriores sesiones</descripcionIncidencia>
 			<codAdmin>1578</codAdmin>
