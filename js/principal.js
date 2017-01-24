@@ -394,6 +394,7 @@ function nuevaIncidencia() {
     cargaComboAdministradores('#administradores_NueInc');
 
 }
+
 function modificaIncidencia() {
 
     ocultarFormularios();
@@ -403,18 +404,9 @@ function modificaIncidencia() {
     vaciarCombo('#incidencia_ModInc');  //Vaciar el combo por si contiene algo anterior
 
     //Cargar las incidencias existentes
-    cargaComboIncidencias();
-
-    var elementos = document.getElementById('formuModificaIncidencia').querySelectorAll('div.form-group');
-    for (var i = 0; i < elementos.length; i++) {
-        if (elementos[i].classList.contains('oculto'))
-            elementos[i].setAttribute('class', 'form-group oculto');
-
-    }
-
-    var elementosVisibles = document.getElementsByClassName('form-group botones');
-    for (var j = 0; j < elementosVisibles.length; j++) {
-        elementosVisibles[j].classList.remove('oculto');
+    var sMsg = cargaComboIncidencias();
+    if(sMsg != "Hay Incidencias"){
+        toastr.warning(sMsg);
     }
 
     //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
@@ -2261,15 +2253,24 @@ function cargaComboIncidencias() {
     var oOption = document.createElement('option');
     oOption.text = 'Seleccione una Incidencia';
     miCombo.add(oOption);
+    var cont = 0;
     for (var i = 0; i < oConsultoria.incidencias.length; i++) {
         if(oConsultoria.incidencias[i].estadoIncidencia != "Cerrada"){
             var oOption = document.createElement('option');
             oOption.text = oConsultoria.incidencias[i].numeroIncidencia + ' - ' + oConsultoria.incidencias[i].asuntoIncidencia;
             oOption.value = oConsultoria.incidencias[i].numeroIncidencia;
             miCombo.add(oOption);
+        }else{
+            cont++;
         }
-
     }
+    var sMensaje;
+    if(cont == oConsultoria.incidencias.length){
+        var sMensaje = "No hay incidencias pendientes de cerrar."
+    }else{
+        sMensaje = "Hay Incidencias";
+    }
+    return sMensaje;
 }
 
 function cargaComboProyectos(id) {
