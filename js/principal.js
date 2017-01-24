@@ -267,6 +267,15 @@ document.getElementById('eventModificaProgramador').addEventListener('click', mo
 
 document.getElementById('eventListarProgramadores').addEventListener('click', listaProgramadores, false);
 
+
+function actualizarFechaFin() {
+
+    var fechaInicial = document.getElementById('fechaini').value;
+  document.querySelector('#fechafin').setAttribute("min",fechaInicial);
+}
+document.getElementById('fechaini').addEventListener('change', actualizarFechaFin, false);
+
+
 //document.getElementById('eventListarAnalistas').addEventListener('click', listaAnalistas, false);
 
 //document.getElementById('eventListarAdministradores').addEventListener('click', listaAdministradores, false);
@@ -2417,10 +2426,10 @@ function pintaTabla(oCabecera, array, tipo) {
     for (var p = 0; p < array.length; p++) {
 
         oFila = oTBody.insertRow(-1);
-//var objeto= array[p].attributes.length;
-alert(typeof array);
-        alert(array instanceof Programador);
-var objetoActual=array[p];
+//var objeto= .attributes.length;
+//alert(typeof array);
+      //  alert(array[p] instanceof Programador);
+//var objetoActual=array[p];
 
         for (var dentro = 0; dentro < 6; dentro++) {
             //Insertar datos de los objetos
@@ -2458,13 +2467,13 @@ var objetoActual=array[p];
             }
             if(info == ""){
 
-                if(tipo==1)
+                if(array[p] instanceof Programador)
                 {
 
                     info = array[p].analista;
                     oTexto = document.createTextNode(info);
                 }
-                if(tipo==2)
+                if(array[p] instanceof Analista)
                 {
 
                     info = array[p].programadores;

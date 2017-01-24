@@ -447,8 +447,10 @@ Consultoria.prototype.anadeProgramador = function (oProgramador) {
 Consultoria.prototype.dameListaProgramadores = function () {
    var array=[];
     var i = 0;
+    //var programador=[];
     while (i < this.programadores.length) {
-          array[i]=this.programadores[i];        
+       // programador=new Programador(this.programadores[i]);
+          array[i]=this.programadores[i];
         i++;
     }
     return array;
