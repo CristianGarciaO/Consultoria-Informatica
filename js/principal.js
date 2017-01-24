@@ -267,6 +267,11 @@ document.getElementById('eventModificaProgramador').addEventListener('click', mo
 
 document.getElementById('eventListarProgramadores').addEventListener('click', listaProgramadores, false);
 
+document.getElementById('eventListarAdministrador').addEventListener('click', listaAdministradores, false);
+
+document.getElementById('eventListarAnalistas').addEventListener('click', listaAnalistas, false);
+
+
 
 function actualizarFechaFin() {
 
@@ -2364,22 +2369,40 @@ function listaProgramadores() {
 
 
 }
+
+
+function listaAdministradores(){
+
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+    var arrayAdministradores = oConsultoria.administradores;
+    var tipo=1;
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Codigo"];
+    pintaTabla(oCabecera, arrayAdministradores,tipo);
+
+
+}
+
+
+
 function listaAnalistas() {
 
 
     ocultarFormularios();
-    var tipo=2;
-    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
-    pintaTabla(oCabecera);
+    document.getElementById('tablas').style.display = 'block';
+    var arrayAnalistas = oConsultoria.analistas;
+    var tipo= "Analista";
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Programadores"];
+    pintaTabla(oCabecera, arrayAnalistas,tipo);
 
 
 }
 
 //TABLAS CON DOM
 
-function pintaTabla(oCabecera, array, tipo) {
+function pintaTabla(oCabecera, array, tipoObjeto) {
 
-    //Se crean los contenedores
+    //Se crean los CONTENEDORES
     var divContainer = document.createElement("div");
     divContainer.classList.add("container");
     var divRow = document.createElement("div");
@@ -2405,7 +2428,7 @@ function pintaTabla(oCabecera, array, tipo) {
     oTabla.setAttribute("class","");*/
     oTabla.setAttribute("id", "TablaCreada");
 
-    // Cabecera
+    // CABECERA
     var oTHead = oTabla.createTHead();
 
     // Fila cabecera
@@ -2419,6 +2442,82 @@ function pintaTabla(oCabecera, array, tipo) {
         oTh.appendChild(oTexto);
         oFila.appendChild(oTh);
     }
+
+    //Comprobar el tipo de objeto a listar
+
+    // var oTBody = oTabla.createTBody();
+    // var posicion = document.querySelector("#tablas");
+    // switch (tipoObjeto){
+    //     case "Analista":{
+    //         for (var p = 0; p < array.length; p++) {
+    //             oFila = oTBody.insertRow(-1);
+    //             for (var dentro = 0; dentro < 6; dentro++) {
+    //                 var info = [];
+    //                 switch (dentro) {
+    //                     case 0:{ info = array[p].nombreTrabajador;
+    //                         break; }
+    //                     case 1:{ info = array[p].dniTrabajador;
+    //                         break; }
+    //                     case 2:{ info = array[p].apellidosTrabajador;
+    //                         break; }
+    //                     case 3:{ info = array[p].telefonoTrabajador;
+    //                         break; }
+    //                     case 4:{ info = array[p].direccionTrabajador;
+    //                         break; }
+    //                     case 5:{ info = array[p].programadores;
+    //                         break; }
+    //                 }
+    //             }
+    //             oTexto = document.createTextNode(info);
+    //
+    //             var oCelda = oFila.insertCell(-1);
+    //             oCelda.appendChild(oTexto);
+    //             oFila.appendChild(oCelda);
+    //         }
+    //         break;
+    //     }
+    //     case Programador:{
+    //
+    //         break;
+    //     }
+    //     case Administrador:{
+    //
+    //         break;
+    //     }
+    //     case Cliente:{
+    //
+    //         break;
+    //     }
+    //     case Contrato:{
+    //
+    //         break;
+    //     }
+    //     case Proyecto:{
+    //
+    //         break;
+    //     }
+    //     case Tarea:{
+    //
+    //         break;
+    //     }
+    //     case Incidencia:{
+    //
+    //         break;
+    //     }
+    //     case Publicidad:{
+    //
+    //         break;
+    //     }
+    //
+    // }
+    // divTabla.appendChild(oTabla);
+    // //borramos antes lo anterior
+    // while (posicion.hasChildNodes()) {
+    //     posicion.removeChild(posicion.lastChild);
+    // }
+    // posicion.appendChild(divContainer);
+
+
 
     var oTBody = oTabla.createTBody();
 
@@ -2465,6 +2564,12 @@ function pintaTabla(oCabecera, array, tipo) {
                     info = array[p].direccionTrabajador;
                     break;
                 }
+                case 5:
+                {
+                    info = array[p].codigoAdmin;
+                    break;
+                }
+
                 default:
                     info = "";
 
@@ -2484,7 +2589,13 @@ function pintaTabla(oCabecera, array, tipo) {
                     oTexto = document.createTextNode(info);
 
                 }
+                if(array[p] instanceof Administrador)
+                {
 
+                    info = array[p].administradores;
+                    oTexto = document.createTextNode(info);
+
+                }
 
 
 
