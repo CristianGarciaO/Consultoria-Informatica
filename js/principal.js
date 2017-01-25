@@ -527,7 +527,7 @@ function nuevoAdministrador() {
 
     //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
     comprobarCampos('formuNuevoAdmin');
-    
+
 }
 
 function modificarAdministrador() {
@@ -1880,11 +1880,171 @@ function validaFormNuevoProgramador(oEvento) {
 document.querySelector('#modificarAnalista').addEventListener('click', validaFormModificaAnalista, false);
 
 //document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
-validaFormModificaAnalista
+
 
 // ********************************************************************
 
+function validaFormModificaAnalista(oEvento) {
+    var oEvNuevoProg = oEvento || window.event;
+    var bValido = true;
+    var sErrores = "";
 
+    var idFormulario = "formuModificaAnalista";
+    var idNombre = "nombreAnalis_Mod";
+    var idApellidos = "apellidosAnalis_Mod";
+    var idDNI = "dniAnalis_Mod";
+    var idTelefono = "telefonoAnalis_Mod";
+    var idDireccion = "direccionAnalis_Mod";
+    var trabajador = "Analista";
+
+
+    var nombre = document.getElementById(idNombre).value.trim();
+    document.getElementById(idNombre).value = nombre;
+
+    if (validaNombre(nombre) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).nombreAnalistaMod.focus();
+        }
+        sErrores += "NOMBRE del " + trabajador + " incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).nombreAnalistaMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).nombreAnalistaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+    var apellido = document.getElementById(idApellidos).value.trim();
+    document.getElementById(idApellidos).value = apellido;
+
+
+    if (validaApellido(apellido) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevoProgramador').apellidosAnalstaMod.focus();
+        }
+        sErrores += "<br><br> APELLIDO del " + trabajador + " incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).apellidosAnalstaMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).apellidosAnalstaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var dni = document.getElementById(idDNI).value.trim();
+    document.getElementById(idDNI).value = dni;
+
+    if (validaDni(dni) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).dniAnalistMod.focus();
+        }
+        sErrores += "<br><br> DNI del " + trabajador + " incorrecto (formato: 8 digitos más letra mayuscula)";
+
+        //Marcar error
+        document.getElementById(idFormulario).dniAnalistMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).dniAnalistMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var tlf = document.getElementById(idTelefono).value.trim();
+    document.getElementById(idTelefono).value = tlf;
+
+    if (validaTelefono(tlf) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).telefonoProgramador.focus();
+        }
+        sErrores += "<br><br> TELEFONO del " + trabajador + " incorrecto (formato: 9 digitos comenzando en 6 o 9)";
+
+        //Marcar error
+        document.getElementById(idFormulario).telefonoAnalistaMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).telefonoAnalistaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var direccion = document.getElementById(idDireccion).value.trim();
+    document.getElementById(idDireccion).value = direccion;
+
+    if (validaDireccion(direccion) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).direccionAnalistaMod.focus();
+        }
+        sErrores += "<br><br> DIRECCION del " + trabajador + " incorrecto (formato: 40 caracteres maximo)";
+
+        //Marcar error
+        document.getElementById(idFormulario).direccionAnalistaMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).direccionAnalistaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    if (document.querySelector('#selectAnalistaProgr').selectedIndex == 0) {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector('#selectAnalistaProgr').focus();
+        }
+        sErrores += "<br><br> "+ trabajador + " no seleccionado. Debe seleccionar uno)";
+
+        //Marcar error
+        document.querySelector('#selectPrograAnalistaModifica').className = "form-control input-large error";
+
+    } else {
+        //Desmarcar error
+        document.querySelector('#selectPrograAnalistaModifica').className = "form-control input-large";  //Pone esta class a la etiqueta.
+        var dniProgr = document.getElementById('selectPrograAnalistaModifica').value;
+        //var programadores = oConsultoria.dameProgramador(dniAnalista);
+        alert(dniProgr);
+
+    }
+    if (bValido == false) {
+        //Cancelar envio del formulario
+        //oEvNuevoProg.preventDefault();
+        //Mostrar errores
+        toastr.error(sErrores);
+    } else {
+        //Aqui estan los datos correctos, los guardamos
+        //Comprobar si existe el trabajador
+
+        var sMensaje = "";
+
+        if (!oConsultoria.existeTrabajador(dni)) {
+
+            var oProgramador = new Analista(nombre, dni, apellido, tlf, direccion);
+            sMensaje = "¡ Analista Modificado con éxito !";
+            oConsultoria.anadeProgramador(oProgramador);
+            toastr.success(sMensaje);
+        } else {
+            sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
+            toastr.error(sMensaje);
+        }
+
+    }
+
+
+}
 
 
 
