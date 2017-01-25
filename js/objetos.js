@@ -376,6 +376,50 @@ Consultoria.prototype.incidenciasDeEsteAdmin = function (iCodAdmin, tipoOrdenaci
     return listaIncidencias;
 };
 
+Consultoria.prototype.listarIncidencias = function(filtro){
+
+    var oInfo = new Array();
+    var oCabecera = ["Nº Incidencia", "Prioridad", "Asunto", "Descripción", "Código Admin", "Estado"];
+
+    if(filtro == "Todas"){
+
+        for(var i=0;i<this.incidencias.length; i++){
+            //Meter un array en otro para hacerlo bidimensional
+            oInfo[i] = new Array();
+            //Cargar los datos
+            oInfo[i][0] = this.incidencias[i].numeroIncidencia;
+            oInfo[i][1] = this.incidencias[i].prioridadIncidencia
+            oInfo[i][2] = this.incidencias[i].asuntoIncidencia;
+            oInfo[i][3] = this.incidencias[i].descripcionIncidencia;
+            oInfo[i][4] = this.incidencias[i].codAdmin;
+            oInfo[i][5] = this.incidencias[i].estadoIncidencia;
+        }
+
+    }else{ //Solo sin cerrar
+
+        for(var j=0; j<this.incidencias.length; j++){
+            if(this.incidencias[j].estadoIncidencia == "Abierta"){
+                //Meter un array en otro para hacerlo bidimensional
+                oInfo[j] = new Array();
+                //Cargar los datos
+                oInfo[j][0] = this.incidencias[j].numeroIncidencia;
+                oInfo[j][1] = this.incidencias[j].prioridadIncidencia
+                oInfo[j][2] = this.incidencias[j].asuntoIncidencia;
+                oInfo[j][3] = this.incidencias[j].descripcionIncidencia;
+                oInfo[j][4] = this.incidencias[j].codAdmin;
+                oInfo[j][5] = this.incidencias[j].estadoIncidencia;
+            }
+        }
+
+
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+}
+
 
 //---------------------------------------------------------
 
