@@ -271,7 +271,9 @@ document.getElementById('eventListarAdministrador').addEventListener('click', li
 
 document.getElementById('eventListarAnalistas').addEventListener('click', listaAnalistas, false);
 
+document.getElementById('eventListarIncidencias').addEventListener('click', listaIncidencias("Todas"), false);
 
+document.getElementById('eventListarIncidenciasSinCerrar').addEventListener('click', listaIncidencias("Abiertas"), false);
 
 function actualizarFechaFin() {
 
@@ -2679,6 +2681,14 @@ function listaAnalistas() {
 
 }
 
+function listaIncidencias(filtro) {
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+
+    var array = oConsultoria.listarIncidencias(filtro);
+    dibujarTabla(array[0], array[1]);
+}
+
 //TABLAS CON DOM
 
 function pintaTabla(oCabecera, array, tipoObjeto) {
@@ -2884,6 +2894,73 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
     }
     posicion.appendChild(divContainer);
 
+}
+
+
+function dibujarTabla(oCabecera, oInfo){
+
+    //Se crean los CONTENEDORES
+    var divContainer = document.createElement("div");
+    divContainer.classList.add("container");
+    var divRow = document.createElement("div");
+    divRow.classList.add("row");
+    var divTabla = document.createElement("div");
+    divTabla.classList.add("col-sm-8");
+    var divRelleno1 = document.createElement("div");
+    divRelleno1.classList.add("col-sm-2");
+    var divRelleno2 = document.createElement("div");
+    divRelleno2.classList.add("col-sm-2");
+
+    //Se especifica cual es la posicion de cada uno
+    divContainer.appendChild(divRow);
+    divRow.appendChild(divRelleno1);
+    divRow.appendChild(divTabla);
+    divRow.appendChild(divRelleno2);
+
+    //se crea la tabla en cuestion
+    var oTabla = document.createElement("table");
+    oTabla.setAttribute("class", "table table-responsive table-bordered table-hover");
+    oTabla.setAttribute("id", "TablaCreada");
+
+    // CABECERA
+    var oTHead = oTabla.createTHead();
+
+    // Fila cabecera
+    var oFila = oTHead.insertRow(-1);
+    oFila.classList.add("info");
+
+    //Identificamos los th que son necesarios
+    for (var i = 0; i < oCabecera.length; i++) {
+        var oTh = document.createElement("th");
+        var oTexto = document.createTextNode(oCabecera[i]);
+        oTh.appendChild(oTexto);
+        oFila.appendChild(oTh);
+    }
+
+    var oTBody = oTabla.createTBody();
+
+    var posicion = document.querySelector("#tablas");
+    // oTabla.createCaption();
+
+
+    for (var j = 0;j<oInfo.length;j++) {
+        oFila = oTBody.insertRow(-1);
+        for (var k = 0;k<oInfo[j].length;k++) {
+            var oCelda = oFila.insertCell(-1);
+            oTexto = document.createTextNode(oInfo[j][k]);
+            oCelda.appendChild(oTexto);
+        }
+        oFila.appendChild(oCelda);
+    }
+
+    divTabla.appendChild(oTabla);
+    //borramos antes lo anterior
+    while (posicion.hasChildNodes()) {
+        posicion.removeChild(posicion.lastChild);
+    }
+    posicion.appendChild(divContainer);
+
+    // return oTabla;
 }
 
 
