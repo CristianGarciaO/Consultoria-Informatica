@@ -526,12 +526,8 @@ function nuevoAdministrador() {
     document.getElementById('formuNuevoAdmin').reset();
 
     //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
-    var oFormu = document.getElementById('formuNuevoAdmin').querySelectorAll('input');
-    for (var i = 0; i < oFormu.length; i++) {
-        if (oFormu[i].classList.contains('error')) {
-            oFormu[i].classList.remove('error');
-        }
-    }
+    comprobarCampos('formuNuevoAdmin');
+    
 }
 
 function modificarAdministrador() {
@@ -593,10 +589,11 @@ function modificaAnalista() {
     for (var i = 0; i < oFormu.length; i++) {
         oFormu[i].setAttribute('readonly', 'readonly');
     }
-
+    document.getElementById('formuModificaAnalista').querySelector('#selectPrograAnalistaModifica').setAttribute('readonly', 'readonly');
     vaciarCombo('#selectAnalis_Mod');  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
     cargaComboAnalista('#selectAnalis_Mod'); //Cargar los programadores de los analistas existentes
-    //cargaComboProgramador('#selectPrograAnalistaModifica');
+    vaciarCombo('#selectPrograAnalistaModifica');
+    cargaComboProgramador('#selectPrograAnalistaModifica');
 
 }
 
@@ -626,6 +623,25 @@ function nuevoProgramador() {
     //carga combos programador y analista
     vaciarCombo('#selectAnalistaProgr');
     cargaComboAnalista('#selectAnalistaProgr');
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    comprobarCampos('formuNuevoProgramador');
+
+}
+function comprobarCampos(id) {
+
+    var oFormu = document.getElementById(id).querySelectorAll('input');
+    for (var i = 0; i < oFormu.length; i++) {
+        if (oFormu[i].classList.contains('error')) {
+            oFormu[i].classList.remove('error');
+        }
+    }
+    var oForm = document.getElementById(id).querySelectorAll('select');
+    for (var i = 0; i < oFormu.length; i++) {
+        if (oForm[i].classList.contains('error')) {
+            oForm[i].classList.remove('error');
+        }
+    }
 }
 
 function modificaProgramador() {
@@ -1722,7 +1738,7 @@ function validaFormNuevoProgramador(oEvento) {
             //Este campo obtiene el foco
             document.getElementById(idFormulario).nombreProgramador.focus();
         }
-        sErrores += "NOMBRE del Programador incorrecto (formato: Máx 30 caracteres)";
+        sErrores += "NOMBRE del " + trabajador + " incorrecto (formato: Máx 30 caracteres)";
 
         //Marcar error
         document.getElementById(idFormulario).nombreProgramador.className = "form-control input-md error";
@@ -1804,7 +1820,7 @@ function validaFormNuevoProgramador(oEvento) {
             //Este campo obtiene el foco
             document.getElementById(idFormulario).direccionProgramador.focus();
         }
-        sErrores += "<br><br> DIRECCION del" + trabajador + " incorrecto (formato: 40 caracteres maximo)";
+        sErrores += "<br><br> DIRECCION del " + trabajador + " incorrecto (formato: 40 caracteres maximo)";
 
         //Marcar error
         document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md error";
@@ -1813,26 +1829,25 @@ function validaFormNuevoProgramador(oEvento) {
         //Desmarcar error
         document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
     }
-    /*
-     if(validaDireccion(direccion) == false){
 
-     if(bValido == true){
-     bValido = false;
-     //Este campo obtiene el foco
-     document.getElementById(idFormulario).direccionProgramador.focus();
-     }
-     sErrores += "<br><br> DIRECCION del"+trabajador+" incorrecto (formato: 40 caracteres maximo)";
+    if (document.querySelector('#selectAnalistaProgr').selectedIndex == 0) {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector('#selectAnalistaProgr').focus();
+        }
+        sErrores += "<br><br> "+ trabajador + " no seleccionado. Debe seleccionar uno)";
 
-     //Marcar error
-     document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md error";
+        //Marcar error
+        document.querySelector('#selectAnalistaProgr').className = "form-control input-large error";
 
-     }else {
-     //Desmarcar error
-     document.getElementById(idFormulario).direccionProgramador.className = "form-control input-md";  //Pone esta class a la etiqueta.
-     }
-     */
+    } else {
+        //Desmarcar error
+        document.querySelector('#selectAnalistaProgr').className = "form-control input-large";  //Pone esta class a la etiqueta.
+        var dniAnalista = document.getElementById('selectAnalistaProgr').value;
+        var analista = oConsultoria.dameProgramador(dniAnalista);
 
-
+    }
     if (bValido == false) {
         //Cancelar envio del formulario
         oEvNuevoProg.preventDefault();
@@ -1846,8 +1861,9 @@ function validaFormNuevoProgramador(oEvento) {
 
         if (!oConsultoria.existeTrabajador(dni)) {
 
-            var oProgramador = new trabajador(nombre, dni, apellido, tlf, direccion);
-            sMensaje = oConsultoria.anadeProgramador(oProgramador);
+            var oProgramador = new Programador(nombre, dni, apellido, tlf, direccion,analista);
+            sMensaje = "¡ Programador añadido con éxito !";
+                oConsultoria.anadeProgramador(oProgramador);
             toastr.success(sMensaje);
         } else {
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
@@ -1858,6 +1874,68 @@ function validaFormNuevoProgramador(oEvento) {
 
 
 }
+
+// MODIFICA ANALISTA ******************************************************
+
+document.querySelector('#modificarAnalista').addEventListener('click', validaFormModificaAnalista, false);
+
+//document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
+validaFormModificaAnalista
+
+// ********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // NUEVA PUBLICIDAD ************************************************
