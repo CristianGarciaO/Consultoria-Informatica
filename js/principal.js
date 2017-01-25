@@ -1885,7 +1885,7 @@ document.querySelector('#modificarAnalista').addEventListener('click', validaFor
 // ********************************************************************
 
 function validaFormModificaAnalista(oEvento) {
-    var oEvNuevoProg = oEvento || window.event;
+    var oEvModiAnalista = oEvento || window.event;
     var bValido = true;
     var sErrores = "";
 
@@ -2577,6 +2577,42 @@ function muestraDatosDeEsteProgramador() {
 
         var dni = select.value;
         var oProgr = oConsultoria.dameProgramador(dni);
+
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+
+        var nom = document.querySelector('#nombreProgr_ModProgr');
+        nom.value = oProgr.nombreTrabajador;
+        nom.removeAttribute('readonly');
+
+        var ape = document.querySelector('#apellidosProgr_ModProgr');
+        ape.value = oProgr.apellidosTrabajador;
+        ape.removeAttribute('readonly');
+
+        //Este campo es unico(DNI), no debe poderse modificar. Dejamos el atributo readonly
+        var dniS = document.querySelector('#dniProgr_ModProgr');
+        dniS.value = oProgr.dniTrabajador;
+
+        var tlf = document.querySelector('#telefonoProgr_ModProgr');
+        tlf.value = oProgr.telefonoTrabajador;
+        tlf.removeAttribute('readonly');
+
+        var dir = document.querySelector('#direccioProgr_ModProgr');
+        dir.value = oProgr.direccionTrabajador;
+        dir.removeAttribute('readonly');
+
+    }
+}
+//Completa los campos de texto
+function muestraDatosDeEsteAnalista() {
+
+    //Obtener valor del option seleccionado
+    var select = document.querySelector('#selectAnalis_Mod');
+
+    if (select.selectedIndex != 0)
+    {
+
+        var dni = select.value;
+        var oProgr = oConsultoria.dameAnalista(dni);
 
         //Extraer los valores de sus atributos y colocarlos en los campos de texto.
 

@@ -428,6 +428,21 @@ function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefono
 Consultoria.prototype.anadeAnalista = function (oAnalista) {
     this.analistas.push(oAnalista);
 };
+Consultoria.prototype.dameAnalista = function (dniTrabajador) {
+    var bEnc = false;
+    var oObjeto;
+    var i = 0;
+    while (i < this.analistas.length && bEnc == false) 
+    {
+        if (this.analistas[i].dniTrabajador == dniTrabajador) {
+            oObjeto = this.analistas[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    
+    return oObjeto;
+};
 // Herencia Trabajador-ANALISTA
 
 Analista.prototype = Object.create(Trabajador.prototype);
