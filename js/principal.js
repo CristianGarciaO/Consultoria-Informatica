@@ -2524,15 +2524,10 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
     var posicion = document.querySelector("#tablas");
     // oTabla.createCaption();
 
-    //var cont=0;
 
     for (var p = 0; p < array.length; p++) {
 
         oFila = oTBody.insertRow(-1);
-//var objeto= .attributes.length;
-//alert(typeof array);
-      //  alert(array[p] instanceof Programador);
-//var objetoActual=array[p];
 
         for (var dentro = 0; dentro < 6; dentro++) {
             //Insertar datos de los objetos
@@ -2564,11 +2559,6 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
                     info = array[p].direccionTrabajador;
                     break;
                 }
-                case 5:
-                {
-                    info = array[p].codigoAdmin;
-                    break;
-                }
 
                 default:
                     info = "";
@@ -2592,7 +2582,7 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
                 if(array[p] instanceof Administrador)
                 {
 
-                    info = array[p].administradores;
+                    info = array[p].codigoAdmin;
                     oTexto = document.createTextNode(info);
 
                 }
@@ -2626,4 +2616,6 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
     posicion.appendChild(divContainer);
 
 }
+
+
 
