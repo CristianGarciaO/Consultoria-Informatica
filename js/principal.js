@@ -589,8 +589,15 @@ function modificaAnalista() {
     document.getElementById('divFormModificaAnalista').style.display = 'block';
     document.getElementById('formuModificaAnalista').reset();
 
+    var oFormu = document.getElementById('formuModificaAnalista').querySelectorAll('input');
+    for (var i = 0; i < oFormu.length; i++) {
+        oFormu[i].setAttribute('readonly', 'readonly');
+    }
 
-    cargaComboAnalista('#selectAnalis_Mod');
+    vaciarCombo('#selectAnalis_Mod');  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
+    cargaComboAnalista('#selectAnalis_Mod'); //Cargar los programadores de los analistas existentes
+    //cargaComboProgramador('#selectPrograAnalistaModifica');
+
 }
 
 function generaCodigos() {
@@ -2586,28 +2593,16 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
                     oTexto = document.createTextNode(info);
 
                 }
-
-
-
             }else
             {
-
                 oTexto = document.createTextNode(info);
-
             }
-
-
-
-
             var oCelda = oFila.insertCell(-1);
             oCelda.appendChild(oTexto);
             oFila.appendChild(oCelda);
         }
         // var nombre= array[p].nombreTrabajador;
-
     }
-
-
     divTabla.appendChild(oTabla);
     //borramos antes lo anterior
     while (posicion.hasChildNodes()) {
