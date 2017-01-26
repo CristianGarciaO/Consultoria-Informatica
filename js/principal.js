@@ -2226,7 +2226,6 @@ function validaFormModificaAnalista() {
         toastr.success("Datos modificados correctamente");
 
         modificaAnalista();
-
     }
 
 
