@@ -28,7 +28,7 @@ function cargaDatos() {
     cargarClientes(oXML.getElementsByTagName('cliente'));
     cargarPublicidad(oXML.getElementsByTagName('publicidad'));
     cargarIncidencias(oXML.getElementsByTagName('incidencia'));
-    cargarProyectos(oXML.getElementsByTagName('incidencia'));
+    cargarProyectos(oXML.getElementsByTagName('proyecto'));
     cargarTareas(oXML.getElementsByTagName('tarea'));
     cargarContratos(oXML.getElementsByTagName('contrato'));
 }
@@ -559,6 +559,10 @@ function nuevoProyecto() {
     document.getElementById('divFormNuevoProyecto').style.display = 'block';
     document.getElementById('formuNuevoProyecto').reset();
     comprobarCampos('formuNuevoProyecto');
+
+    vaciarCombo('#analistas');
+    cargaComboAnalista('#analistas');
+
 }
 
 
@@ -2310,7 +2314,7 @@ function validaFormModificaAnalista() {
 
 
 
-// NUEVA PUBLICIDAD ************************************************
+// NUEVA PUBLICIDAD ***************************************************
 // ********************************************************************
 
 document.querySelector('#guardar_NuePub').addEventListener('click', validaFormNuevaPublicidad, false);
@@ -2850,6 +2854,10 @@ function muestraDatosDeEsteAnalista() {
 
     }
 }
+
+
+
+//LISTADOS ********************************************************
 
 function listaProgramadores() {
 
