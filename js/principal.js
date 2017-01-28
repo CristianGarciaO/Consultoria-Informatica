@@ -271,9 +271,12 @@ document.getElementById('eventListarAdministrador').addEventListener('click', li
 
 document.getElementById('eventListarAnalistas').addEventListener('click', listaAnalistas, false);
 
-document.getElementById('eventListarIncidencias').addEventListener('click', listaIncidencias, false);
+document.getElementById('eventListarIncidencias').addEventListener('click', function(){ listaIncidencias("Todas")}, false);
 
-document.getElementById('eventListarIncidenciasSinCerrar').addEventListener('click', listaIncidencias, false);
+document.getElementById('eventListarIncidenciasSinCerrar').addEventListener('click', function(){ listaIncidencias("Abiertas")}, false);
+
+document.getElementById('eventListarClientes').addEventListener('click', listarClientes, false);
+
 
 function actualizarFechaFin() {
 
@@ -2882,8 +2885,6 @@ function listaAnalistas() {
 
 function listaIncidencias(filtro) {
 
-    var oEv = oEvento || window.event;
-    alert(oEv);
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
 
