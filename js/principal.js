@@ -90,8 +90,8 @@ function cargarClientes(arrayClientes) {
         var nomCli = arrayClientes[i].children[0].textContent;
         var dniCli = arrayClientes[i].children[1].textContent;
         var apeCli = arrayClientes[i].children[2].textContent;
-        var tlfCli = arrayClientes[i].children[3].textContent;
-        var dirCli = arrayClientes[i].children[4].textContent;
+        var dirCli = arrayClientes[i].children[3].textContent;
+        var tlfCli = arrayClientes[i].children[4].textContent;
         var conCli = new Array();
 
         var listaContratos = arrayClientes[i].children[5];
@@ -907,7 +907,8 @@ function validaFormNuevoAdmin(oEvento) {
         var sMensaje = "";
 
         if (!oConsultoria.existeTrabajador(dni)) {
-            var codAdmin = oConsultoria.administradores.length + 1;
+
+            var codAdmin = generaCodigos();
             var oAdministrador = new Administrador(nombre, dni, apellido, tlf, direccion, codAdmin);
             sMensaje = oConsultoria.anadeAdministrador(oAdministrador);
             toastr.success(sMensaje);
@@ -2912,7 +2913,14 @@ function listaIncidencias(filtro) {
     document.getElementById('tablas').style.display = 'block';
 
     var array = oConsultoria.listarIncidencias(filtro);
-    dibujarTabla(array[0], array[1]);
+    if(array[1] == ""){
+        toastr.warning("No quedan incidencias abiertas que listar");
+        pantallaInicio();
+    }else{
+        dibujarTabla(array[0], array[1]);
+    }
+
+
 }
 
 function listaClientes() {
