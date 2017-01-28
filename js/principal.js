@@ -571,6 +571,13 @@ function modificarProyecto() {
     document.getElementById('divFormModificaProyecto').style.display = 'block';
     document.getElementById('formuModificaProyecto').reset();
     comprobarCampos('formuModificaProyecto');
+
+    vaciarCombo('#selectProy_ModProy');
+    cargaComboProyectos('#selectProy_ModProy');
+
+    vaciarCombo('#analistasProyMod');
+    cargaComboAnalista('#analistasProyMod');
+
 }
 
 function nuevaTarea() {
