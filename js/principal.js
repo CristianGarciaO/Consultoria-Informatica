@@ -57,9 +57,9 @@ function cargarAnalistas(arrayAnalistas) {
         var apeAna = arrayAnalistas[i].children[2].textContent;
         var tlfAna = arrayAnalistas[i].children[3].textContent;
         var dirAna = arrayAnalistas[i].children[4].textContent;
-        var proAna = [];
+        var proAna = new Array();
 
-        var listaProgAna = arrayAnalistas[i].children[5];
+        var listaProgAna = arrayAnalistas[i].children[5].children;
         for (var j = 0; j < listaProgAna.length; j++) {
             proAna.push(listaProgAna[j].textContent);
         }
@@ -2884,26 +2884,18 @@ function listaAdministradores(){
 
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
-    var arrayAdministradores = oConsultoria.administradores;
-    var tipo=1;
-    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Codigo"];
-    pintaTabla(oCabecera, arrayAdministradores,tipo);
-
-
+    var array = oConsultoria.listarAdministradores();
+    dibujarTabla(array[0], array[1]);
 }
 
 
 
 function listaAnalistas() {
 
-
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
-    var arrayAnalistas = oConsultoria.analistas;
-    var tipo= "Analista";
-    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Programadores"];
-    pintaTabla(oCabecera, arrayAnalistas,tipo);
-
+    var array = oConsultoria.listarAnalistas();
+    dibujarTabla(array[0], array[1]);
 
 }
 
@@ -2996,90 +2988,12 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
         oFila.appendChild(oTh);
     }
 
-    //Comprobar el tipo de objeto a listar
-
-    // var oTBody = oTabla.createTBody();
-    // var posicion = document.querySelector("#tablas");
-    // switch (tipoObjeto){
-    //     case "Analista":{
-    //         for (var p = 0; p < array.length; p++) {
-    //             oFila = oTBody.insertRow(-1);
-    //             for (var dentro = 0; dentro < 6; dentro++) {
-    //                 var info = [];
-    //                 switch (dentro) {
-    //                     case 0:{ info = array[p].nombreTrabajador;
-    //                         break; }
-    //                     case 1:{ info = array[p].dniTrabajador;
-    //                         break; }
-    //                     case 2:{ info = array[p].apellidosTrabajador;
-    //                         break; }
-    //                     case 3:{ info = array[p].telefonoTrabajador;
-    //                         break; }
-    //                     case 4:{ info = array[p].direccionTrabajador;
-    //                         break; }
-    //                     case 5:{ info = array[p].programadores;
-    //                         break; }
-    //                 }
-    //             }
-    //             oTexto = document.createTextNode(info);
-    //
-    //             var oCelda = oFila.insertCell(-1);
-    //             oCelda.appendChild(oTexto);
-    //             oFila.appendChild(oCelda);
-    //         }
-    //         break;
-    //     }
-    //     case Programador:{
-    //
-    //         break;
-    //     }
-    //     case Administrador:{
-    //
-    //         break;
-    //     }
-    //     case Cliente:{
-    //
-    //         break;
-    //     }
-    //     case Contrato:{
-    //
-    //         break;
-    //     }
-    //     case Proyecto:{
-    //
-    //         break;
-    //     }
-    //     case Tarea:{
-    //
-    //         break;
-    //     }
-    //     case Incidencia:{
-    //
-    //         break;
-    //     }
-    //     case Publicidad:{
-    //
-    //         break;
-    //     }
-    //
-    // }
-    // divTabla.appendChild(oTabla);
-    // //borramos antes lo anterior
-    // while (posicion.hasChildNodes()) {
-    //     posicion.removeChild(posicion.lastChild);
-    // }
-    // posicion.appendChild(divContainer);
-
-
-
     var oTBody = oTabla.createTBody();
 
     var posicion = document.querySelector("#tablas");
     // oTabla.createCaption();
 
-
     for (var p = 0; p < array.length; p++) {
-
         oFila = oTBody.insertRow(-1);
 
         for (var dentro = 0; dentro < 6; dentro++) {
@@ -3087,41 +3001,29 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
             var info;
             switch (dentro) {
 
-                case 0:
-                {
+                case 0: {
                     info = array[p].nombreTrabajador;
-                    break
-                }
-                case 1:
-                {
+                    break; }
+                case 1: {
                     info = array[p].dniTrabajador;
-                    break;
-                }
-                case 2:
-                {
+                    break; }
+                case 2: {
                     info = array[p].apellidosTrabajador;
-                    break;
-                }
-                case 3:
-                {
+                    break; }
+                case 3: {
                     info = array[p].telefonoTrabajador;
-                    break;
-                }
-                case 4:
-                {
+                    break; }
+                case 4: {
                     info = array[p].direccionTrabajador;
-                    break;
-                }
+                    break; }
 
                 default:
                     info = "";
-
             }
             if(info == ""){
 
                 if(array[p] instanceof Programador)
                 {
-
                     info = array[p].analista;
                     oTexto = document.createTextNode(info);
                 }
@@ -3134,22 +3036,12 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
                         info+=array[p].programadores[i].nombreTrabajador+"\n";
 
                     }
-
-
-
-
-
-
-
                     oTexto = document.createTextNode(info);
-
                 }
                 if(array[p] instanceof Administrador)
                 {
-
                     info = array[p].codigoAdmin;
                     oTexto = document.createTextNode(info);
-
                 }
             }else
             {
@@ -3167,7 +3059,6 @@ function pintaTabla(oCabecera, array, tipoObjeto) {
         posicion.removeChild(posicion.lastChild);
     }
     posicion.appendChild(divContainer);
-
 }
 
 

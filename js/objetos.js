@@ -410,6 +410,27 @@ Consultoria.prototype.dameAdministrador = function (codigoAdmin) {
     return oAdmin;
 };
 
+Consultoria.prototype.listarAdministradores = function(){
+    var oInfo = new Array();
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Codigo"];
+
+    for(var i=0;i<this.administradores.length; i++){
+        //Meter un array en otro para hacerlo bidimensional
+        oInfo[i] = new Array();
+        //Cargar los datos
+        oInfo[i][0] = this.administradores[i].nombreTrabajador;
+        oInfo[i][1] = this.administradores[i].dniTrabajador;
+        oInfo[i][2] = this.administradores[i].apellidosTrabajador;
+        oInfo[i][3] = this.administradores[i].telefonoTrabajador;
+        oInfo[i][4] = this.administradores[i].direccionTrabajador;
+        oInfo[i][5] = this.administradores[i].codigoAdmin;
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+};
 
 //---------------------------------------------------------
 
@@ -573,6 +594,41 @@ Consultoria.prototype.dameAnalista = function (dniTrabajador) {
     
     return oObjeto;
 };
+
+
+Consultoria.prototype.listarAnalistas = function () {
+
+
+    var oInfo = new Array();
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Programadores"];
+
+    for(var i=0;i<this.analistas.length; i++){
+        //Meter un array en otro para hacerlo bidimensional
+        oInfo[i] = new Array();
+        //Cargar los datos
+        oInfo[i][0] = this.analistas[i].nombreTrabajador;
+        oInfo[i][1] = this.analistas[i].dniTrabajador;
+        oInfo[i][2] = this.analistas[i].apellidosTrabajador;
+        oInfo[i][3] = this.analistas[i].telefonoTrabajador;
+        oInfo[i][4] = this.analistas[i].direccionTrabajador;
+        oInfo[i][5] = new Array();
+
+        var listaProgramadores = this.analistas[i].programadores;
+
+        for(var j=0;j<listaProgramadores.length; j++){
+            oInfo[i][5].push(listaProgramadores[j]);
+        }
+
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+};
+
+
+
 // Herencia Trabajador-ANALISTA
 
 Analista.prototype = Object.create(Trabajador.prototype);

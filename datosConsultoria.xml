@@ -47,10 +47,10 @@
 			<apellidosTrabajador>Richardson Gonzalves</apellidosTrabajador>
 			<telefonoTrabajador>698755612</telefonoTrabajador>
 			<direccionTrabajador>Rúa do Castelo 12, Lisboa</direccionTrabajador>
-			<programadores>
+			<listaProgramadores>
 				<progr>68658518F</progr>
 				<progr>45893311T</progr>
-			</programadores>
+			</listaProgramadores>
 		</analista>
 		<analista>
 			<nombreTrabajador>Johnnas</nombreTrabajador>
@@ -58,11 +58,11 @@
 			<apellidosTrabajador>Makkinen</apellidosTrabajador>
 			<telefonoTrabajador>632255888</telefonoTrabajador>
 			<direccionTrabajador>Katu korvalainen, Turku</direccionTrabajador>
-			<programadores>
+			<listaProgramadores>
 				<progr>55879988L</progr>
 				<progr>78859588F</progr>
 				<progr>36987744S</progr>
-			</programadores>
+			</listaProgramadores>
 		</analista>
 	</analistas>
 	
