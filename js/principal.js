@@ -92,14 +92,14 @@ function cargarClientes(arrayClientes) {
         var apeCli = arrayClientes[i].children[2].textContent;
         var tlfCli = arrayClientes[i].children[3].textContent;
         var dirCli = arrayClientes[i].children[4].textContent;
-        var conCli = [];
+        var conCli = new Array();
 
         var listaContratos = arrayClientes[i].children[5];
         for (var j = 0; j < listaContratos.length; j++) {
             conCli.push(listaContratos[j].textContent);
         }
 
-        var oCliente = new Cliente(nomCli, dniCli, apeCli, tlfCli, dirCli, conCli);
+        var oCliente = new Cliente(nomCli, dniCli, apeCli, dirCli, tlfCli, conCli);
         oConsultoria.anadeCliente(oCliente);
     }
 
@@ -190,6 +190,9 @@ function cargarContratos(arrayContratos) {
         var dniCliCon = arrayContratos[i].children[4].textContent;
 
         var oContrato = new Contrato(nomCon, preCon, fIniCon, fFinCon, dniCliCon);
+
+        // var oCliente = oConsultoria.dameCliente(dniCliCon);
+        // oCliente.contratosCliente.push(nomCon);
         oConsultoria.anadeContrato(oContrato);
     }
 
@@ -275,7 +278,9 @@ document.getElementById('eventListarIncidencias').addEventListener('click', func
 
 document.getElementById('eventListarIncidenciasSinCerrar').addEventListener('click', function(){ listaIncidencias("Abiertas")}, false);
 
-document.getElementById('eventListarClientes').addEventListener('click', listarClientes, false);
+document.getElementById('eventListarClientes').addEventListener('click', listaClientes, false);
+
+document.getElementById('eventListarPublicidad').addEventListener('click', listaPublicidad, false);
 
 
 function actualizarFechaFin() {
@@ -2892,6 +2897,27 @@ function listaIncidencias(filtro) {
     dibujarTabla(array[0], array[1]);
 }
 
+function listaClientes() {
+
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+
+    var array = oConsultoria.listarClientes();
+    dibujarTabla(array[0], array[1]);
+}
+
+function listaPublicidad() {
+
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+
+    var array = oConsultoria.listarPublicidad();
+    dibujarTabla(array[0], array[1]);
+}
+
+
+
+
 //TABLAS CON DOM
 
 function pintaTabla(oCabecera, array, tipoObjeto) {
@@ -3162,8 +3188,20 @@ function dibujarTabla(oCabecera, oInfo){
         oFila = oTBody.insertRow(-1);
         for (var k = 0;k<oInfo[j].length;k++) {
             var oCelda = oFila.insertCell(-1);
-            oTexto = document.createTextNode(oInfo[j][k]);
-            oCelda.appendChild(oTexto);
+
+            if(oInfo[j].isArray){  //Comprobar si el dato ha introducir es un array.
+                for(var l=0;l<oInfo[k].length;l++){
+
+                    var oFilaInterna = oCelda.insertRow(-1);
+                    var oCeldaInterna = oFilaInterna.insertCell(-1);
+                    oTexto = document.createTextNode(oInfo[j][k][l]);
+                    oCeldaInterna.appendChild(oTexto);
+                    oCelda.appendChild(oFilaInterna);
+                }
+            }else{
+                oTexto = document.createTextNode(oInfo[j][k]);
+                oCelda.appendChild(oTexto);
+            }
         }
         oFila.appendChild(oCelda);
     }

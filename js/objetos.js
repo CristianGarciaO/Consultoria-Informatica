@@ -224,6 +224,40 @@ Consultoria.prototype.dameCliente = function (dniCli) {
 };
 
 
+Consultoria.prototype.listarClientes = function (){
+
+    var oInfo = new Array();
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Dirección", "Teléfono", "Contratos"];
+
+
+        for(var i=0;i<this.clientes.length; i++){
+            //Meter un array en otro para hacerlo bidimensional
+            oInfo[i] = new Array();
+            //Cargar los datos
+            oInfo[i][0] = this.clientes[i].nombreCliente;
+            oInfo[i][1] = this.clientes[i].dniCliente
+            oInfo[i][2] = this.clientes[i].apellidosCliente;
+            oInfo[i][3] = this.clientes[i].direccionCliente;
+            oInfo[i][4] = this.clientes[i].telefonoCliente;
+            oInfo[i][5] = new Array();
+
+            var listaContratos = this.clientes[i].contratosCliente;
+
+            for(var j=0;j<listaContratos.length; j++){
+
+                oInfo[i][5][j] = listaContratos[j].nombreProyecto;
+
+            }
+        }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+
+};
+
+
 //---------------------------------------------------------
 
 // PUBLICIDAD
@@ -282,6 +316,31 @@ Consultoria.prototype.damePublicidad = function (codPubli) {
     return oPubli;
 };
 
+
+Consultoria.prototype.listarPublicidad = function (){
+
+    var oInfo = new Array();
+    var oCabecera = ["Código", "Tipo", "Descripción", "Código Admin", "DNI Cliente"];
+
+
+    for(var i=0;i<this.publicidades.length; i++){
+        //Meter un array en otro para hacerlo bidimensional
+        oInfo[i] = new Array();
+        //Cargar los datos
+        oInfo[i][0] = this.publicidades[i].codigoPublicidad;
+        oInfo[i][1] = this.publicidades[i].tipo;
+        oInfo[i][2] = this.publicidades[i].descripcionPublicidad;
+        oInfo[i][3] = this.publicidades[i].codigoAdministrador;
+        oInfo[i][4] = this.publicidades[i].dniCliente;
+
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+
+};
 
 //---------------------------------------------------------
 // ADMINISTRADOR

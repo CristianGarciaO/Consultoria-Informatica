@@ -132,7 +132,9 @@
 			<apellidosCliente>Cruz de la vega</apellidosCliente>
 			<direccionCliente>Callejon del 7</direccionCliente>
 			<telefonoCliente>943382941</telefonoCliente>
-			<contratosCliente></contratosCliente>
+			<contratosCliente>Panaderia Manolo
+				<!--<cont id="1">Panaderia Manolo</cont>-->
+			</contratosCliente>
 		</cliente>
 		<cliente>
 			<nombreCliente>Pepe</nombreCliente>
