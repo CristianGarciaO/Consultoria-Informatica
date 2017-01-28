@@ -94,7 +94,7 @@ function cargarClientes(arrayClientes) {
         var tlfCli = arrayClientes[i].children[4].textContent;
         var conCli = new Array();
 
-        var listaContratos = arrayClientes[i].children[5];
+        var listaContratos = arrayClientes[i].children[5].children;
         for (var j = 0; j < listaContratos.length; j++) {
             conCli.push(listaContratos[j].textContent);
         }

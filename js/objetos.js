@@ -268,10 +268,12 @@ Consultoria.prototype.listarClientes = function (){
 
             var listaContratos = this.clientes[i].contratosCliente;
 
-            for(var j=0;j<listaContratos.length; j++){
-
-                oInfo[i][5][j] = listaContratos[j].nombreProyecto;
-
+            if(listaContratos.length == 0){
+                oInfo[i][5].push("- Sin contratos -");
+            }else{
+                for(var j=0;j<listaContratos.length; j++){
+                    oInfo[i][5].push(listaContratos[j]);
+                }
             }
         }
 

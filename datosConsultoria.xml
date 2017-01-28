@@ -121,30 +121,40 @@
 			<fechaFin>2015-11-05</fechaFin>
 			<dniCliente>11032393X</dniCliente>
 		</contrato>
+		<contrato>
+			<nombreProyecto>Floristeria Pepito</nombreProyecto>
+			<precio>3586.15</precio>
+			<fechaInicio>2016-11-05</fechaInicio>
+			<fechaFin>2017-01-15</fechaFin>
+			<dniCliente>44110022F</dniCliente>
+		</contrato>
 	</contratos>
+
 	
 	<!--- CLIENTES -->
 	
 	<clientes>
-		<cliente>
+		<cliente id="cli01">
 			<nombreCliente>Manolo</nombreCliente>
 			<dniCliente>11032393X</dniCliente>
 			<apellidosCliente>Cruz de la vega</apellidosCliente>
 			<direccionCliente>Callejon del 7</direccionCliente>
 			<telefonoCliente>943382941</telefonoCliente>
-			<contratosCliente>Panaderia Manolo
-				<!--<cont id="1">Panaderia Manolo</cont>-->
+			<contratosCliente>
+				<cont id="1">Panaderia Manolo</cont>
 			</contratosCliente>
 		</cliente>
-		<cliente>
+		<cliente id="cli02">
 			<nombreCliente>Pepe</nombreCliente>
 			<dniCliente>44110022F</dniCliente>
 			<apellidosCliente>Castillejo Caserón</apellidosCliente>
 			<direccionCliente>Calle Cuesta</direccionCliente>
 			<telefonoCliente>989556443</telefonoCliente>
-			<contratosCliente></contratosCliente>
+			<contratosCliente>
+				<cont id="1">Floristeria Pepito</cont>
+			</contratosCliente>
 		</cliente>
-			<cliente>
+		<cliente id="cli03">
 			<nombreCliente>Jose Luis</nombreCliente>
 			<dniCliente>46274888H</dniCliente>
 			<apellidosCliente>Gutierrez Hernandez</apellidosCliente>
@@ -201,14 +211,24 @@
 		<proyecto>
 			<nombreProyecto>Panaderia Manolo</nombreProyecto>
 			<analistasProyecto>
-				<analistaPro>100933</analistaPro>
+				<analistaPro>98785877A</analistaPro>
 			</analistasProyecto>
 			<tareasProyecto>
-				<tareaPro>4589</tareaPro>	
+				<tareaPro>4589</tareaPro>
 				<tareaPro>2478</tareaPro>
 			</tareasProyecto>
 		</proyecto>
+		<proyecto>
+			<nombreProyecto>Floristeria Pepito</nombreProyecto>
+			<analistasProyecto>
+				<analistaPro>7854488K</analistaPro>
+			</analistasProyecto>
+			<tareasProyecto>
+				<tareaPro>1220</tareaPro>
+			</tareasProyecto>
+		</proyecto>
     </proyectos>
+
 	
 	<!--- TAREAS -->
 	
@@ -228,6 +248,14 @@
 			<fechaFin>2015-07-15</fechaFin>
 			<nombreTarea>Testeo UX de la interfaz</nombreTarea>
 			<estado>Avanzado</estado>
+		</tarea>
+		<tarea>
+			<codigoTarea>1220</codigoTarea>
+			<nombreProyecto>Floristeria Pepito</nombreProyecto>
+			<fechaInicio>2016-12-10</fechaInicio>
+			<fechaFin>2016-12-20</fechaFin>
+			<nombreTarea>Encriptación de contraseñas</nombreTarea>
+			<estado>Finalizado</estado>
 		</tarea>
     </tareas>
 	
