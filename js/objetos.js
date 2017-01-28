@@ -185,6 +185,31 @@ Consultoria.prototype.dameContrato = function (nombreDelContrato) {
     return oContrato;
 };
 
+Consultoria.prototype.listarContratos = function (){
+
+    var oInfo = new Array();
+    var oCabecera = ["Nombre Proyecto", "Precio", "Fecha Inicio", "Fecha Fin", "DNI Cliente"];
+
+
+    for(var i=0;i<this.contratos.length; i++){
+        //Meter un array en otro para hacerlo bidimensional
+        oInfo[i] = new Array();
+        //Cargar los datos
+        oInfo[i][0] = this.contratos[i].nombreProyecto;
+        oInfo[i][1] = this.contratos[i].precio;
+        oInfo[i][2] = this.contratos[i].fechaInicio;
+        oInfo[i][3] = this.contratos[i].fechaFin;
+        oInfo[i][4] = this.contratos[i].dniCliente;
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+
+};
+
+
 
 //---------------------------------------------------------
 
@@ -235,7 +260,7 @@ Consultoria.prototype.listarClientes = function (){
             oInfo[i] = new Array();
             //Cargar los datos
             oInfo[i][0] = this.clientes[i].nombreCliente;
-            oInfo[i][1] = this.clientes[i].dniCliente
+            oInfo[i][1] = this.clientes[i].dniCliente;
             oInfo[i][2] = this.clientes[i].apellidosCliente;
             oInfo[i][3] = this.clientes[i].direccionCliente;
             oInfo[i][4] = this.clientes[i].telefonoCliente;

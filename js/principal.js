@@ -282,6 +282,9 @@ document.getElementById('eventListarClientes').addEventListener('click', listaCl
 
 document.getElementById('eventListarPublicidad').addEventListener('click', listaPublicidad, false);
 
+document.getElementById('eventlistarContrato').addEventListener('click', listaContrato, false);
+
+
 
 function actualizarFechaFin() {
 
@@ -2915,7 +2918,14 @@ function listaPublicidad() {
     dibujarTabla(array[0], array[1]);
 }
 
+function listaContrato() {
 
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+
+    var array = oConsultoria.listarContratos();
+    dibujarTabla(array[0], array[1]);
+}
 
 
 //TABLAS CON DOM
