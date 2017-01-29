@@ -320,6 +320,8 @@ document.getElementById('incidencia_ModInc').addEventListener('change', muestraD
 document.getElementById('selectProgram_Mod').addEventListener('change', muestraDatosDeEsteProgramador, true);
 
 document.getElementById('selectProy_ModProy').addEventListener('change', muestraDatosDeEsteProyecto, true);
+
+document.getElementById('selectAnalis_Mod').addEventListener('change', muestraDatosDeEsteAnalista, true);
 //Ocultar inputs
 
 function mostrarCampos(selector) {
@@ -641,6 +643,8 @@ function modificaAnalista() {
     cargaComboAnalista('#selectAnalis_Mod'); //Cargar los programadores de los analistas existentes
     vaciarCombo('#selectPrograAnalistaModifica');
     cargaComboProgramador('#selectPrograAnalistaModifica');
+
+    ocultarCampos("formuModificaAnalista");
 
 }
 
@@ -2546,9 +2550,10 @@ var objetoAnterior= oConsultoria.dameProyecto(nombre);
         if ( elimi !== -1 ) {
             array.splice( i, 1 );
         }*/
+        objetoAnterior.length=0;
 objetoAnterior.nombreProyecto=nombre;
-        objetoAnterior.analistas = arrayAnalistasElegidos;
-        objetoAnterior.tareas= arrayDeTareasElegidas;
+        objetoAnterior.analistasProyecto = arrayAnalistasElegidos;
+        objetoAnterior.tareasProyecto= arrayDeTareasElegidas;
 
            // var oObjeto = new Proyecto(nombre,arrayAnalistasElegidos,arrayDeTareasElegidas);
             sMensaje = "¡ Proyecto Modificado con éxito !";
@@ -3188,29 +3193,54 @@ function muestraDatosDeEsteAnalista() {
     {
 
         var dni = select.value;
-        var oProgr = oConsultoria.dameAnalista(dni);
+        var oObjeto = oConsultoria.dameAnalista(dni);
 
         //Extraer los valores de sus atributos y colocarlos en los campos de texto.
 
-        var nom = document.querySelector('#nombreProgr_ModProgr');
-        nom.value = oProgr.nombreTrabajador;
+        var nom = document.querySelector('#nombreAnalis_Mod');
+        nom.value = oObjeto.nombreTrabajador;
         nom.removeAttribute('readonly');
 
-        var ape = document.querySelector('#apellidosProgr_ModProgr');
-        ape.value = oProgr.apellidosTrabajador;
+        var ape = document.querySelector('#apellidosAnalis_Mod');
+        ape.value = oObjeto.apellidosTrabajador;
         ape.removeAttribute('readonly');
 
         //Este campo es unico(DNI), no debe poderse modificar. Dejamos el atributo readonly
-        var dniS = document.querySelector('#dniProgr_ModProgr');
-        dniS.value = oProgr.dniTrabajador;
+        var dniS = document.querySelector('#dniAnalis_Mod');
+        dniS.value = oObjeto.dniTrabajador;
 
-        var tlf = document.querySelector('#telefonoProgr_ModProgr');
-        tlf.value = oProgr.telefonoTrabajador;
+        var tlf = document.querySelector('#telefonoAnalis_Mod');
+        tlf.value = oObjeto.telefonoTrabajador;
         tlf.removeAttribute('readonly');
 
-        var dir = document.querySelector('#direccioProgr_ModProgr');
-        dir.value = oProgr.direccionTrabajador;
+        var dir = document.querySelector('#direccionAnalis_Mod');
+        dir.value = oObjeto.direccionTrabajador;
         dir.removeAttribute('readonly');
+
+        document.querySelector("#selectPrograAnalistaModifica").removeAttribute("disabled");
+        var selecAnalista = document.querySelector("#selectPrograAnalistaModifica").options;
+
+        //borramos por si estaba seleccionado alguno anteriormente
+        for (var t = 0; t < selecAnalista.length; t++)
+        {
+            selecAnalista[t].selected=false;
+        }
+
+
+        for (var s = 0; s < selecAnalista.length; s++) {
+            for (var o = 0; o < oObjeto.programadores.length; o++) {
+                if(selecAnalista[s].value ==  oObjeto.programadores[o].dniTrabajador )
+                    selecAnalista[s].selected=true;
+            }
+        }
+
+
+
+
+
+    } else
+    {
+        modificaAnalista();
 
     }
 }
