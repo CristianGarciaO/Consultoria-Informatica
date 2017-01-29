@@ -631,6 +631,17 @@ Consultoria.prototype.dameAnalista = function (dniTrabajador) {
     return oObjeto;
 };
 
+Consultoria.prototype.dameListaAnalistas = function () {
+    var array=[];
+    var i = 0;
+    //var programador=[];
+    while (i < this.analistas.length) {
+        // programador=new Programador(this.programadores[i]);
+        array[i]=this.analistas[i];
+        i++;
+    }
+    return array;
+};
 
 Consultoria.prototype.listarAnalistas = function () {
 

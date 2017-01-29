@@ -3534,7 +3534,11 @@ function listaAnalistas() {
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
     var array = oConsultoria.listarAnalistas();
-    dibujarTabla(array[0], array[1]);
+    //dibujarTabla(array[0], array[1]);
+    var arrayAnalistas = oConsultoria.dameListaAnalistas();
+
+    var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
+    pintaTabla(oCabecera,arrayAnalistas);
 
 }
 
@@ -3672,7 +3676,9 @@ function pintaTabla(oCabecera, array) {
 
                     for(var i=0;i<array[p].programadores.length;i++)
                     {
-                        info+=array[p].programadores[i].nombreTrabajador+"\n";
+                       if(i!=0)
+                           info+=", ";
+                        info+=array[p].programadores[i].nombreTrabajador;
 
                     }
                     oTexto = document.createTextNode(info);
