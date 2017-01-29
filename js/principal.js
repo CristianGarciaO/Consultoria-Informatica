@@ -3497,7 +3497,11 @@ function dibujarTabla(oCabecera, oInfo){
 
     divTabla.appendChild(oTabla);
 
-
+    //borramos antes lo anterior
+    while (posicion.hasChildNodes()) {
+        posicion.removeChild(posicion.lastChild);
+    }
+    posicion.appendChild(divContainer);
     // return oTabla;
 }
 
