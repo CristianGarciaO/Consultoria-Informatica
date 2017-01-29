@@ -124,7 +124,6 @@ function cargarPublicidad(arrayPublicidades) {
 
 }
 
-
 function cargarIncidencias(arrayIncidencias) {
 
     for (var i = 0; i < arrayIncidencias.length; i++) {
@@ -140,7 +139,6 @@ function cargarIncidencias(arrayIncidencias) {
     }
 
 }
-
 
 function cargarProyectos(arrayProyectos) {
 
@@ -169,7 +167,6 @@ function cargarProyectos(arrayProyectos) {
 
 }
 
-
 function cargarTareas(arrayTareas) {
 
     for (var i = 0; i < arrayTareas.length; i++) {
@@ -185,7 +182,6 @@ function cargarTareas(arrayTareas) {
     }
 
 }
-
 
 function cargarContratos(arrayContratos) {
 
@@ -205,35 +201,9 @@ function cargarContratos(arrayContratos) {
 
 }
 
-
-//Cargar Datos Prueba
-
-// oConsultoria.anadeAdministrador(new Administrador('Pedro','12121212E','Gonzalez Marin',653923909,'Calle Perico',398598));
-// oConsultoria.anadeAdministrador(new Administrador('Juan','22334455G','Rosa Moreno',677331909,'Avda del Kiko',212458));
-//
-// oConsultoria.anadeCliente(new Cliente('Manolo', '11032393X', 'Cruz de la vega', 'Callejon del 7', 943382941, []));
-// oConsultoria.anadeCliente(new Cliente('Pepe', '44110022F', 'Castillejo Caserón', 'Calle Cuesta', 989556443, []));
-//
-// oConsultoria.anadeIncidencia(new Incidencia(1598,3,'Algoritmo erroneo', 'Pues eso, mal algoritmo', 2, "Abierta"));
-// oConsultoria.anadeIncidencia(new Incidencia(3584,2,'Fallo de Login', 'Imposible logearse en la web', 3, "Abierta"));
-//
-// oConsultoria.anadePublicidad(new Publicidad(4856,"Email", "Envío de Spam", 3, '44110022F'));
-//
-//
-// oConsultoria.anadeContrato(new Contrato('Panaderia Manolo', 5630.50, new Date('2016-9-25'), new Date('2016-11-5'),'11032393X'));
-//
-// oConsultoria.anadeAdministrador(new Administrador('Cristian','34537865X','Garcia Ocaña',655589624,'Avenida del Paraiso',131313));
-//
-// var a=oConsultoria.anadeAnalista(new Analista('Andres','24358543B','Rodriguez Martin',698521596,'Calle Rodriguez Sexto',100933,null));
-//
-// oConsultoria.anadeProgramador(new Programador('Roberto','34259087M','Lopez Lopez',678945672,'Pasaje Antonino',100036,a));
-//
-// oConsultoria.anadeProyecto(new Proyecto('Proyecto Uno',[], []));
-//
-// oConsultoria.anadeProyecto(new Proyecto('Panaderia Manolo',[], []));
-
-
-// LISTA DE EVENTOS
+//**************************************************************************************************
+// LISTA DE EVENTOS ********************************************************************************
+//**************************************************************************************************
 
 // Eventos de Capas
 
@@ -292,20 +262,13 @@ document.getElementById('eventListarPublicidad').addEventListener('click', lista
 document.getElementById('eventlistarContrato').addEventListener('click', listaContrato, false);
 
 
-
 function actualizarFechaFin() {
 
     var fechaInicial = document.getElementById('fechaini').value;
   document.querySelector('#fechafin').setAttribute("min",fechaInicial);
 }
+
 document.getElementById('fechaini').addEventListener('change', actualizarFechaFin, false);
-
-
-//document.getElementById('eventListarAnalistas').addEventListener('click', listaAnalistas, false);
-
-//document.getElementById('eventListarAdministradores').addEventListener('click', listaAdministradores, false);
-
-//document.getElementById('eventListarClientes').addEventListener('click', listaCliente, false);
 
 
 //CREACION DE OBJETOS
@@ -313,7 +276,9 @@ document.getElementById('fechaini').addEventListener('change', actualizarFechaFi
 //document.getElementById('CrearTarea').addEventListener('click', crearTarea, false);
 
 
-//Eventos Combos
+
+
+//Eventos Combos *****************************************************************************************
 
 document.getElementById('selectAdmin_ModAdm').addEventListener('change', muestraDatosDeEsteAdmin, false);
 
@@ -323,27 +288,27 @@ document.getElementById('selectContrato_ModCon').addEventListener('change', mues
 
 document.getElementById('incidencia_ModInc').addEventListener('change', muestraDatosDeEstaIncidencia, true);
 
-
 document.getElementById('selectProgram_Mod').addEventListener('change', muestraDatosDeEsteProgramador, true);
 
 document.getElementById('selectProy_ModProy').addEventListener('change', muestraDatosDeEsteProyecto, true);
 
 document.getElementById('selectAnalis_Mod').addEventListener('change', muestraDatosDeEsteAnalista, true);
-//Ocultar inputs
 
+//Ocultar inputs
 function mostrarCampos(selector) {
     for (var i = 0; i < selector.length; i++) {
         selector[i].classList.remove('oculto');
     }
 }
 //pagina de inicio
-
 function pantallaInicio() {
 
     ocultarFormularios();
     document.getElementById('pantallaInicial').style.display = 'block';
     document.getElementById('clearfix').style.display = 'none';
 }
+//evento para generar codigos
+document.getElementById('eventGenerarCodigoTarea').addEventListener('click', generarCodigoTarea, false);
 
 
 function paginaActual(){
@@ -353,8 +318,6 @@ function paginaActual(){
 }
 
 
-//evento para generar codigos
-document.getElementById('eventGenerarCodigoTarea').addEventListener('click', generarCodigoTarea, false);
 
 // FUNCIONES PARA MANEJO DE CAPAS
 
@@ -446,6 +409,7 @@ function modificaIncidencia() {
 }
 
 function nuevaPublicidad() {
+
     ocultarFormularios();
     document.getElementById('divFormNuevaPublioidad').style.display = 'block';
     document.getElementById('formuNuevaPublicidad').reset();
@@ -457,8 +421,9 @@ function nuevaPublicidad() {
     cargaComboClientes('#cliente_NuePub');
 
     //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
-
     comprobarCampos('formuNuevaPublicidad');
+    document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control textarea-md";
+
 }
 
 function eliminarPublicidad() {
@@ -563,7 +528,6 @@ function modificarAdministrador() {
     comprobarCampos('formuModificarAdmin');
 }
 
-
 function nuevoProyecto() {
     ocultarFormularios();
     document.getElementById('divFormNuevoProyecto').style.display = 'block';
@@ -577,7 +541,6 @@ function nuevoProyecto() {
     cargaComboAnalista('#analistasProyecto');
 
 }
-
 
 function modificarProyecto() {
     ocultarFormularios();
@@ -618,13 +581,13 @@ function nuevaTarea() {
     document.getElementById('formuNuevaTarea').reset();
     comprobarCampos('formuNuevaTarea');
 }
+
 function modificaTarea() {
     ocultarFormularios();
     document.getElementById('divFormModificaTarea').style.display = 'block';
     document.getElementById('formuModificaTarea').reset();
     comprobarCampos('formuModificaTarea');
 }
-
 
 function nuevoAnalista() {
     ocultarFormularios();
@@ -686,6 +649,7 @@ function nuevoProgramador() {
     comprobarCampos('formuNuevoProgramador',false);//se indica false porque no tiene select en el codigo
 
 }
+
 function comprobarCampos(id,select) {
     if(select==undefined)
     select=true;//para poner el valor por defecto a true si no se envia el parametro select
@@ -726,7 +690,12 @@ function crearTarea() {
 }
 
 
+
+
+//******************************************************************************************************************
 // EXPRESIONES REGULARES Y FUNCIONES *******************************************************************************
+//******************************************************************************************************************
+
 
 var oExRegTelefono = /^([9|6]{1})[0-9]{8}/;  // Telefonos
 var oExRegNombre = /^[a-záéíóúñA-ZÑÁÉÍÓÚ]{3}([a-záéíóúñA-ZÑÁÉÍÓÚ\s]){0,30}$/; //Nombres (nombre mas corto permitido 3 caracteres
@@ -812,8 +781,9 @@ function validaAsunto(cadena) {
 
 
 // *******************************************************************************************************************
-
 // VALIDACIONES ******************************************************************************************************
+//********************************************************************************************************************
+
 
 // NUEVO ADMINISTRADOR ************************************************
 // ********************************************************************
@@ -1719,7 +1689,7 @@ function validaFormNuevaIncidencia(oEvento) {
 
 
 // CERRAR INCIDENCIA ************************************************
-// ********************************************************************
+// ******************************************************************
 
 document.querySelector('#guardar_ModInc').addEventListener('click', validaFormModIncidencia, false);
 
@@ -1779,16 +1749,13 @@ function validaFormModIncidencia(oEvento) {
 
 
 }
-// NUEVO PROGRAMADOR ******************************************************
 
+
+// NUEVO PROGRAMADOR **************************************************
+// ********************************************************************
 document.querySelector('#añadirProgramador').addEventListener('click', validaFormNuevoProgramador, false);
 
-//document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
-
-
-// ********************************************************************
-
-function validaFormNuevoProgramador(oEvento) {
+function validaFormNuevoProgramador() {
 
     var bValido = true;
     var sErrores = "";
@@ -1923,7 +1890,6 @@ function validaFormNuevoProgramador(oEvento) {
 
     }
     if (bValido == false) {
-        //Cancelar envio del formulario
 
         //Mostrar errores
         toastr.error(sErrores);
@@ -1949,14 +1915,11 @@ function validaFormNuevoProgramador(oEvento) {
 
 
 }
-// MODIFICA PROGRAMADOR ******************************************************
-
-document.querySelector('#modificarProgramador').addEventListener('click', validaFormModificaProgramador, false);
-
-//document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
 
 
+// MODIFICA PROGRAMADOR ***********************************************
 // ********************************************************************
+document.querySelector('#modificarProgramador').addEventListener('click', validaFormModificaProgramador, false);
 
 function validaFormModificaProgramador() {
 
@@ -2135,14 +2098,11 @@ function validaFormModificaProgramador() {
 
 }
 
-// NUEVO ANALISTA ******************************************************
+
+// NUEVO ANALISTA *****************************************************
+// ********************************************************************
 
 document.querySelector('#añadirAnalista').addEventListener('click', validaFormNuevoAnalista, false);
-
-//document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
-
-
-// ********************************************************************
 
 function validaFormNuevoAnalista() {
   //  var oEvModiAnalista = oEvento || window.event;
@@ -2321,16 +2281,10 @@ for (var i=0;i<arrayDeDNI.length;i++)
 }
 
 
-
-
-// MODIFICA ANALISTA ******************************************************
+// MODIFICA ANALISTA **************************************************
+// ********************************************************************
 
 document.querySelector('#modificarAnalista').addEventListener('click', validaFormModificaAnalista, false);
-
-//document.querySelector('#limpiar_NueInc').addEventListener('click', nuevaIncidencia, false);
-
-
-// ********************************************************************
 
 function validaFormModificaAnalista() {
     //var oEvModiAnalista = oEvento || window.event;
@@ -2525,15 +2479,10 @@ function validaFormModificaAnalista() {
 }
 
 
-
-
-
-// NUEVO PROYECTO ******************************************************
+// NUEVO PROYECTO *****************************************************
+// ********************************************************************
 
 document.querySelector('#proyecto').addEventListener('click', validaFormNuevoProyecto, false);
-
-
-// ********************************************************************
 
 function validaFormNuevoProyecto() {
 
@@ -2652,13 +2601,10 @@ function validaFormNuevoProyecto() {
 }
 
 
-
-// Modifica PROYECTO ******************************************************
+// MODIFICAR PROYECTO *************************************************
+// ********************************************************************
 
 document.querySelector('#proyectoModificar').addEventListener('click', validaFormModificaProyecto, false);
-
-
-// ********************************************************************
 
 function validaFormModificaProyecto() {
 
@@ -2798,48 +2744,6 @@ objetoAnterior.nombreProyecto=nombre;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // NUEVA PUBLICIDAD ***************************************************
 // ********************************************************************
 
@@ -2847,8 +2751,8 @@ document.querySelector('#guardar_NuePub').addEventListener('click', validaFormNu
 
 document.querySelector('#limpiar_NuePub').addEventListener('click', nuevaPublicidad, false);
 
-function validaFormNuevaPublicidad(oEvento) {
-    var oEvNuevoPublicidad = oEvento || window.event;
+function validaFormNuevaPublicidad() {
+
     var bValido = true;
     var sErrores = "";
 
@@ -2885,11 +2789,11 @@ function validaFormNuevaPublicidad(oEvento) {
         sErrores += "<br><br> Debe seleccionar un cliente al que asignar la publicidad.";
 
         //Marcar error
-        document.getElementById('formuNuevaPublicidad').cliente.className = "form-control textarea-md error";
+        document.getElementById('formuNuevaPublicidad').cliente.className = "form-control error";
 
     } else {
         //Desmarcar error
-        document.getElementById('formuNuevaPublicidad').cliente.className = "form-control textarea-md";  //Pone esta class a la etiqueta.
+        document.getElementById('formuNuevaPublicidad').cliente.className = "form-control ";  //Pone esta class a la etiqueta.
     }
 
     var descripcion = document.getElementById('descripcion_NuePub').value;
@@ -2904,23 +2808,20 @@ function validaFormNuevaPublicidad(oEvento) {
         sErrores += "<br><br> Debe aportar una breve descripcion de la publicidad.";
 
         //Marcar error
-        document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control error";
+        document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control textarea-md error";
 
     } else {
         //Desmarcar error
-        document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control";  //Pone esta class a la etiqueta.
+        document.getElementById('formuNuevaPublicidad').descripcionPublicidad.className = "form-control textarea-md";
     }
 
 
     if (bValido == false) {
-        //Cancelar envio del formulario
-        oEvNuevoPublicidad.preventDefault();
         //Mostrar errores
         toastr.error(sErrores);
     } else {
         //Aqui estan los datos correctos, los guardamos
         //Recoger datos del formulario
-
 
         var codPubli = generaCodigos();
         var elementos = document.getElementById('formuNuevaPublicidad').elements;
@@ -2932,15 +2833,12 @@ function validaFormNuevaPublicidad(oEvento) {
             }
         }
 
-        //Crear objeto incidencia y añadirlo al array Incidencias
-
         var oPublicidad = new Publicidad(codPubli, tipo, descripcion, admin, cliente);
 
         var sMensaje;
         sMensaje = oConsultoria.anadePublicidad(oPublicidad);
         toastr.success(sMensaje);
     }
-
 
 }
 
@@ -2952,8 +2850,8 @@ document.querySelector('#eliminar_EliPub').addEventListener('click', validaFormE
 
 document.querySelector('#limpiar_EliPub').addEventListener('click', eliminarPublicidad, false);
 
-function validaFormEliminaPublicidad(oEvento) {
-    var oEvEliminaPubli = oEvento || window.event;
+function validaFormEliminaPublicidad() {
+
     var bValido = true;
     var sErrores = "";
 
@@ -2975,8 +2873,6 @@ function validaFormEliminaPublicidad(oEvento) {
 
 
     if (bValido == false) {
-        //Cancelar envio del formulario
-        oEvEliminaPubli.preventDefault();
         //Mostrar errores
         toastr.error(sErrores);
     } else {
@@ -2987,7 +2883,7 @@ function validaFormEliminaPublicidad(oEvento) {
         var sMensaje = "";
 
         var codPubli = parseInt(document.querySelector('#selectPublicidad_EliPub').value);
-        alert(codPubli);
+
         var oPublicidad = oConsultoria.damePublicidad(codPubli);
 
         for (var i = 0; i < oConsultoria.publicidades.length; i++) {
@@ -3001,11 +2897,13 @@ function validaFormEliminaPublicidad(oEvento) {
 }
 
 
-// *******************************************************************************************************************
-// Funciones Varias
 
 
-//Cargar combo de Administradores en funcion del id
+// ***********************************************************************************************
+// FUNCIONES VARIAS ******************************************************************************
+//************************************************************************************************
+
+
 function cargaComboAdministradores(id) {
 
     var miCombo = document.querySelector(id);
@@ -3199,8 +3097,6 @@ function cargarComboPublicidad(id) {
     }
 }
 
-
-
 //Completa los campos de texto
 function muestraDatosDeEstaIncidencia() {
 
@@ -3237,7 +3133,6 @@ function muestraDatosDeEstaIncidencia() {
     }
 }
 
-
 //Cargar combo de Incidencias
 function cargaComboIncidencias() {
 
@@ -3265,6 +3160,7 @@ function cargaComboIncidencias() {
     return sMensaje;
 }
 
+
 function cargaComboProyectos(id) {
 
     var miCombo = document.querySelector(id);
@@ -3278,7 +3174,6 @@ function cargaComboProyectos(id) {
         miCombo.add(oOption);
     }
 }
-
 
 //Cargar combo de Analistas
 function cargaComboAnalista(id) {
@@ -3309,6 +3204,7 @@ function cargaComboProgramador(id) {
         miCombo.add(oOption);
     }
 }
+
 //Completa los campos de texto
 function muestraDatosDeEsteProgramador() {
 
@@ -3371,6 +3267,7 @@ function muestraDatosDeEsteProgramador() {
         modificaProgramador();
     }
 }
+
 
 function muestraDatosDeEsteProyecto() {
 
@@ -3437,7 +3334,6 @@ var selecTareas = document.querySelector("#tareasProyMod").options;
 
 }
 
-
 //Completa los campos de texto
 function muestraDatosDeEsteAnalista() {
     comprobarCampos('formuModificaAnalista');
@@ -3499,6 +3395,8 @@ function muestraDatosDeEsteAnalista() {
 
     }
 }
+
+
 function cargaComboTareas(id) {
 
     var miCombo = document.querySelector(id);
@@ -3515,7 +3413,11 @@ function cargaComboTareas(id) {
 }
 
 
-//LISTADOS ********************************************************
+
+
+//***************************************************************************************************
+//LISTADOS ******************************************************************************************
+//***************************************************************************************************
 
 function listaProgramadores() {
 
@@ -3529,7 +3431,6 @@ function listaProgramadores() {
 
 }
 
-
 function listaAdministradores(){
 
     ocultarFormularios();
@@ -3537,8 +3438,6 @@ function listaAdministradores(){
     var array = oConsultoria.listarAdministradores();
     dibujarTabla(array[0], array[1]);
 }
-
-
 
 function listaAnalistas() {
 
@@ -3597,7 +3496,9 @@ function listaContrato() {
 }
 
 
-//TABLAS CON DOM
+
+
+//TABLAS CON DOM *************************************************************************************
 
 function pintaTabla(oCabecera, array) {
 
@@ -3716,7 +3617,6 @@ function pintaTabla(oCabecera, array) {
     }
     posicion.appendChild(divContainer);
 }
-
 
 function dibujarTabla(oCabecera, oInfo){
 

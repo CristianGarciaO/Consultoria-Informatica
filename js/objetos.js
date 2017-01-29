@@ -328,13 +328,13 @@ Consultoria.prototype.eliminaPublicidad = function (oPublicidad) {
 
 
 Consultoria.prototype.damePublicidad = function (codPubli) {
-    alert(codPubli);
+
     var bEnc = false;
     var oPubli;
     var i = 0;
 
     for (var i = 0; i < this.publicidades.length && bEnc == false; i++) {
-        alert(this.publicidades[i].codigoPublicidad);
+
         if (this.publicidades[i].codigoPublicidad == codPubli) {
             oPubli = this.publicidades[i];
             bEnc = true;
