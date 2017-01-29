@@ -540,16 +540,41 @@ Consultoria.prototype.listarIncidencias = function(filtro){
 
 // PROYECTOS
 
-function Proyecto(sNombreProyecto, aAnalistasProyecto, aTareasProyecto) {
+function Proyecto(sNombreProyecto, oAnalistasProyecto, oTareasProyecto) {
     this.nombreProyecto = sNombreProyecto;
-    this.analistasProyecto = aAnalistasProyecto;
-    this.tareasProyecto = aTareasProyecto;
+    this.analistasProyecto = oAnalistasProyecto;
+    this.tareasProyecto = oTareasProyecto;
 }
 
 Consultoria.prototype.anadeProyecto = function (oProyecto) {
     this.proyectos.push(oProyecto);
 };
+Consultoria.prototype.existeProyecto = function (sNombreProyecto) {
+    /*Recibe un nombre y devuelve TRUE si existe o FALSE si no existe.*/
+    var bEncontrado = false;
 
+    for (var i = 0; i < this.proyectos.length && bEncontrado == false; i++) {
+        if (this.proyectos[i].nombreProyecto == sNombreProyecto) {
+            bEncontrado = true;
+        }
+    }
+    return bEncontrado;
+};
+
+Consultoria.prototype.dameProyecto = function (sNombreProyecto) {
+    var bEnc = false;
+    var oObjeto;
+    var i = 0;
+    while (i < this.proyectos.length && bEnc == false)
+    {
+        if (this.proyectos[i].nombreProyecto == sNombreProyecto) {
+            oObjeto = this.proyectos[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oObjeto;
+};
 // TAREAS
 
 function Tarea(iCodigo, sNombreTarea, dFechaIni, oProyecto, dFechaFin, bEstado) {
@@ -564,8 +589,19 @@ function Tarea(iCodigo, sNombreTarea, dFechaIni, oProyecto, dFechaFin, bEstado) 
 Consultoria.prototype.anadeTarea = function (oTarea) {
     this.tareas.push(oTarea);
 };
-Consultoria.prototype.dameCodigos = function () {
-
+Consultoria.prototype.dameTarea = function (codigoTarea) {
+    var bEnc = false;
+    var oObjeto;
+    var i = 0;
+    while (i < this.tareas.length && bEnc == false)
+    {
+        if (this.tareas[i].codigoTarea == codigoTarea) {
+            oObjeto = this.tareas[i];
+            bEnc = true;
+        }
+        i++;
+    }
+    return oObjeto;
 };
 
 //ANALISTA

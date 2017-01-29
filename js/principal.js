@@ -319,6 +319,7 @@ document.getElementById('incidencia_ModInc').addEventListener('change', muestraD
 
 document.getElementById('selectProgram_Mod').addEventListener('change', muestraDatosDeEsteProgramador, true);
 
+document.getElementById('selectProy_ModProy').addEventListener('change', muestraDatosDeEsteProyecto, true);
 //Ocultar inputs
 
 function mostrarCampos(selector) {
@@ -560,8 +561,11 @@ function nuevoProyecto() {
     document.getElementById('formuNuevoProyecto').reset();
     comprobarCampos('formuNuevoProyecto');
 
-    vaciarCombo('#analistas');
-    cargaComboAnalista('#analistas');
+    vaciarCombo('#tareasProyecto');
+    cargaComboTareas('#tareasProyecto');
+
+    vaciarCombo('#analistasProyecto');
+    cargaComboAnalista('#analistasProyecto');
 
 }
 
@@ -575,8 +579,27 @@ function modificarProyecto() {
     vaciarCombo('#selectProy_ModProy');
     cargaComboProyectos('#selectProy_ModProy');
 
+    vaciarCombo('#tareasProyMod');
+    cargaComboTareas('#tareasProyMod');
+
+
     vaciarCombo('#analistasProyMod');
     cargaComboAnalista('#analistasProyMod');
+
+  ocultarCampos("formuModificaProyecto");
+}
+
+function ocultarCampos(idFormulario){
+
+    var oFormu = document.getElementById(idFormulario).querySelectorAll('input');
+    for (var i = 0; i < oFormu.length; i++) {
+        oFormu[i].setAttribute('readonly', 'readonly');
+    }
+
+    var oForm = document.getElementById(idFormulario).querySelectorAll('select');
+    for (var i = 1; i < oForm.length; i++) {
+        oForm[i].setAttribute('disabled', 'disabled');
+    }
 
 }
 
@@ -610,11 +633,10 @@ function modificaAnalista() {
     document.getElementById('divFormModificaAnalista').style.display = 'block';
     document.getElementById('formuModificaAnalista').reset();
 
-    var oFormu = document.getElementById('formuModificaAnalista').querySelectorAll('input');
-    for (var i = 0; i < oFormu.length; i++) {
-        oFormu[i].setAttribute('readonly', 'readonly');
-    }
-    document.getElementById('formuModificaAnalista').querySelector('#selectPrograAnalistaModifica').setAttribute('readonly', 'readonly');
+    ocultarCampos("formuModificaAnalista");
+
+
+
     vaciarCombo('#selectAnalis_Mod');  //Vaciar el combo por si contiene algo de haber entrado antes en este formulario
     cargaComboAnalista('#selectAnalis_Mod'); //Cargar los programadores de los analistas existentes
     vaciarCombo('#selectPrograAnalistaModifica');
@@ -2274,10 +2296,271 @@ function validaFormModificaAnalista() {
 
 
 
+// NUEVO PROYECTO ******************************************************
+
+document.querySelector('#proyecto').addEventListener('click', validaFormNuevoProyecto, false);
+
+
+// ********************************************************************
+
+function validaFormNuevoProyecto() {
+
+    var bValido = true;
+    var sErrores = "";
+
+    var idFormulario = "formuNuevoProyecto";
+    var idNombre = "nombreProyecto";
+    var idSelectTareas = "tareasProyecto";
+    var idSelectAnalista = "analistasProyecto";
+    
+
+    var nombre = document.getElementById(idNombre).value.trim();
+    document.getElementById(idNombre).value = nombre;
+
+    if (validaNombre(nombre) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).nombreProyecto.focus();
+        }
+        sErrores += "NOMBRE del Proyecto incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).nombreProyecto.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).nombreProyecto.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+    
+    //selectTareas
+    if (document.querySelector('#tareasProyecto').selectedIndex == 0 || document.querySelector('#tareasProyecto').selectedIndex == -1 || document.getElementById('tareasProyecto').options[1]=="Seleccione una Tarea" ) {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector('#tareasProyecto').focus();
+        }
+        sErrores += "<br><br> Tarea no seleccionada. Debe seleccionar al menos una)";
+
+        //Marcar error
+        document.querySelector('#tareasProyecto').className = "form-control input-large error";
+
+    } else {
+        //Desmarcar error
+        document.querySelector('#tareasProyecto').className = "form-control input-large";  //Pone esta class a la etiqueta.
+
+
+        var arrayDeTareasProyecto = document.getElementById('tareasProyecto').options;
+        var arrayDeTareasElegidas=[];
+
+        var contT=0;
+        for (var t = 0; t < arrayDeTareasProyecto.length; t++) {
+            if (arrayDeTareasProyecto[t].selected)
+                arrayDeTareasElegidas[contT++] = oConsultoria.dameTarea(arrayDeTareasProyecto[t].value);
+
+        }
+
+
+    }
+
+
+    //selectAnalista
+    if (document.querySelector('#analistasProyecto').selectedIndex == 0 || document.querySelector('#analistasProyecto').selectedIndex == -1 || document.getElementById('analistasProyecto').options[1]=="Seleccione un Analista" ) {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector('#analistasProyecto').focus();
+        }
+        sErrores += "<br><br> Analista no seleccionado. Debe seleccionar al menos uno)";
+
+        //Marcar error
+        document.querySelector('#analistasProyecto').className = "form-control input-large error";
+
+    } else {
+        //Desmarcar error
+        document.querySelector('#analistasProyecto').className = "form-control input-large";  //Pone esta class a la etiqueta.
+
+
+        var arrayDeAnalistas = document.getElementById('analistasProyecto').options;
+        var arrayAnalistasElegidos=[];
+
+        var cont=0;
+        for (var i = 0; i < arrayDeAnalistas.length; i++) {
+            if (arrayDeAnalistas[i].selected)
+                arrayAnalistasElegidos[cont++] = oConsultoria.dameAnalista(arrayDeAnalistas[i].value);
+
+        }
+    }
+
+    if (bValido == false) {
+        
+        toastr.error(sErrores);
+    } else {
+        //Aqui estan los datos correctos, los guardamos
+        //Comprobar si existe el proyecto
+
+        var sMensaje = "";
+
+        if (!oConsultoria.existeProyecto(nombre)) {
+
+            var oObjeto = new Proyecto(nombre,arrayAnalistasElegidos,arrayDeTareasElegidas);
+            sMensaje = "¡ Proyecto Añadido con éxito !";
+            oConsultoria.anadeProyecto(oObjeto);
+            toastr.success(sMensaje);
+            nuevoProyecto();
+        } else {
+            sMensaje = "Imposible añadir. El Proyecto que intenta añadir al sistema ya estaba registrado";
+            toastr.error(sMensaje);
+        }
+
+    }
+}
+
+
+
+// Modifica PROYECTO ******************************************************
+
+document.querySelector('#proyectoModificar').addEventListener('click', validaFormModificaProyecto, false);
+
+
+// ********************************************************************
+
+function validaFormModificaProyecto() {
+
+    var bValido = true;
+    var sErrores = "";
+
+    var idFormulario = "formuModificaProyecto";
+    var idNombre = "nombreProyecto_modPr";
+    var idSelectTareas = "#tareasProyMod";
+    var idSelectAnalista = "#analistasProyMod";
+   var eleccion = document.querySelector("#selectProy_ModProy").selectedIndex;
+if(eleccion != 0) {
+    var nombre = document.getElementById(idNombre).value.trim();
+    document.getElementById(idNombre).value = nombre;
+
+    if (validaNombre(nombre) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById(idFormulario).nombreProyectoMod.focus();
+        }
+        sErrores += "NOMBRE del Proyecto incorrecto (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById(idFormulario).nombreProyectoMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById(idFormulario).nombreProyectoMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    //selectTareas
+    if (document.querySelector(idSelectTareas).selectedIndex == 0 || document.querySelector(idSelectTareas).selectedIndex == -1 || document.getElementById("tareasProyMod").options[1] == "Seleccione una Tarea") {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector(idSelectTareas).focus();
+        }
+        sErrores += "<br><br> Tarea no seleccionada. Debe seleccionar al menos una)";
+
+        //Marcar error
+        document.querySelector(idSelectTareas).className = "form-control input-large error";
+
+    } else {
+        //Desmarcar error
+        document.querySelector(idSelectTareas).className = "form-control input-large";  //Pone esta class a la etiqueta.
+
+
+        var arrayDeTareasProyecto = document.getElementById('tareasProyMod').options;
+        var arrayDeTareasElegidas = [];
+var contT=0;
+        for (var t = 0; t < arrayDeTareasProyecto.length; t++) {
+            if (arrayDeTareasProyecto[t].selected)
+                arrayDeTareasElegidas[contT++] = oConsultoria.dameTarea(arrayDeTareasProyecto[t].value);
+
+        }
+
+
+    }
+
+
+    //selectAnalista
+    if (document.querySelector(idSelectAnalista).selectedIndex == 0 || document.querySelector(idSelectAnalista).selectedIndex == -1 || document.getElementById('analistasProyecto').options[1] == "Seleccione un Analista") {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector(idSelectAnalista).focus();
+        }
+        sErrores += "<br><br> Analista no seleccionado. Debe seleccionar al menos uno)";
+
+        //Marcar error
+        document.querySelector(idSelectAnalista).className = "form-control input-large error";
+
+    } else {
+        //Desmarcar error
+        document.querySelector(idSelectAnalista).className = "form-control input-large";  //Pone esta class a la etiqueta.
+
+
+        var arrayDeAnalistas = document.getElementById('analistasProyMod').options;
+        var arrayAnalistasElegidos = [];
+var cont=0;
+        for (var i = 0; i < arrayDeAnalistas.length; i++) {
+            if (arrayDeAnalistas[i].selected)
+                arrayAnalistasElegidos[cont++] = oConsultoria.dameAnalista(arrayDeAnalistas[i].value);
+
+        }
+    }
+    //Desmarcar error
+    document.querySelector("#selectProy_ModProy").className = "form-control input-large";
+
+}else {
+    if (bValido == true) {
+        bValido = false;
+        //Este campo obtiene el foco
+        document.querySelector("#selectProy_ModProy").focus();
+    }
+    sErrores += "<br><br> Seleccione un Proyecto para poder avanzar)";
+
+    //Marcar error
+    document.querySelector("#selectProy_ModProy").className = "form-control input-large error";
+
+
+}
+    if (bValido == false) {
+
+        toastr.error(sErrores);
+    } else {
+        //Aqui estan los datos correctos, los guardamos
+        //Comprobar si existe el proyecto
+
+        var sMensaje = "";
+
+
+var objetoAnterior= oConsultoria.dameProyecto(nombre);
+      /*  var array=oConsultoria.proyectos;
+        var elimi = array.indexOf( objetoAnterior );
+
+        if ( elimi !== -1 ) {
+            array.splice( i, 1 );
+        }*/
+objetoAnterior.nombreProyecto=nombre;
+        objetoAnterior.analistas = arrayAnalistasElegidos;
+        objetoAnterior.tareas= arrayDeTareasElegidas;
+
+           // var oObjeto = new Proyecto(nombre,arrayAnalistasElegidos,arrayDeTareasElegidas);
+            sMensaje = "¡ Proyecto Modificado con éxito !";
+           // oConsultoria.anadeProyecto(oObjeto);
+            toastr.success(sMensaje);
+            modificarProyecto();
 
 
 
 
+    }
+}
 
 
 
@@ -2826,6 +3109,75 @@ function muestraDatosDeEsteProgramador() {
 
     }
 }
+
+function muestraDatosDeEsteProyecto() {
+
+    //Obtener valor del option seleccionado
+    var select = document.querySelector('#selectProy_ModProy');
+
+    if (select.selectedIndex != 0) {
+
+        var nombre = select.value;
+        var oObjeto = oConsultoria.dameProyecto(nombre);
+
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+
+        var nom = document.querySelector('#nombreProyecto_modPr');
+        nom.value = nombre;
+     //  nom.removeAttribute('readonly'); ES CLAVE UNICA NO SE PUEDE MODIFICAR
+
+        document.querySelector("#tareasProyMod").removeAttribute("disabled");
+var selecTareas = document.querySelector("#tareasProyMod").options;
+
+//borramos por si estaba seleccionado alguno anteriormente
+        for (var t = 0; t < selecTareas.length; t++)
+        {
+                    selecTareas[t].selected=false;
+                }
+
+
+
+
+        for (var s = 0; s < selecTareas.length; s++) {
+                for (var o = 0; o < oObjeto.tareasProyecto.length; o++) {
+                    if(selecTareas[s].value ==  oObjeto.tareasProyecto[o].codigoTarea )
+                        selecTareas[s].selected=true;
+                }
+        }
+
+        document.querySelector("#analistasProyMod").removeAttribute("disabled");
+        var selecAnalista = document.querySelector("#analistasProyMod").options;
+
+        //borramos por si estaba seleccionado alguno anteriormente
+        for (var t = 0; t < selecAnalista.length; t++)
+        {
+            selecAnalista[t].selected=false;
+        }
+
+
+        for (var s = 0; s < selecAnalista.length; s++) {
+            for (var o = 0; o < oObjeto.analistasProyecto.length; o++) {
+                if(selecAnalista[s].value ==  oObjeto.analistasProyecto[o].dniTrabajador )
+                    selecAnalista[s].selected=true;
+            }
+        }
+
+
+
+
+
+
+    }
+    else
+    {
+        modificarProyecto();
+
+    }
+
+
+}
+
+
 //Completa los campos de texto
 function muestraDatosDeEsteAnalista() {
 
@@ -2862,7 +3214,20 @@ function muestraDatosDeEsteAnalista() {
 
     }
 }
+function cargaComboTareas(id) {
 
+    var miCombo = document.querySelector(id);
+    var oOption = document.createElement('option');
+    oOption.text = 'Seleccione una Tarea';
+    miCombo.add(oOption);
+    for (var i = 0; i < oConsultoria.tareas.length; i++) {
+        var oOption = document.createElement('option');
+        oOption.text = oConsultoria.tareas[i].nombreTarea + ' ' +
+                        oConsultoria.tareas[i].codigoTarea;
+        oOption.value = oConsultoria.tareas[i].codigoTarea;
+        miCombo.add(oOption);
+    }
+}
 
 
 //LISTADOS ********************************************************
@@ -2872,9 +3237,9 @@ function listaProgramadores() {
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
     var arrayProgramadores = oConsultoria.dameListaProgramadores();
-    var tipo=1;
+
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
-    pintaTabla(oCabecera, arrayProgramadores,tipo);
+    pintaTabla(oCabecera, arrayProgramadores);
 
 
 }
@@ -2945,7 +3310,7 @@ function listaContrato() {
 
 //TABLAS CON DOM
 
-function pintaTabla(oCabecera, array, tipoObjeto) {
+function pintaTabla(oCabecera, array) {
 
     //Se crean los CONTENEDORES
     var divContainer = document.createElement("div");
@@ -3131,11 +3496,7 @@ function dibujarTabla(oCabecera, oInfo){
     }
 
     divTabla.appendChild(oTabla);
-    //borramos antes lo anterior
-    while (posicion.hasChildNodes()) {
-        posicion.removeChild(posicion.lastChild);
-    }
-    posicion.appendChild(divContainer);
+
 
     // return oTabla;
 }
