@@ -321,7 +321,6 @@ Consultoria.prototype.eliminaPublicidad = function (oPublicidad) {
     var array = this.publicidades;
     eliminaEstaPubli(array, oPublicidad);
 
-
     var sMensaje = "Eliminada";
     return sMensaje;
 };

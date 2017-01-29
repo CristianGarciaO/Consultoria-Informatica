@@ -2852,6 +2852,12 @@ document.querySelector('#limpiar_EliPub').addEventListener('click', eliminarPubl
 
 function validaFormEliminaPublicidad() {
 
+    if(oConsultoria.publicidades.length == 0){
+        toastr.warning("No quedan publicidades registradas que eliminar");
+    }else{
+
+
+
     var bValido = true;
     var sErrores = "";
 
@@ -2879,7 +2885,6 @@ function validaFormEliminaPublicidad() {
         //Aqui estan los datos correctos, los guardamos
         //Recoger datos del formulario
 
-
         var sMensaje = "";
 
         var codPubli = parseInt(document.querySelector('#selectPublicidad_EliPub').value);
@@ -2887,13 +2892,15 @@ function validaFormEliminaPublicidad() {
         var oPublicidad = oConsultoria.damePublicidad(codPubli);
 
         for (var i = 0; i < oConsultoria.publicidades.length; i++) {
-            if (oConsultoria.publicidades[i].codigoPublicidad === codPubli) {
+            if (oConsultoria.publicidades[i].codigoPublicidad == codPubli) {
                 sMensaje = oConsultoria.eliminaPublicidad(oPublicidad);
             }
         }
         toastr.success(sMensaje);
     }
+    eliminarPublicidad();
 
+    }
 }
 
 
