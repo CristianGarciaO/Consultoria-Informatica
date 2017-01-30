@@ -203,6 +203,27 @@
 			<codigoAdministrador>2544</codigoAdministrador>
 			<dniCliente>11032393X</dniCliente>
 		</publicidad>
+		<publicidad>
+			<codigoPublicidad>2569</codigoPublicidad>
+			<tipo>Twitter</tipo>
+			<descripcionPublicidad>Twitteo masivo a followers</descripcionPublicidad>
+			<codigoAdministrador>3245</codigoAdministrador>
+			<dniCliente>44110022F</dniCliente>
+		</publicidad>
+		<publicidad>
+			<codigoPublicidad>1958</codigoPublicidad>
+			<tipo>Facebook</tipo>
+			<descripcionPublicidad>Cuestionario informal</descripcionPublicidad>
+			<codigoAdministrador>2544</codigoAdministrador>
+			<dniCliente>44110022F</dniCliente>
+		</publicidad>
+		<publicidad>
+			<codigoPublicidad>4598</codigoPublicidad>
+			<tipo>Facebook</tipo>
+			<descripcionPublicidad>Invitaciones a compartir</descripcionPublicidad>
+			<codigoAdministrador>2544</codigoAdministrador>
+			<dniCliente>44110022F</dniCliente>
+		</publicidad>
 	</publicidades>
 	
 	<!--- PROYECTOS -->

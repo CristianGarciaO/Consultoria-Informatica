@@ -343,22 +343,61 @@ Consultoria.prototype.damePublicidad = function (codPubli) {
 };
 
 
-Consultoria.prototype.listarPublicidad = function (){
+Consultoria.prototype.listarPublicidad = function (cadenaIdentificadora){
 
     var oInfo = new Array();
     var oCabecera = ["Código", "Tipo", "Descripción", "Código Admin", "DNI Cliente"];
 
-
-    for(var i=0;i<this.publicidades.length; i++){
-        //Meter un array en otro para hacerlo bidimensional
-        oInfo[i] = new Array();
-        //Cargar los datos
-        oInfo[i][0] = this.publicidades[i].codigoPublicidad;
-        oInfo[i][1] = this.publicidades[i].tipo;
-        oInfo[i][2] = this.publicidades[i].descripcionPublicidad;
-        oInfo[i][3] = this.publicidades[i].codigoAdministrador;
-        oInfo[i][4] = this.publicidades[i].dniCliente;
-
+    if(cadenaIdentificadora != null){
+        if(cadenaIdentificadora.length == 9){
+            //CLIENTES
+            var arrayProvisional = new Array();
+            for(var i=0;i<this.publicidades.length; i++) {
+                if (this.publicidades[i].dniCliente == cadenaIdentificadora) {
+                    arrayProvisional.push(this.publicidades[i]);
+                }
+            }
+            for(var i=0;i<arrayProvisional.length; i++){
+                    //Meter un array en otro para hacerlo bidimensional
+                    oInfo[i] = new Array();
+                    //Cargar los datos
+                    oInfo[i][0] = arrayProvisional[i].codigoPublicidad;
+                    oInfo[i][1] = arrayProvisional[i].tipo;
+                    oInfo[i][2] = arrayProvisional[i].descripcionPublicidad;
+                    oInfo[i][3] = arrayProvisional[i].codigoAdministrador;
+                    oInfo[i][4] = arrayProvisional[i].dniCliente;
+            }
+        }else{
+            //ADMINISTRADORES
+            var arrayProvisional = new Array();
+            for(var i=0;i<this.publicidades.length; i++) {
+                if (this.publicidades[i].codigoAdministrador == cadenaIdentificadora) {
+                    arrayProvisional.push(this.publicidades[i]);
+                }
+            }
+            for(var i=0;i<arrayProvisional.length; i++){
+                //Meter un array en otro para hacerlo bidimensional
+                oInfo[i] = new Array();
+                //Cargar los datos
+                oInfo[i][0] = arrayProvisional[i].codigoPublicidad;
+                oInfo[i][1] = arrayProvisional[i].tipo;
+                oInfo[i][2] = arrayProvisional[i].descripcionPublicidad;
+                oInfo[i][3] = arrayProvisional[i].codigoAdministrador;
+                oInfo[i][4] = arrayProvisional[i].dniCliente;
+            }
+        }
+    }else{
+        //TODOS
+        for(var i=0;i<this.publicidades.length; i++){
+            //Meter un array en otro para hacerlo bidimensional
+            oInfo[i] = new Array();
+            //Cargar los datos
+            oInfo[i][0] = this.publicidades[i].codigoPublicidad;
+            oInfo[i][1] = this.publicidades[i].tipo;
+            oInfo[i][2] = this.publicidades[i].descripcionPublicidad;
+            oInfo[i][3] = this.publicidades[i].codigoAdministrador;
+            oInfo[i][4] = this.publicidades[i].dniCliente;
+        }
     }
 
     var arraylistar = [];

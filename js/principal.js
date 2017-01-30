@@ -257,7 +257,11 @@ document.getElementById('eventListarIncidenciasSinCerrar').addEventListener('cli
 
 document.getElementById('eventListarClientes').addEventListener('click', listaClientes, false);
 
-document.getElementById('eventListarPublicidad').addEventListener('click', listaPublicidad, false);
+document.getElementById('eventListarPublicidad').addEventListener('click', listarPublicidadesFiltradas, false);
+
+document.getElementById('listaTodaPublicidad').addEventListener('click', listaPublicidad, false);
+
+document.getElementById('limpiarTablasPubli').addEventListener('click', limpiarTablasPublicidad, false);
 
 document.getElementById('eventlistarContrato').addEventListener('click', listaContrato, false);
 
@@ -293,6 +297,10 @@ document.getElementById('selectProgram_Mod').addEventListener('change', muestraD
 document.getElementById('selectProy_ModProy').addEventListener('change', muestraDatosDeEsteProyecto, true);
 
 document.getElementById('selectAnalis_Mod').addEventListener('change', muestraDatosDeEsteAnalista, true);
+
+document.getElementById('selectListaPub_Cli').addEventListener('change', listaPubliPorCliente, true);
+
+document.getElementById('selectListaPub_Admin').addEventListener('change', listaPubliPorAdmin, true);
 
 //Ocultar inputs
 function mostrarCampos(selector) {
@@ -343,6 +351,7 @@ function ocultarFormularios() {
     document.getElementById('divFormModificaProgramador').style.display = 'none';
     document.getElementById('pantallaInicial').style.display = 'none';
     document.getElementById('tablas').style.display = 'none';
+    document.getElementById('divFormListarPublicidad').style.display = 'none';
 }
 
 function nuevoCliente() {
@@ -443,6 +452,23 @@ function eliminarPublicidad() {
         }
     }
     comprobarCampos('formuElimiarPublicidad');
+
+}
+
+function listarPublicidadesFiltradas(){
+
+    ocultarFormularios();
+    document.getElementById('divFormListarPublicidad').style.display = 'block';
+    document.getElementById('formuListarPublicidad').reset();
+
+    vaciarCombo('#selectListaPub_Cli');
+    vaciarCombo('#selectListaPub_Admin');
+
+    cargaComboAdministradores('#selectListaPub_Admin');
+    cargaComboClientes('#selectListaPub_Cli');
+
+    //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
+    comprobarCampos('formuListarPublicidad');
 
 }
 
@@ -3420,6 +3446,18 @@ function cargaComboTareas(id) {
 }
 
 
+function limpiarTablasPublicidad(){
+
+    var posicion = document.querySelector("#listasPublicidad");
+    document.getElementById('formuListarPublicidad').reset();
+
+    while (posicion.hasChildNodes()) {
+        posicion.removeChild(posicion.lastChild);
+    }
+
+}
+
+
 
 
 //***************************************************************************************************
@@ -3433,8 +3471,8 @@ function listaProgramadores() {
     var arrayProgramadores = oConsultoria.dameListaProgramadores();
 
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
-    pintaTabla(oCabecera, arrayProgramadores);
-
+    var titulo = "PROGRAMADORES";
+    pintaTabla(titulo,oCabecera, arrayProgramadores);
 
 }
 
@@ -3443,7 +3481,8 @@ function listaAdministradores(){
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
     var array = oConsultoria.listarAdministradores();
-    dibujarTabla(array[0], array[1]);
+    var titulo = "ADMINISTRADORES";
+    dibujarTabla(titulo,array[0], array[1]);
 }
 
 function listaAnalistas() {
@@ -3455,7 +3494,8 @@ function listaAnalistas() {
     var arrayAnalistas = oConsultoria.dameListaAnalistas();
 
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
-    pintaTabla(oCabecera,arrayAnalistas);
+    var titulo = "ANALISTAS";
+    pintaTabla(titulo,oCabecera,arrayAnalistas);
 
 }
 
@@ -3469,7 +3509,8 @@ function listaIncidencias(filtro) {
         toastr.warning("No quedan incidencias abiertas que listar");
         pantallaInicio();
     }else{
-        dibujarTabla(array[0], array[1]);
+        var titulo = "INCIDENCIAS";
+        dibujarTabla(titulo,array[0], array[1]);
     }
 
 
@@ -3481,16 +3522,43 @@ function listaClientes() {
     document.getElementById('tablas').style.display = 'block';
 
     var array = oConsultoria.listarClientes();
-    dibujarTabla(array[0], array[1]);
+    var titulo = "CLIENTES";
+    dibujarTabla(titulo,array[0], array[1]);
 }
 
 function listaPublicidad() {
 
-    ocultarFormularios();
-    document.getElementById('tablas').style.display = 'block';
+    var codigo = null;
 
-    var array = oConsultoria.listarPublicidad();
-    dibujarTabla(array[0], array[1]);
+    var array = oConsultoria.listarPublicidad(codigo);
+    tablasPubli(array[0], array[1]);
+}
+
+function listaPubliPorCliente() {
+
+    var codigo = document.getElementById('selectListaPub_Cli').value;
+    if (codigo != "") {
+        var array = oConsultoria.listarPublicidad(codigo);
+        if(array[1].length > 0){
+            tablasPubli(array[0], array[1]);
+        }else{
+            toastr.warning("Este cliente no ha contratado ninguna publicidad");
+        }
+
+    }
+}
+
+
+function listaPubliPorAdmin(){
+    var codigo = document.getElementById('selectListaPub_Admin').value;
+    if(codigo != "") {
+        var array = oConsultoria.listarPublicidad(codigo);
+        if(array[1].length > 0)
+            tablasPubli(array[0],array[1]);
+        else
+            toastr.warning("Este administrador no ha registrado ninguna publicidad");
+    }
+
 }
 
 function listaContrato() {
@@ -3499,7 +3567,8 @@ function listaContrato() {
     document.getElementById('tablas').style.display = 'block';
 
     var array = oConsultoria.listarContratos();
-    dibujarTabla(array[0], array[1]);
+    var titulo = "CONTRATOS";
+    dibujarTabla(titulo,array[0], array[1]);
 }
 
 
@@ -3507,7 +3576,7 @@ function listaContrato() {
 
 //TABLAS CON DOM *************************************************************************************
 
-function pintaTabla(oCabecera, array) {
+function pintaTabla(titulo, oCabecera, array) {
 
     //Se crean los CONTENEDORES
     var divContainer = document.createElement("div");
@@ -3526,6 +3595,12 @@ function pintaTabla(oCabecera, array) {
     divRow.appendChild(divRelleno1);
     divRow.appendChild(divTabla);
     divRow.appendChild(divRelleno2);
+
+    //Se crea el titulo de la tabla
+    var tituloTabla = document.createElement("h1");
+    tituloTabla.style.textAlign = "center";
+    tituloTabla.appendChild(document.createTextNode(titulo));
+    divTabla.appendChild(tituloTabla);
 
     //se crea la tabla en cuestion
     var oTabla = document.createElement("table");
@@ -3625,7 +3700,7 @@ function pintaTabla(oCabecera, array) {
     posicion.appendChild(divContainer);
 }
 
-function dibujarTabla(oCabecera, oInfo){
+function dibujarTabla(titulo, oCabecera, oInfo){
 
     //Se crean los CONTENEDORES
     var divContainer = document.createElement("div");
@@ -3644,6 +3719,12 @@ function dibujarTabla(oCabecera, oInfo){
     divRow.appendChild(divRelleno1);
     divRow.appendChild(divTabla);
     divRow.appendChild(divRelleno2);
+
+    //Se crea el titulo de la tabla
+    var tituloTabla = document.createElement("h1");
+    tituloTabla.style.textAlign = "center";
+    tituloTabla.appendChild(document.createTextNode(titulo));
+    divTabla.appendChild(tituloTabla);
 
     //se crea la tabla en cuestion
     var oTabla = document.createElement("table");
@@ -3702,6 +3783,63 @@ function dibujarTabla(oCabecera, oInfo){
     posicion.appendChild(divContainer);
     // return oTabla;
 }
+
+function tablasPubli(oCabecera, oInfo) {
+
+
+    //se crea la tabla en cuestion
+    var oTabla = document.createElement("table");
+    oTabla.setAttribute("class", "table table-responsive table-bordered table-hover");
+    oTabla.setAttribute("id", "TablaCreada");
+
+    // CABECERA
+    var oTHead = oTabla.createTHead();
+
+    // Fila cabecera
+    var oFila = oTHead.insertRow(-1);
+    oFila.classList.add("info");
+
+    //Identificamos los th que son necesarios
+    for (var i = 0; i < oCabecera.length; i++) {
+        var oTh = document.createElement("th");
+        var oTexto = document.createTextNode(oCabecera[i]);
+        oTh.appendChild(oTexto);
+        oFila.appendChild(oTh);
+    }
+
+    var oTBody = oTabla.createTBody();
+    var posicion = document.querySelector("#listasPublicidad");
+
+    for (var j = 0; j < oInfo.length; j++) {
+        oFila = oTBody.insertRow(-1);
+        for (var k = 0; k < oInfo[j].length; k++) {
+            var oCelda = oFila.insertCell(-1);
+
+            if (oInfo[j].isArray) {  //Comprobar si el dato ha introducir es un array.
+                for (var l = 0; l < oInfo[k].length; l++) {
+
+                    var oFilaInterna = oCelda.insertRow(-1);
+                    var oCeldaInterna = oFilaInterna.insertCell(-1);
+                    oTexto = document.createTextNode(oInfo[j][k][l]);
+                    oCeldaInterna.appendChild(oTexto);
+                    oCelda.appendChild(oFilaInterna);
+                }
+            } else {
+                oTexto = document.createTextNode(oInfo[j][k]);
+                oCelda.appendChild(oTexto);
+            }
+        }
+        oFila.appendChild(oCelda);
+    }
+
+    //borramos antes lo anterior
+    while (posicion.hasChildNodes()) {
+        posicion.removeChild(posicion.lastChild);
+    }
+    posicion.appendChild(oTabla);
+}
+
+
 
 
 
