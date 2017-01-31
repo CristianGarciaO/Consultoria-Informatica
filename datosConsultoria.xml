@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<consultoria>
+
+    <!--- ADMINISTRADORES -->
+
+    <administradores>
+        <administrador>
+            <nombreTrabajador>Juan Carlos</nombreTrabajador>
+            <dniTrabajador>96857898F</dniTrabajador>
+            <apellidosTrabajador>Rodríguez Moreno</apellidosTrabajador>
+            <telefonoTrabajador>698725111</telefonoTrabajador>
+            <direccionTrabajador>Calle Administrador de Sitemas nº5</direccionTrabajador>
+            <codigoAdmin>2544</codigoAdmin>
+        </administrador>
+        <administrador>
+            <nombreTrabajador>Miguelito</nombreTrabajador>
+            <dniTrabajador>35684488X</dniTrabajador>
+            <apellidosTrabajador>Garcia Núñez</apellidosTrabajador>
+            <telefonoTrabajador>941245871</telefonoTrabajador>
+            <direccionTrabajador>Avda Sin Número, Sevilla</direccionTrabajador>
+            <codigoAdmin>1578</codigoAdmin>
+        </administrador>
+        <administrador>
+            <nombreTrabajador>Jesús</nombreTrabajador>
+            <dniTrabajador>35478899W</dniTrabajador>
+            <apellidosTrabajador>Fernández de la Rosa</apellidosTrabajador>
+            <telefonoTrabajador>647859855</telefonoTrabajador>
+            <direccionTrabajador>Calle Berlin, nº20, 8ºC, Madrid</direccionTrabajador>
+            <codigoAdmin>3245</codigoAdmin>
+        </administrador>
+        <administrador>
+            <nombreTrabajador>Ricardo</nombreTrabajador>
+            <dniTrabajador>54875599U</dniTrabajador>
+            <apellidosTrabajador>Garrido Mateo</apellidosTrabajador>
+            <telefonoTrabajador>611223669</telefonoTrabajador>
+            <direccionTrabajador>Calle de la Palmera 54</direccionTrabajador>
+            <codigoAdmin>1698</codigoAdmin>
+        </administrador>
+    </administradores>
+
+    <!--- ANALISTAS -->
+
+    <analistas>
+        <analista>
+            <nombreTrabajador>Danilo</nombreTrabajador>
+            <dniTrabajador>98785877A</dniTrabajador>
+            <apellidosTrabajador>Richardson Gonzalves</apellidosTrabajador>
+            <telefonoTrabajador>698755612</telefonoTrabajador>
+            <direccionTrabajador>Rúa do Castelo 12, Lisboa</direccionTrabajador>
+            <listaProgramadores>
+                <progr>68658518F</progr>
+                <progr>45893311T</progr>
+            </listaProgramadores>
+        </analista>
+        <analista>
+            <nombreTrabajador>Johnnas</nombreTrabajador>
+            <dniTrabajador>78544898K</dniTrabajador>
+            <apellidosTrabajador>Makkinen</apellidosTrabajador>
+            <telefonoTrabajador>632255888</telefonoTrabajador>
+            <direccionTrabajador>Katu korvalainen, Turku</direccionTrabajador>
+            <listaProgramadores>
+                <progr>55879988L</progr>
+                <progr>78859588F</progr>
+                <progr>36987744S</progr>
+            </listaProgramadores>
+        </analista>
+    </analistas>
+
+    <!--- PROGRAMADORES -->
+
+    <programadores>
+        <programador>
+            <nombreTrabajador>Jesús</nombreTrabajador>
+            <dniTrabajador>68658518F</dniTrabajador>
+            <apellidosTrabajador>Lopez Torres</apellidosTrabajador>
+            <telefonoTrabajador>987568898</telefonoTrabajador>
+            <direccionTrabajador>Calle La tercera, Valencia</direccionTrabajador>
+            <analista>78544898K</analista>
+        </programador>
+        <programador>
+            <nombreTrabajador>Carlos Jesús</nombreTrabajador>
+            <dniTrabajador>78859588F</dniTrabajador>
+            <apellidosTrabajador>Romero Torrado</apellidosTrabajador>
+            <telefonoTrabajador>987588898</telefonoTrabajador>
+            <direccionTrabajador>Calle La primera, Albacete</direccionTrabajador>
+            <analista>98785877A</analista>
+        </programador>
+        <programador>
+            <nombreTrabajador>Francisco</nombreTrabajador>
+            <dniTrabajador>45893311T</dniTrabajador>
+            <apellidosTrabajador>Rebollo Gómez</apellidosTrabajador>
+            <telefonoTrabajador>987588898</telefonoTrabajador>
+            <direccionTrabajador>Calle La Segunda, Murcia</direccionTrabajador>
+            <analista>78544898K</analista>
+        </programador>
+        <programador>
+            <nombreTrabajador>Mario</nombreTrabajador>
+            <dniTrabajador>36987744S</dniTrabajador>
+            <apellidosTrabajador>Ruíz Celma</apellidosTrabajador>
+            <telefonoTrabajador>644115526</telefonoTrabajador>
+            <direccionTrabajador>Calle La Tercera, Valencia</direccionTrabajador>
+            <analista>98785877A</analista>
+        </programador>
+        <programador>
+            <nombreTrabajador>Fernando</nombreTrabajador>
+            <dniTrabajador>55879988L</dniTrabajador>
+            <apellidosTrabajador>Carrasco Murillo</apellidosTrabajador>
+            <telefonoTrabajador>666777888</telefonoTrabajador>
+            <direccionTrabajador>Calle La Cuarta, Bilbao</direccionTrabajador>
+            <analista>78544898K</analista>
+        </programador>
+    </programadores>
+
+    <!--- CONTRATOS -->
+
+    <contratos>
+        <contrato>
+            <nombreProyecto>Panaderia Manolo</nombreProyecto>
+            <precio>6852.26</precio>
+            <fechaInicio>2015-02-20</fechaInicio>
+            <fechaFin>2015-11-05</fechaFin>
+            <dniCliente>11032393X</dniCliente>
+        </contrato>
+        <contrato>
+            <nombreProyecto>Floristeria Pepito</nombreProyecto>
+            <precio>3586.15</precio>
+            <fechaInicio>2016-11-05</fechaInicio>
+            <fechaFin>2017-01-15</fechaFin>
+            <dniCliente>44110022F</dniCliente>
+        </contrato>
+    </contratos>
+
+
+    <!--- CLIENTES -->
+
+    <clientes>
+        <cliente id="cli01">
+            <nombreCliente>Manolo</nombreCliente>
+            <dniCliente>11032393X</dniCliente>
+            <apellidosCliente>Cruz de la vega</apellidosCliente>
+            <direccionCliente>Callejon del 7</direccionCliente>
+            <telefonoCliente>943382941</telefonoCliente>
+            <contratosCliente>
+                <cont id="1">Panaderia Manolo</cont>
+            </contratosCliente>
+        </cliente>
+        <cliente id="cli02">
+            <nombreCliente>Pepe</nombreCliente>
+            <dniCliente>44110022F</dniCliente>
+            <apellidosCliente>Castillejo Caserón</apellidosCliente>
+            <direccionCliente>Calle Cuesta</direccionCliente>
+            <telefonoCliente>989556443</telefonoCliente>
+            <contratosCliente>
+                <cont id="1">Floristeria Pepito</cont>
+            </contratosCliente>
+        </cliente>
+        <cliente id="cli03">
+            <nombreCliente>Jose Luis</nombreCliente>
+            <dniCliente>46274888H</dniCliente>
+            <apellidosCliente>Gutierrez Hernandez</apellidosCliente>
+            <direccionCliente>Calle Melancolia 19, Madrid</direccionCliente>
+            <telefonoCliente>958245899</telefonoCliente>
+            <contratosCliente></contratosCliente>
+        </cliente>
+    </clientes>
+
+    <!--- INCIDENCIAS -->
+
+    <incidencias>
+        <incidencia>
+            <numeroIncidencia>1598</numeroIncidencia>
+            <prioridadIncidencia>Leve</prioridadIncidencia>
+            <asuntoIncidencia>Algoritmo erroneo</asuntoIncidencia>
+            <descripcionIncidencia>Pues eso, mal algoritmo, no va ni para atrás</descripcionIncidencia>
+            <codAdmin>2544</codAdmin>
+            <estadoIncidencia>Abierta</estadoIncidencia>
+        </incidencia>
+        <incidencia>
+            <numeroIncidencia>3584</numeroIncidencia>
+            <prioridadIncidencia>Media</prioridadIncidencia>
+            <asuntoIncidencia>Fallo de Login</asuntoIncidencia>
+            <descripcionIncidencia>Imposible logearse en la web</descripcionIncidencia>
+            <codAdmin>1578</codAdmin>
+            <estadoIncidencia>Abierta</estadoIncidencia>
+        </incidencia>
+        <incidencia>
+            <numeroIncidencia>2789</numeroIncidencia>
+            <prioridadIncidencia>Grave</prioridadIncidencia>
+            <asuntoIncidencia>Fallo al guardar Pedido</asuntoIncidencia>
+            <descripcionIncidencia>El carrito de la compra no guarda los pedidos para poseteriores sesiones</descripcionIncidencia>
+            <codAdmin>1578</codAdmin>
+            <estadoIncidencia>Cerrada</estadoIncidencia>
+        </incidencia>
+    </incidencias>
+
+    <!--- PUBLICIDADES -->
+
+    <publicidades>
+        <publicidad>
+            <codigoPublicidad>4856</codigoPublicidad>
+            <tipo>Email</tipo>
+            <descripcionPublicidad>Envío de Spam</descripcionPublicidad>
+            <codigoAdministrador>2544</codigoAdministrador>
+            <dniCliente>11032393X</dniCliente>
+        </publicidad>
+        <publicidad>
+            <codigoPublicidad>2569</codigoPublicidad>
+            <tipo>Twitter</tipo>
+            <descripcionPublicidad>Twitteo masivo a followers</descripcionPublicidad>
+            <codigoAdministrador>3245</codigoAdministrador>
+            <dniCliente>44110022F</dniCliente>
+        </publicidad>
+        <publicidad>
+            <codigoPublicidad>1958</codigoPublicidad>
+            <tipo>Facebook</tipo>
+            <descripcionPublicidad>Cuestionario informal</descripcionPublicidad>
+            <codigoAdministrador>2544</codigoAdministrador>
+            <dniCliente>44110022F</dniCliente>
+        </publicidad>
+        <publicidad>
+            <codigoPublicidad>4598</codigoPublicidad>
+            <tipo>Facebook</tipo>
+            <descripcionPublicidad>Invitaciones a compartir</descripcionPublicidad>
+            <codigoAdministrador>2544</codigoAdministrador>
+            <dniCliente>44110022F</dniCliente>
+        </publicidad>
+    </publicidades>
+
+    <!--- PROYECTOS -->
+
+    <proyectos>
+        <proyecto>
+            <nombreProyecto>Panaderia Manolo</nombreProyecto>
+            <analistasProyecto>
+                <analistaPro>98785877A</analistaPro>
+            </analistasProyecto>
+            <tareasProyecto>
+                <tareaPro>4589</tareaPro>
+                <tareaPro>2478</tareaPro>
+            </tareasProyecto>
+        </proyecto>
+        <proyecto>
+            <nombreProyecto>Floristeria Pepito</nombreProyecto>
+            <analistasProyecto>
+                <analistaPro>78544898K</analistaPro>
+            </analistasProyecto>
+            <tareasProyecto>
+                <tareaPro>1220</tareaPro>
+            </tareasProyecto>
+        </proyecto>
+    </proyectos>
+
+
+    <!--- TAREAS -->
+
+    <tareas>
+        <tarea>
+            <codigoTarea>4589</codigoTarea>
+            <nombreProyecto>Pescaderia Manolo</nombreProyecto>
+            <fechaInicio>2015-02-25</fechaInicio>
+            <fechaFin>2015-03-25</fechaFin>
+            <nombreTarea>Desarrollo Interfaz básica</nombreTarea>
+            <estado>Empezado</estado>
+        </tarea>
+        <tarea>
+            <codigoTarea>2478</codigoTarea>
+            <nombreProyecto>Panaderia Manolo</nombreProyecto>
+            <fechaInicio>2015-04-10</fechaInicio>
+            <fechaFin>2015-07-15</fechaFin>
+            <nombreTarea>Testeo UX de la interfaz</nombreTarea>
+            <estado>Avanzado</estado>
+        </tarea>
+        <tarea>
+            <codigoTarea>1220</codigoTarea>
+            <nombreProyecto>Floristeria Pepito</nombreProyecto>
+            <fechaInicio>2016-12-10</fechaInicio>
+            <fechaFin>2016-12-20</fechaFin>
+            <nombreTarea>Encriptación de contraseñas</nombreTarea>
+            <estado>Finalizado</estado>
+        </tarea>
+    </tareas>
+
+
+</consultoria>
