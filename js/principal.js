@@ -177,7 +177,7 @@ function cargarTareas(arrayTareas) {
         var nomTar = arrayTareas[i].children[4].textContent;
         var estTar = arrayTareas[i].children[5].textContent;
 
-        var oTarea = new Tarea(codTar, nomProTar, fIniTar, fFinTar, nomTar, estTar);
+        var oTarea = new Tarea(codTar, nomProTar, fIniTar, nomTar,fFinTar , estTar);
         oConsultoria.anadeTarea(oTarea);
     }
 
@@ -301,6 +301,8 @@ document.getElementById('selectAnalis_Mod').addEventListener('change', muestraDa
 document.getElementById('selectListaPub_Cli').addEventListener('change', listaPubliPorCliente, true);
 
 document.getElementById('selectListaPub_Admin').addEventListener('change', listaPubliPorAdmin, true);
+
+document.getElementById('selectTarea_ModTarea').addEventListener('change', muestraDatosDeEstaTarea, true);
 
 //Ocultar inputs
 function mostrarCampos(selector) {
@@ -615,6 +617,11 @@ function modificaTarea() {
     document.getElementById('divFormModificaTarea').style.display = 'block';
     document.getElementById('formuModificaTarea').reset();
     comprobarCampos('formuModificaTarea');
+    vaciarCombo('#selectTarea_ModTarea');
+    cargaComboTareas("#selectTarea_ModTarea");
+    vaciarCombo('#nombreProyectoSelectMod');
+    cargaComboProyectos("#nombreProyectoSelectMod");
+    ocultarCampos("formuModificaTarea");
 }
 
 function nuevoAnalista() {
@@ -3100,6 +3107,168 @@ function validaFormCrearTarea() {
 
 }
 
+
+
+
+
+// MODIFICA TAREA ************************************************
+// ********************************************************************
+document.querySelector('#modificarTarea').addEventListener('click', validaFormModificaTarea, false);
+
+function validaFormModificaTarea() {
+
+
+    var bValido = true;
+    var sErrores = "";
+
+
+
+    var nombre = document.getElementById('nombreTareaMod').value.trim();
+    document.getElementById('nombreTareaMod').value = nombre;
+
+    if (validaNombre(nombre) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificaTarea').nombreTareaMod.focus();
+        }
+        sErrores += "NOMBRE de la Tarea incorrecta (formato: Máx 30 caracteres)";
+
+        //Marcar error
+        document.getElementById('formuModificaTarea').nombreTareaMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById('formuModificaTarea').nombreTareaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    if (document.querySelector('#nombreProyectoSelectMod').selectedIndex == 0) {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.querySelector('#nombreProyectoSelectMod').focus();
+        }
+        sErrores += "<br><br> Proyecto no seleccionado. Debe seleccionar uno)";
+
+        //Marcar error
+        document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large error";
+
+    } else {
+        //Desmarcar error
+        document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large";  //Pone esta class a la etiqueta.
+        var nombreProyecto = document.getElementById('nombreProyectoSelect').value;
+        var proyecto = oConsultoria.dameProyecto(nombreProyecto);
+
+    }
+
+
+
+    var fechaInicio = document.getElementById('fechainiMod').value.trim();
+    document.getElementById('fechainiMod').value = fechaInicio;
+
+
+    if (validaFechas(fechaInicio) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuNuevaTarea').fechainiMod.focus();
+        }
+        sErrores += "<br><br> FECHA INICIO de la Tarea incorrecto (formato: 2015-05-01)";
+
+        //Marcar error
+        document.getElementById('formuModificaTarea').fechainiMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById('formuModificaTarea').fechainiMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+    var fechaFin = document.getElementById('fechafinMod').value.trim();
+    document.getElementById('fechafinMod').value = fechaFin;
+
+    if (validaFechas(fechaFin) == false) {
+
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            document.getElementById('formuModificaTarea').fechafinMod.focus();
+        }
+        sErrores += "<br><br> FECHA FIN de la Tarea incorrecto (formato: 2015-05-01)";
+
+        //Marcar error
+        document.getElementById('formuModificaTarea').fechafinMod.className = "form-control input-md error";
+
+    } else {
+        //Desmarcar error
+        document.getElementById('formuModificaTarea').fechafinMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+    }
+
+
+
+
+
+    if (bValido == false) {
+        //Mostrar errores
+        toastr.error(sErrores);
+    } else {
+        //Aqui estan los datos correctos, los guardamos
+        //Recoger datos del formulario
+
+
+        //Comprobar que fecha fin es posterior a fecha inicio
+        var fI = new Date(fechaInicio);
+        var fF = new Date(fechaFin);
+
+        if (fI < fF)
+        {
+
+            //Desmarcar error
+            document.getElementById('formuModificaTarea').fechaFin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+
+            var sMensaje = "¡ Tarea Añadida con éxito !";
+
+
+            var estado=document.getElementsByName("radioEstadoMod");
+            // Recorremos todos los valores del radio button para encontrar el
+            // seleccionado
+            for(var i=0;i<estado.length;i++)
+            {
+                if(estado[i].checked)
+                    var resultadoestado=estado[i].value;
+            }
+
+
+            var codTarea = document.querySelector('#nTareaCodigoMod').value;
+            var oTarea=oConsultoria.dameTarea(codTarea);
+
+            oTarea.nombreTarea=nombre;
+            oTarea.fechaInicio=fechaInicio;
+            oTarea.nombreProyecto=proyecto;
+            oTarea.fechaFin=fechaFin;
+            oTarea.estado=resultadoestado;
+
+
+
+            toastr.success(sMensaje);
+            modificaTarea();
+        }
+        else
+        {
+            toastr.error("Error, la fecha fin es anterior a la fecha inicio introducida.");
+            //Marcar error
+            document.getElementById('formuModificaTarea').fechaFin.className = "form-control input-md error";
+        }
+    }
+
+
+
+
+}
+
+
+
 // ***********************************************************************************************
 // FUNCIONES VARIAS ******************************************************************************
 //************************************************************************************************
@@ -3476,7 +3645,7 @@ function muestraDatosDeEsteProyecto() {
     var select = document.querySelector('#selectProy_ModProy');
 
     if (select.selectedIndex != 0) {
-
+        comprobarCampos("formuModificaProyecto");
         var nombre = select.value;
         var oObjeto = oConsultoria.dameProyecto(nombre);
 
@@ -3534,6 +3703,100 @@ var selecTareas = document.querySelector("#tareasProyMod").options;
 
 
 }
+function muestraDatosDeEstaTarea() {
+
+
+
+    //Obtener valor del option seleccionado
+    var select = document.querySelector('#selectTarea_ModTarea');
+
+    if (select.selectedIndex != 0) {
+        comprobarCampos("formuModificaTarea");
+        var cod = select.value;
+        var oObjeto = oConsultoria.dameTarea(cod);
+
+
+        var codigo = document.querySelector('#nTareaCodigoMod');
+        codigo.value = cod;
+
+        //Extraer los valores de sus atributos y colocarlos en los campos de texto.
+
+        var nom = document.querySelector('#nombreTareaMod');
+        nom.value = oObjeto.nombreTarea;
+        nom.removeAttribute('readonly');
+
+        var fechaini = document.querySelector('#fechainiMod');
+        fechaini.value = oObjeto.fechaInicio;
+        fechaini.removeAttribute('readonly');
+
+        var fechafin = document.querySelector('#fechafinMod');
+        fechafin.value = oObjeto.fechaFin;
+        fechafin.removeAttribute('readonly');
+
+
+
+
+        var estado=document.getElementsByName("radioEstadoMod");
+        // Recorremos todos los valores del radio button para encontrar el
+        // seleccionado
+        for(var i=0;i<estado.length;i++)
+        {
+            if(estado[i].value==oObjeto.estado){
+
+                estado[i].checked = true;
+                //estado.removeAttribute('readonly');
+            }
+
+        }
+
+
+        document.querySelector("#nombreProyectoSelectMod").removeAttribute("disabled");
+        var selecProyec = document.querySelector("#nombreProyectoSelectMod").options;
+
+//borramos por si estaba seleccionado alguno anteriormente
+        for (var t = 0; t < selecProyec.length; t++)
+        {
+            selecProyec[t].selected=false;
+        }
+
+
+        for (var s = 0; s < selecProyec.length; s++) {
+
+            if(selecProyec[s].value ==  oObjeto.nombreProyecto )
+                selecProyec[s].selected=true;
+
+        }
+
+
+
+    }
+    else
+    {
+        modificaTarea();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 //Completa los campos de texto
 function muestraDatosDeEsteAnalista() {

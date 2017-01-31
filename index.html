@@ -1144,7 +1144,7 @@
                     <label class="col-md-4 control-label" for="nTareaCodigoMod">Código</label>
                     <div class="col-md-4">
                         <div class="input-group">
-                            <input id="nTareaCodigoMod" name="nTareaCodigo" class="form-control" placeholder="Código" type="text" required="" disabled="disabled" >
+                            <input id="nTareaCodigoMod" name="nTareaCodigoMod" class="form-control" placeholder="Código" type="text" required="" disabled="disabled" >
                             <span class="input-group-addon" href="#" id="eventGenerarCodigoTareaMod">Código</span>
                         </div>
 
@@ -1154,9 +1154,9 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="Tarea">Nombre</label>
+                    <label class="col-md-4 control-label" for="nombreTareaMod">Nombre</label>
                     <div class="col-md-4">
-                        <input id="nombreTareaMod" name="Tarea" type="text" placeholder="Nombre Tarea" class="form-control input-md" required="">
+                        <input id="nombreTareaMod" name="nombreTareaMod" type="text" placeholder="Nombre Tarea" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -1165,27 +1165,26 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
                     <div class="col-md-4">
-                        <input id="fechainiMod" name="fechaini" type="date" placeholder="Fecha inicial" class="form-control input-md" required="">
+                        <input id="fechainiMod" name="fechainiMod" type="text" placeholder="Fecha inicial" class="form-control input-md" required="">
 
                     </div>
                 </div>
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="nombreProyectoSelect">Nombre Proyecto</label>
+                    <label class="col-md-4 control-label" for="nombreProyectoSelectMod">Nombre Proyecto</label>
                     <div class="col-md-4">
-                        <select id="nombreProyectoSelectMod" name="nombreProyectoSelect" class="form-control">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
+                        <select id="nombreProyectoSelectMod" name="nombreProyectoSelectMod" class="form-control">
+
                         </select>
                     </div>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="fechafin">Fecha Fin</label>
+                    <label class="col-md-4 control-label" for="fechafinMod">Fecha Fin</label>
                     <div class="col-md-4">
-                        <input id="fechafinMod" name="fechafin" type="date" placeholder="Fecha final" class="form-control input-md" required="">
+                        <input id="fechafinMod" name="fechafinMod" type="text" placeholder="Fecha final" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -1195,23 +1194,23 @@
                     <label class="col-md-4 control-label">Estado</label>
                     <div class="col-md-5">
                         <label class="radio-inline" for="radioEstadoMod-0">
-                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-0" value="Sin Hacer" checked="checked">
+                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-0" value="Sin Hacer" checked="checked" readonly>
                             Sin Hacer
                         </label>
                         <label class="radio-inline" for="radioEstadoMod-1">
-                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-1" value="Empezado">
+                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-1" value="Empezado" readonly>
                             Empezado
                         </label>
                         <label class="radio-inline" for="radioEstadoMod-2">
-                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-2" value="Avanzado">
+                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-2" value="Avanzado" readonly>
                             Avanzado
                         </label>
                         <label class="radio-inline" for="radioEstadoMod-3">
-                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-3" value="Casi Terminado">
+                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-3" value="Casi Terminado" readonly>
                             Casi Terminado
                         </label>
                         <label class="radio-inline" for="radioEstadoMod-4">
-                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-4" value="Finalizado">
+                            <input type="radio" name="radioEstadoMod" id="radioEstadoMod-4" value="Finalizado" readonly>
                             Finalizado
                         </label>
                     </div>
