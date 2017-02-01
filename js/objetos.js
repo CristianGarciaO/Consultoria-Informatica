@@ -533,7 +533,7 @@ Consultoria.prototype.listarIncidencias = function(filtro){
             oInfo[i] = new Array();
             //Cargar los datos
             oInfo[i][0] = this.incidencias[i].numeroIncidencia;
-            oInfo[i][1] = this.incidencias[i].prioridadIncidencia
+            oInfo[i][1] = this.incidencias[i].prioridadIncidencia;
             oInfo[i][2] = this.incidencias[i].asuntoIncidencia;
             oInfo[i][3] = this.incidencias[i].descripcionIncidencia;
             oInfo[i][4] = this.incidencias[i].codAdmin;
@@ -548,7 +548,7 @@ Consultoria.prototype.listarIncidencias = function(filtro){
                 oInfo[j] = new Array();
                 //Cargar los datos
                 oInfo[j][0] = this.incidencias[j].numeroIncidencia;
-                oInfo[j][1] = this.incidencias[j].prioridadIncidencia
+                oInfo[j][1] = this.incidencias[j].prioridadIncidencia;
                 oInfo[j][2] = this.incidencias[j].asuntoIncidencia;
                 oInfo[j][3] = this.incidencias[j].descripcionIncidencia;
                 oInfo[j][4] = this.incidencias[j].codAdmin;
@@ -613,6 +613,41 @@ Consultoria.prototype.dameProyecto = function (sNombreProyecto) {
     }
     return oObjeto;
 };
+
+Consultoria.prototype.listarProyectos = function(){
+    var oInfo = [];
+    var oCabecera = ["Nombre", "Analista(s)", "Tarea(s)"];
+
+    for(var i=0;i<this.proyectos.length; i++){
+        //Meter un array en otro para hacerlo bidimensional
+        oInfo[i] = [];
+        //Cargar los datos
+        oInfo[i][0] = this.proyectos[i].nombreProyecto;
+        oInfo[i][1]="";
+        oInfo[i][2]="";
+        for(var x=0;x<this.proyectos[i].analistasProyecto.length;x++){
+            if(x!=0)
+                oInfo[i][1]+=",";
+            oInfo[i][1] += this.proyectos[i].analistasProyecto[x].nombreTrabajador;
+        }
+
+        for(var y=0;y<this.proyectos[i].tareasProyecto.length;y++){
+            if(y!=0)
+                oInfo[i][2]+=",";
+            oInfo[i][2] += this.proyectos[i].tareasProyecto[y].nombreTarea;
+        }
+
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+};
+
+
+
+
 // TAREAS
 
 function Tarea(iCodigo, sNombreTarea, dFechaIni, oProyecto, dFechaFin, bEstado) {
@@ -641,7 +676,27 @@ Consultoria.prototype.dameTarea = function (codigoTarea) {
     }
     return oObjeto;
 };
+Consultoria.prototype.listarTareas = function(){
+    var oInfo = new Array();
+    var oCabecera = ["Código", "Nombre", "Fecha Inicial", "Proyecto", "Fecha Final", "Estado"];
 
+    for(var i=0;i<this.tareas.length; i++){
+        //Meter un array en otro para hacerlo bidimensional
+        oInfo[i] = new Array();
+        //Cargar los datos
+        oInfo[i][0] = this.tareas[i].codigoTarea;
+        oInfo[i][1] = this.tareas[i].nombreTarea;
+        oInfo[i][2] = this.tareas[i].fechaInicio;
+        oInfo[i][3] = this.tareas[i].nombreProyecto;
+        oInfo[i][4] = this.tareas[i].fechaFin;
+        oInfo[i][5] = this.tareas[i].estado;
+    }
+
+    var arraylistar = [];
+    arraylistar[0] = oCabecera;
+    arraylistar[1] = oInfo;
+    return arraylistar;
+};
 //ANALISTA
 
 function Analista(nombreTrabajador, dniTrabajador, apellidosTrabajador, telefonoTrabajador, direccionTrabajador, oProgramadores) {

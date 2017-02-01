@@ -177,7 +177,7 @@ function cargarTareas(arrayTareas) {
         var nomTar = arrayTareas[i].children[4].textContent;
         var estTar = arrayTareas[i].children[5].textContent;
 
-        var oTarea = new Tarea(codTar, nomProTar, fIniTar, nomTar,fFinTar , estTar);
+        var oTarea = new Tarea(codTar,nomTar, fIniTar,nomProTar ,fFinTar , estTar);
         oConsultoria.anadeTarea(oTarea);
     }
 
@@ -264,6 +264,11 @@ document.getElementById('listaTodaPublicidad').addEventListener('click', listaPu
 document.getElementById('limpiarTablasPubli').addEventListener('click', limpiarTablasPublicidad, false);
 
 document.getElementById('eventlistarContrato').addEventListener('click', listaContrato, false);
+
+document.getElementById('eventListarProyecto').addEventListener('click', listaProyecto, false);
+
+document.getElementById('eventListarTareas').addEventListener('click', listaTareas, false);
+
 
 /*
 function actualizarFechaFin() {
@@ -1921,7 +1926,7 @@ function validaFormNuevoProgramador() {
         //Desmarcar error
         document.querySelector('#selectAnalistaProgr').className = "form-control input-large";  //Pone esta class a la etiqueta.
         var dniAnalista = document.getElementById('selectAnalistaProgr').value;
-        var analista = oConsultoria.dameProgramador(dniAnalista);
+        var analista = oConsultoria.dameAnalista(dniAnalista);
 
     }
     if (bValido == false) {
@@ -1936,7 +1941,7 @@ function validaFormNuevoProgramador() {
 
         if (!oConsultoria.existeTrabajador(dni)) {
 
-            var oProgramador = new Programador(nombre, dni, apellido, tlf, direccion,analista);
+            var oProgramador = new Programador(nombre, dni, apellido, tlf, direccion,analista.dniTrabajador);
             sMensaje = "¡ Programador añadido con éxito !";
                 oConsultoria.anadeProgramador(oProgramador);
             toastr.success(sMensaje);
@@ -3088,7 +3093,7 @@ function validaFormCrearTarea() {
 
 
 
-            var oTarea = new Tarea(codTarea, nombre, fechaInicio,proyecto, fechaFin,resultadoestado);
+            var oTarea = new Tarea(codTarea, nombre, fechaInicio,proyecto.nombreProyecto, fechaFin,resultadoestado);
 
             oConsultoria.anadeTarea(oTarea);
             toastr.success(sMensaje);
@@ -3122,145 +3127,149 @@ function validaFormModificaTarea() {
     var sErrores = "";
 
 
+    var eleccion = document.querySelector("#selectTarea_ModTarea");
+    if(eleccion.selectedIndex != 0) {
+        var nombre = document.getElementById('nombreTareaMod').value.trim();
+        document.getElementById('nombreTareaMod').value = nombre;
 
-    var nombre = document.getElementById('nombreTareaMod').value.trim();
-    document.getElementById('nombreTareaMod').value = nombre;
+        if (validaNombre(nombre) == false) {
 
-    if (validaNombre(nombre) == false) {
-
-        if (bValido == true) {
-            bValido = false;
-            //Este campo obtiene el foco
-            document.getElementById('formuModificaTarea').nombreTareaMod.focus();
-        }
-        sErrores += "NOMBRE de la Tarea incorrecta (formato: Máx 30 caracteres)";
-
-        //Marcar error
-        document.getElementById('formuModificaTarea').nombreTareaMod.className = "form-control input-md error";
-
-    } else {
-        //Desmarcar error
-        document.getElementById('formuModificaTarea').nombreTareaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
-    }
-
-    if (document.querySelector('#nombreProyectoSelectMod').selectedIndex == 0) {
-        if (bValido == true) {
-            bValido = false;
-            //Este campo obtiene el foco
-            document.querySelector('#nombreProyectoSelectMod').focus();
-        }
-        sErrores += "<br><br> Proyecto no seleccionado. Debe seleccionar uno)";
-
-        //Marcar error
-        document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large error";
-
-    } else {
-        //Desmarcar error
-        document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large";  //Pone esta class a la etiqueta.
-        var nombreProyecto = document.getElementById('nombreProyectoSelect').value;
-        var proyecto = oConsultoria.dameProyecto(nombreProyecto);
-
-    }
-
-
-
-    var fechaInicio = document.getElementById('fechainiMod').value.trim();
-    document.getElementById('fechainiMod').value = fechaInicio;
-
-
-    if (validaFechas(fechaInicio) == false) {
-
-        if (bValido == true) {
-            bValido = false;
-            //Este campo obtiene el foco
-            document.getElementById('formuNuevaTarea').fechainiMod.focus();
-        }
-        sErrores += "<br><br> FECHA INICIO de la Tarea incorrecto (formato: 2015-05-01)";
-
-        //Marcar error
-        document.getElementById('formuModificaTarea').fechainiMod.className = "form-control input-md error";
-
-    } else {
-        //Desmarcar error
-        document.getElementById('formuModificaTarea').fechainiMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
-    }
-
-    var fechaFin = document.getElementById('fechafinMod').value.trim();
-    document.getElementById('fechafinMod').value = fechaFin;
-
-    if (validaFechas(fechaFin) == false) {
-
-        if (bValido == true) {
-            bValido = false;
-            //Este campo obtiene el foco
-            document.getElementById('formuModificaTarea').fechafinMod.focus();
-        }
-        sErrores += "<br><br> FECHA FIN de la Tarea incorrecto (formato: 2015-05-01)";
-
-        //Marcar error
-        document.getElementById('formuModificaTarea').fechafinMod.className = "form-control input-md error";
-
-    } else {
-        //Desmarcar error
-        document.getElementById('formuModificaTarea').fechafinMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
-    }
-
-
-
-
-
-    if (bValido == false) {
-        //Mostrar errores
-        toastr.error(sErrores);
-    } else {
-        //Aqui estan los datos correctos, los guardamos
-        //Recoger datos del formulario
-
-
-        //Comprobar que fecha fin es posterior a fecha inicio
-        var fI = new Date(fechaInicio);
-        var fF = new Date(fechaFin);
-
-        if (fI < fF)
-        {
-
-            //Desmarcar error
-            document.getElementById('formuModificaTarea').fechaFin.className = "form-control input-md";  //Pone esta class a la etiqueta.
-
-            var sMensaje = "¡ Tarea Añadida con éxito !";
-
-
-            var estado=document.getElementsByName("radioEstadoMod");
-            // Recorremos todos los valores del radio button para encontrar el
-            // seleccionado
-            for(var i=0;i<estado.length;i++)
-            {
-                if(estado[i].checked)
-                    var resultadoestado=estado[i].value;
+            if (bValido == true) {
+                bValido = false;
+                //Este campo obtiene el foco
+                document.getElementById('formuModificaTarea').nombreTareaMod.focus();
             }
+            sErrores += "NOMBRE de la Tarea incorrecta (formato: Máx 30 caracteres)";
 
-
-            var codTarea = document.querySelector('#nTareaCodigoMod').value;
-            var oTarea=oConsultoria.dameTarea(codTarea);
-
-            oTarea.nombreTarea=nombre;
-            oTarea.fechaInicio=fechaInicio;
-            oTarea.nombreProyecto=proyecto;
-            oTarea.fechaFin=fechaFin;
-            oTarea.estado=resultadoestado;
-
-
-
-            toastr.success(sMensaje);
-            modificaTarea();
-        }
-        else
-        {
-            toastr.error("Error, la fecha fin es anterior a la fecha inicio introducida.");
             //Marcar error
-            document.getElementById('formuModificaTarea').fechaFin.className = "form-control input-md error";
+            document.getElementById('formuModificaTarea').nombreTareaMod.className = "form-control input-md error";
+
+        } else {
+            //Desmarcar error
+            document.getElementById('formuModificaTarea').nombreTareaMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
         }
+
+        if (document.querySelector('#nombreProyectoSelectMod').selectedIndex == 0) {
+            if (bValido == true) {
+                bValido = false;
+                //Este campo obtiene el foco
+                document.querySelector('#nombreProyectoSelectMod').focus();
+            }
+            sErrores += "<br><br> Proyecto no seleccionado. Debe seleccionar uno)";
+
+            //Marcar error
+            document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large error";
+
+        } else {
+            //Desmarcar error
+            document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large";  //Pone esta class a la etiqueta.
+            var nombreProyecto = document.getElementById('nombreProyectoSelect').value;
+            var proyecto = oConsultoria.dameProyecto(nombreProyecto);
+
+        }
+
+
+        var fechaInicio = document.getElementById('fechainiMod').value.trim();
+        document.getElementById('fechainiMod').value = fechaInicio;
+
+
+        if (validaFechas(fechaInicio) == false) {
+
+            if (bValido == true) {
+                bValido = false;
+                //Este campo obtiene el foco
+                document.getElementById('formuNuevaTarea').fechainiMod.focus();
+            }
+            sErrores += "<br><br> FECHA INICIO de la Tarea incorrecto (formato: 2015-05-01)";
+
+            //Marcar error
+            document.getElementById('formuModificaTarea').fechainiMod.className = "form-control input-md error";
+
+        } else {
+            //Desmarcar error
+            document.getElementById('formuModificaTarea').fechainiMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+        }
+
+        var fechaFin = document.getElementById('fechafinMod').value.trim();
+        document.getElementById('fechafinMod').value = fechaFin;
+
+        if (validaFechas(fechaFin) == false) {
+
+            if (bValido == true) {
+                bValido = false;
+                //Este campo obtiene el foco
+                document.getElementById('formuModificaTarea').fechafinMod.focus();
+            }
+            sErrores += "<br><br> FECHA FIN de la Tarea incorrecto (formato: 2015-05-01)";
+
+            //Marcar error
+            document.getElementById('formuModificaTarea').fechafinMod.className = "form-control input-md error";
+
+        } else {
+            //Desmarcar error
+            document.getElementById('formuModificaTarea').fechafinMod.className = "form-control input-md";  //Pone esta class a la etiqueta.
+        }
+    }else {
+        if (bValido == true) {
+            bValido = false;
+            //Este campo obtiene el foco
+            eleccion.focus();
+        }
+        sErrores += "Seleccione una Tarea para poder avanzar";
+
+        //Marcar error
+        eleccion.className = "form-control input-large error";
+
     }
+
+        if (bValido == false) {
+            //Mostrar errores
+            toastr.error(sErrores);
+        } else {
+            //Aqui estan los datos correctos, los guardamos
+            //Recoger datos del formulario
+
+
+            //Comprobar que fecha fin es posterior a fecha inicio
+            var fI = new Date(fechaInicio);
+            var fF = new Date(fechaFin);
+
+            if (fI < fF) {
+
+                //Desmarcar error
+               // document.getElementById('formuModificaTarea').fechaFin.className = "form-control input-md";  //Pone esta class a la etiqueta.
+
+                var sMensaje = "¡ Tarea Añadida con éxito !";
+
+
+                var estado = document.getElementsByName("radioEstadoMod");
+                // Recorremos todos los valores del radio button para encontrar el
+                // seleccionado
+                for (var i = 0; i < estado.length; i++) {
+                    if (estado[i].checked)
+                        var resultadoestado = estado[i].value;
+                }
+
+
+                var codTarea = document.querySelector('#nTareaCodigoMod').value;
+                var oTarea = oConsultoria.dameTarea(codTarea);
+
+                oTarea.nombreTarea = nombre;
+                oTarea.fechaInicio = fechaInicio;
+                oTarea.nombreProyecto = proyecto;
+                oTarea.fechaFin = fechaFin;
+                oTarea.estado = resultadoestado;
+
+
+                toastr.success(sMensaje);
+                modificaTarea();
+            }
+            else {
+                toastr.error("Error, la fecha fin es anterior a la fecha inicio introducida.");
+                //Marcar error
+                document.getElementById('formuModificaTarea').fechaFin.className = "form-control input-md error";
+            }
+        }
 
 
 
@@ -4002,9 +4011,33 @@ function listaContrato() {
     dibujarTabla(titulo,array[0], array[1]);
 }
 
+function listaProyecto() {
+
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
+
+    var array = oConsultoria.listarProyectos();
+    var titulo = "Proyectos";
+    dibujarTabla(titulo,array[0], array[1]);
+    
+}
 
 
+function listaTareas() {
+    
+    
+    ocultarFormularios();
+    document.getElementById('tablas').style.display = 'block';
 
+    var array = oConsultoria.listarTareas();
+    var titulo = "Proyectos";
+    dibujarTabla(titulo,array[0], array[1]);
+    
+    
+    
+    
+    
+}
 //TABLAS CON DOM *************************************************************************************
 
 function pintaTabla(titulo, oCabecera, array) {
