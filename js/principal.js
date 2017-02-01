@@ -3104,7 +3104,7 @@ function validaFormModificaTarea() {
         } else {
             //Desmarcar error
             document.querySelector('#nombreProyectoSelectMod').className = "form-control input-large";  //Pone esta class a la etiqueta.
-            var nombreProyecto = document.getElementById('nombreProyectoSelect').value;
+            var nombreProyecto = document.getElementById('nombreProyectoSelectMod').value;
             var proyecto = oConsultoria.dameProyecto(nombreProyecto);
 
         }
@@ -3197,7 +3197,7 @@ function validaFormModificaTarea() {
 
                 oTarea.nombreTarea = nombre;
                 oTarea.fechaInicio = fechaInicio;
-                oTarea.nombreProyecto = proyecto;
+                oTarea.nombreProyecto = proyecto.nombreProyecto;
                 oTarea.fechaFin = fechaFin;
                 oTarea.estado = resultadoestado;
 
