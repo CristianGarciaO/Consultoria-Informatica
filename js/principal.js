@@ -477,6 +477,8 @@ function listarPublicidadesFiltradas(){
     //Comprobar que los campos de texto no tengan la clase "error", si la tienen la elimina.
     comprobarCampos('formuListarPublicidad');
 
+    limpiarTablasPublicidad();
+
 }
 
 function nuevoContrato() {
@@ -3466,7 +3468,7 @@ function muestraDatosDeEsteContrato() {
 function cargarComboPublicidad(id) {
     var miCombo = document.querySelector(id);
     var oOption = document.createElement('option');
-    oOption.text = 'Seleccione un Contrato';
+    oOption.text = 'Seleccione una Publicidad';
     miCombo.add(oOption);
     for (var i = 0; i < oConsultoria.publicidades.length; i++) {
         var oOption = document.createElement('option');
@@ -4030,7 +4032,7 @@ function listaTareas() {
     document.getElementById('tablas').style.display = 'block';
 
     var array = oConsultoria.listarTareas();
-    var titulo = "Proyectos";
+    var titulo = "Tareas";
     dibujarTabla(titulo,array[0], array[1]);
     
     
