@@ -12,27 +12,13 @@
 
     <link  href="css/toastr.css" rel="stylesheet">
 
-
-    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-
     <link rel="stylesheet" href="css/styleMultilevel.css">
 
     <style>
-
-
         body{
-           /* background-image: url(Consultoría.png);
-            background-repeat: no-repeat;
-            background-position: 280px 30px;*/
             background-color: rgba(71, 182, 214, 0.52);
-
         }
-
     </style>
-
-
-
 
     <title>Consultoria CRAL</title>
 </head>
@@ -116,13 +102,8 @@
                                     <li><a id="eventNuevaPublicidad" href="#">Asignar Nueva Publicidad</a></li>
                                     <li><a id="eventEliminarPublicidad" href="#">Eliminar Publicidad</a></li>
                                     <li class="divider"></li>
-                                    <li >
-                                        <a id="eventListarPublicidad" href="#">Listar Publicidad</a>
-                                        <!--<ul class="dropdown-menu">-->
-                                            <!--<li><a href="#" id="eventListarPubliCliente">Por Cliente</a></li>-->
-                                            <!--<li><a href="#" id="eventListarPubliProyecto">Por Proyecto</a></li>-->
-                                            <!--<li><a  href="#" id="eventListarPublicidad">Todas</a></li>-->
-                                        <!--</ul>-->
+                                    <li>
+                                        <a id="eventListarPublicidad" href="#">PUBLICIDADES</a>
                                     </li>
                                 </ul>
                             </li>
@@ -166,7 +147,7 @@
                         </ul>
                     </li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </div>
 </div>
@@ -273,8 +254,6 @@
             </div>
 
             <hr>
-
-            <!-- AUTOCOMPLETAR LOS CAMPOS CON LOS DATOS DEL CLIENTE QUE SE HA SELECCIONADO PARA MODIFICAR -->
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="nombreCliente_ModCli">Nombre:</label>
@@ -392,10 +371,7 @@
         </form>
 
 
-
-
     </div>
-
 
     <!-- ********** CERRAR INCIDENCIA ********** -->
 
@@ -405,7 +381,6 @@
 
             <legend class="text-center">Cerrar Incidencia</legend>
 
-            <!-- SELECCIONAR UNA INCIDENCIA EXISTENTE -->
 
             <div  class="form-group botones">
                 <label class="col-md-4 control-label" for="incidencia_ModInc">Selecciona Incidencia:</label>
@@ -417,8 +392,6 @@
             </div>
 
             <hr>
-
-            <!-- Al seleccionar, los demas campos se autocompletan con los datos correspondientes a la incidencia seleccionada -->
 
             <div class="form-group oculto">
                 <label class="col-md-4 control-label" for="asun_ModInc">Asunto</label>
@@ -435,7 +408,7 @@
                 </div>
             </div>
 
-            <!-- Multiple Radios (inline) -->
+
             <div class="form-group oculto">
                 <label class="col-md-4 control-label">Prioridad: </label>
                 <div class="col-md-5 controls">
@@ -443,7 +416,7 @@
                 </div>
             </div>
 
-            <!-- Select Basic -->
+
             <div class="form-group oculto" >
                 <label class="col-md-4 control-label" for="administradores_ModInc">Administrador</label>
                 <div class="col-md-5 controls">
@@ -483,7 +456,6 @@
                 </div>
             </div>
 
-            <!-- Select Basic -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="cliente_NuePub">Selecciona Cliente:</label>
                 <div class="col-md-5">
@@ -512,7 +484,7 @@
                 </div>
             </div>
 
-            <!-- Textarea -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="descripcion_NuePub">Descripción</label>
                 <div class="col-md-5">
@@ -520,7 +492,7 @@
                 </div>
             </div>
 
-            <!-- Button (Double) -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="guardar_NuePub"></label>
                 <div class="col-md-8">
@@ -623,7 +595,7 @@
                 </div>
             </div>
 
-            <!-- Select Basic -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="cliente_NueCon">Selecciona Cliente:</label>
                 <div class="col-md-5">
@@ -633,7 +605,7 @@
                 </div>
             </div>
 
-            <!-- Text input-->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="precio_NueCon">Precio del Proyecto: </label>
                 <div class="col-md-5">
@@ -642,7 +614,7 @@
                 </div>
             </div>
 
-            <!-- Text input-->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="fechaIni_NueCon">Fecha Inicio:</label>
                 <div class="col-md-5">
@@ -651,7 +623,7 @@
                 </div>
             </div>
 
-            <!-- Text input-->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="fechaFin_NueCon">Fecha Fin:</label>
                 <div class="col-md-5">
@@ -690,7 +662,6 @@
                 </div>
             </div>
 
-            <!-- AL SELECCIONAR EL CONTRATO, EL RESTO DE CAMPOS DE DEBEN AUTOCOMPLETAR CON LOS DATOS DEL CONTRATO SELECCIONADO -->
 
 			<div id="nomCon" class="form-group oculto">
                 <label class="col-md-4 control-label" for="nombreProyecto_ModCon">Proyecto: </label>
@@ -832,9 +803,6 @@
 
             <hr>
 
-            <!-- AUTOCOMPLETAR LOS CAMPOS CON LOS DATOS DEL ADMIN SELECCIONADO-->
-
-
             <div class="form-group">
                 <label class="col-md-4 control-label" for="nombreAdmin_ModAdm">Nombre:</label>
                 <div class="col-md-5">
@@ -901,10 +869,10 @@
     <form class="form-horizontal" id="formuNuevoProyecto">
         <fieldset>
 
-            <!-- Form Name -->
+
             <legend class="text-center">Nuevo Proyecto</legend>
 
-            <!-- Text input-->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="nombreProyecto">Nombre</label>
                 <div class="col-md-4">
@@ -913,7 +881,7 @@
                 </div>
             </div>
 
-            <!-- Select Basic -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="tareasProyecto">Tareas</label>
                 <div class="col-md-4">
@@ -923,7 +891,7 @@
                 </div>
             </div>
 
-            <!-- Select Basic -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="analistasProyecto">Analistas</label>
                 <div class="col-md-4">
@@ -933,7 +901,7 @@
                 </div>
             </div>
 
-            <!-- Button -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="proyecto"></label>
                 <div class="col-md-4">
@@ -956,10 +924,10 @@
         <form class="form-horizontal" id="formuModificaProyecto">
             <fieldset>
 
-                <!-- Form Name -->
+
                 <legend class="text-center">Modificar Proyecto</legend>
 
-                <!-- Select Basic -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectProy_ModProy">Selecciona Proyecto</label>
                     <div class="col-md-4">
@@ -969,7 +937,7 @@
                     </div>
                 </div>
                 <hr>
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nombreProyecto_modPr">Nombre</label>
                     <div class="col-md-4">
@@ -978,7 +946,7 @@
                     </div>
                 </div>
 
-                <!-- Select Basic -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="tareasProyMod">Tareas</label>
                     <div class="col-md-4">
@@ -988,7 +956,7 @@
                     </div>
                 </div>
 
-                <!-- Select Basic -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="analistasProyMod">Analistas</label>
                     <div class="col-md-4">
@@ -998,7 +966,7 @@
                     </div>
                 </div>
 
-                <!-- Button -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="proyecto"></label>
                     <div class="col-md-4">
@@ -1022,7 +990,7 @@
         <form class="form-horizontal" id="formuNuevaTarea">
             <fieldset>
 
-                <!-- Form Name -->
+
                 <legend class="text-center">Nueva Tarea</legend>
 
                 <div class="form-group">
@@ -1037,7 +1005,7 @@
                 </div>
 
 
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nombreTarea">Nombre</label>
                     <div class="col-md-4">
@@ -1046,7 +1014,7 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
                     <div class="col-md-4">
@@ -1055,7 +1023,7 @@
                     </div>
                 </div>
 
-                <!-- Select Basic -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nombreProyectoSelect">Nombre Proyecto</label>
                     <div class="col-md-4">
@@ -1065,7 +1033,7 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechafin">Fecha Fin</label>
                     <div class="col-md-4">
@@ -1074,7 +1042,7 @@
                     </div>
                 </div>
 
-                <!-- Multiple Radios (inline) -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label">Estado</label>
                     <div class="col-md-5">
@@ -1126,7 +1094,7 @@
         <form class="form-horizontal" id="formuModificaTarea">
             <fieldset>
 
-                <!-- Form Name -->
+
                 <legend class="text-center">Modificar Tarea</legend>
 
                 <div class="form-group">
@@ -1152,7 +1120,7 @@
                 </div>
 
 
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nombreTareaMod">Nombre</label>
                     <div class="col-md-4">
@@ -1161,7 +1129,7 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechaini">Fecha Inicial</label>
                     <div class="col-md-4">
@@ -1170,7 +1138,6 @@
                     </div>
                 </div>
 
-                <!-- Select Basic -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="nombreProyectoSelectMod">Nombre Proyecto</label>
                     <div class="col-md-4">
@@ -1180,7 +1147,7 @@
                     </div>
                 </div>
 
-                <!-- Text input-->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="fechafinMod">Fecha Fin</label>
                     <div class="col-md-4">
@@ -1189,7 +1156,7 @@
                     </div>
                 </div>
 
-                <!-- Multiple Radios (inline) -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label">Estado</label>
                     <div class="col-md-5">
@@ -1240,7 +1207,7 @@
     <form class="form-horizontal" id="formuNuevoAnalista">
         <fieldset>
 
-            <!-- Form Name -->
+
             <legend class="text-center">Analista</legend>
 
 
@@ -1288,7 +1255,6 @@
                 </div>
             </div>
 
-            <!-- Select Multiple -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="selectPrograAnalista">Selecciona Programador(es)</label>
                 <div class="col-md-4">
@@ -1316,10 +1282,10 @@
         <form class="form-horizontal" id="formuModificaAnalista">
             <fieldset>
 
-                <!-- Form Name -->
+
                 <legend class="text-center">Analista</legend>
 
-                <!-- Select Basic -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectAnalis_Mod">Analista</label>
                     <div class="col-md-4">
@@ -1374,7 +1340,7 @@
 
                     </div>
                 </div>
-                <!-- Select Multiple -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectPrograAnalistaModifica">Selecciona Programador(es)</label>
                     <div class="col-md-4">
@@ -1401,7 +1367,7 @@
         <form class="form-horizontal" id="formuNuevoProgramador">
             <fieldset>
 
-                <!-- Form Name -->
+
                 <legend class="text-center">Programador</legend>
 
 
@@ -1449,7 +1415,7 @@
                     </div>
                 </div>
 
-                <!-- Select Multiple -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectPrograAnalista">Selecciona Analista</label>
                     <div class="col-md-4">
@@ -1477,11 +1443,11 @@
         <form class="form-horizontal" id="formuModificaProgramador">
             <fieldset>
 
-                <!-- Form Name -->
+
                 <legend class="text-center">Programador</legend>
 
 
-                <!-- Select Basic -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectProgram_Mod">Programador:</label>
                     <div class="col-md-4">
@@ -1537,7 +1503,7 @@
                     </div>
                 </div>
 
-                <!-- Select Multiple -->
+
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectAnalistaProgrMod">Selecciona Analista(s)</label>
                     <div class="col-md-4">

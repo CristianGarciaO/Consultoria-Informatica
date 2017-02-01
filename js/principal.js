@@ -21,7 +21,6 @@ cargaDatos();
 
 function cargaDatos() {
 
-    // var oXML = loadXMLDoc("datosConsultoria.xml");
     cargarAdministradores(oXML.getElementsByTagName('administrador'));
     cargarProgramadores(oXML.getElementsByTagName('programador'));
     cargarAnalistas(oXML.querySelectorAll('analistas analista'));
@@ -64,7 +63,7 @@ function cargarAnalistas(arrayAnalistas) {
         for (var j = 0; j < listaProgAna.length; j++)
         {
             proAna[j] = oConsultoria.dameProgramador(listaProgAna[j].textContent);
-           // proAna.push(listaProgAna[j].textContent);
+
         }
 
         var oAnalista = new Analista(nomAna, dniAna, apeAna, tlfAna, dirAna, proAna);
@@ -194,8 +193,6 @@ function cargarContratos(arrayContratos) {
 
         var oContrato = new Contrato(nomCon, preCon, fIniCon, fFinCon, dniCliCon);
 
-        // var oCliente = oConsultoria.dameCliente(dniCliCon);
-        // oCliente.contratosCliente.push(nomCon);
         oConsultoria.anadeContrato(oContrato);
     }
 
@@ -271,6 +268,7 @@ document.getElementById('eventListarTareas').addEventListener('click', listaTare
 
 
 /*
+
 function actualizarFechaFin() {
 
     var fechaInicial = document.getElementById('fechaini').value;
@@ -280,9 +278,6 @@ function actualizarFechaFin() {
 document.getElementById('fechaini').addEventListener('change', actualizarFechaFin, false);
 
 */
-//CREACION DE OBJETOS
-
-//document.getElementById('CrearTarea').addEventListener('click', crearTarea, false);
 
 
 
@@ -326,11 +321,6 @@ function pantallaInicio() {
 document.getElementById('eventGenerarCodigoTarea').addEventListener('click', generarCodigoTarea, false);
 
 
-function paginaActual(){
-
-//document.querySelector(".nav navbar-nav");
-
-}
 
 
 
@@ -725,12 +715,6 @@ function modificaProgramador() {
     ocultarCampos("formuModificaProgramador");
 }
 
-function crearTarea() {
-
-    alert(document.querySelector("#fechaini").value);
-
-}
-
 
 
 
@@ -747,7 +731,7 @@ var oExRegDni = /^[0-9]{8}[A-Z]{1}$/;
 var oExRegFechas = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;  //Fechas: 2013-12-14
 var oExRegPrecio = /^([0-9]{1,10}[\,\.][0-9]{1,2})$/;  //Precio con dos decimales obligatorios.
 var oExRegAsunto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,60}$/;  // Asunto
-var oExRegNombreProyecto = /^[a-záéíóúñA-ZÑÁÉÍÓÚ\s]{1,20}$/;  // Nombre proyecto
+
 
 function validaNombre(cadena) {
     var resultado = false;
@@ -757,13 +741,7 @@ function validaNombre(cadena) {
     return resultado;
 }
 
-function validaNombreProyecto(cadena) {
-    var resultado = false;
-    if (cadena != "") {
-        resultado = oExRegNombreProyecto.test(cadena);
-    }
-    return resultado;
-}
+
 
 function validaTelefono(cadena) {
     var resultado = false;
@@ -947,8 +925,6 @@ function validaFormNuevoAdmin() {
         //Mostrar errores
         toastr.error(sErrores);
     } else {
-        //Aqui estan los datos correctos, los guardamos
-        //Comprobar si existe el trabajador
 
         var sMensaje = "";
 
@@ -1075,9 +1051,7 @@ function validaFormModAdmin() {
         //Mostrar errores
         toastr.error(sErrores);
     } else {
-        //Aqui estan los datos correctos, los guardamos
-        //El trabajador ya existe en el sistema, no hace falta comprobarlo.
-        //Coger el trabajador existente y cambiar los valores de sus atributos por los actuales.
+
         var select = document.querySelector('#selectAdmin_ModAdm');
         var codAdminSeleccionado = select.value;
         var oAdmin = oConsultoria.dameAdministrador(codAdminSeleccionado);
@@ -1217,8 +1191,7 @@ function validaFormNuevoCliente() {
         //Mostrar errores
         toastr.error(sErrores);
     } else {
-        //Aqui estan los datos correctos, los guardamos
-        //Comprobar si existe el cliente
+
 
         var sMensaje = "";
 
@@ -1232,11 +1205,7 @@ function validaFormNuevoCliente() {
             sMensaje = "Imposible añadir. El Cliente que intenta añadir al sistema ya estaba registrado";
             toastr.error(sMensaje);
         }
-
-
     }
-
-
 }
 
 
@@ -1247,7 +1216,7 @@ document.querySelector('#guardar_ModCli').addEventListener('click', validaFormMo
 
 document.querySelector('#limpiar_ModCli').addEventListener('click', modificaCliente, false);
 
-function validaFormModCliente(oEvento) {
+function validaFormModCliente() {
 
     var select = document.getElementById('selectCliente_ModCli');
 
@@ -1586,9 +1555,7 @@ function validaFormModContrato() {
         toastr.error(sErrores);
     } else {
         //Aqui estan los datos correctos, los guardamos
-
         //Comprobar que fecha fin es posterior a fecha inicio
-
 
         var fI = new Date(fechaInicio);
         var fF = new Date(fechaFin);
@@ -1704,7 +1671,6 @@ function validaFormNuevaIncidencia(oEvento) {
         //Aqui estan los datos correctos, los guardamos
         //Recoger datos del formulario
 
-
         var codInc = generaCodigos();
         var estado = "Abierta";
         var elementos = document.getElementById('formuNuevaIncidencia').elements;
@@ -1785,11 +1751,7 @@ function validaFormModIncidencia(oEvento) {
                 }
             }
         }
-
-
     }
-
-
 }
 
 
@@ -1945,17 +1907,17 @@ function validaFormNuevoProgramador() {
 
             var oProgramador = new Programador(nombre, dni, apellido, tlf, direccion,analista.dniTrabajador);
             sMensaje = "¡ Programador añadido con éxito !";
-                oConsultoria.anadeProgramador(oProgramador);
+            oConsultoria.anadeProgramador(oProgramador);
+
+            analista.programadores.push(oProgramador);
+
             toastr.success(sMensaje);
             nuevoProgramador();
         } else {
             sMensaje = "Imposible añadir. El trabajador que intenta añadir al sistema ya estaba registrado";
             toastr.error(sMensaje);
         }
-
     }
-
-
 }
 
 
@@ -2110,11 +2072,7 @@ function validaFormModificaProgramador() {
         //Marcar error
         document.querySelector("#selectProgram_Mod").className = "form-control input-large error";
 
-
-
     }
-
-
 
     if (bValido == false) {
 
@@ -2134,10 +2092,7 @@ function validaFormModificaProgramador() {
             toastr.success(sMensaje);
             modificaProgramador();
 
-
     }
-
-
 }
 
 
@@ -2278,19 +2233,16 @@ function validaFormNuevoAnalista() {
         document.querySelector('#selectPrograAnalista').className = "form-control input-large";  //Pone esta class a la etiqueta.
 
 
-       var arrayDeDNI = document.getElementById('selectPrograAnalista').options;
+        var arrayDeDNI = document.getElementById('selectPrograAnalista').options;
         var arrayProgElegidos=[];
         var contOption=0;
-for (var i=0;i<arrayDeDNI.length;i++)
+        for (var i=0;i<arrayDeDNI.length;i++)
 
-{
-    if(arrayDeDNI[i].selected)
-    arrayProgElegidos[contOption++]=oConsultoria.dameProgramador(arrayDeDNI[i].value);
+        {
+            if(arrayDeDNI[i].selected)
+                arrayProgElegidos[contOption++]=oConsultoria.dameProgramador(arrayDeDNI[i].value);
 
-}
-
-
-        //var programadores = oConsultoria.dameProgramador(dniAnalista);
+        }
 
 
     }
@@ -2473,8 +2425,6 @@ function validaFormModificaAnalista() {
                     arrayDeProgramadoresDeAnalistasElegidos[contT++] = oConsultoria.dameProgramador(arrayDeProgramadoresDeAnalistas[t].value);
 
             }
-
-
         }
 
     }else {
@@ -2494,8 +2444,6 @@ function validaFormModificaAnalista() {
     if (bValido == false) {
         toastr.error(sErrores);
     } else {
-
-
         //Aqui estan los datos correctos, los guardamos
         //El cliente ya existe en el sistema, no hace falta comprobarlo.
         // Coger el objeto existente y cambiar los valores de sus atributos por los actuales.
@@ -2508,16 +2456,12 @@ function validaFormModificaAnalista() {
         oObjeto.apellidosAnalista = apellido;
         oObjeto.telefonoAnalista = tlf;
         oObjeto.direccionAnalista = direccion;
-       oObjeto.programadores = arrayDeProgramadoresDeAnalistasElegidos;
-
-
+        oObjeto.programadores = arrayDeProgramadoresDeAnalistasElegidos;
 
         toastr.success("Analista modificado con éxito");
 
         modificaAnalista();
     }
-
-
 }
 
 
@@ -2581,10 +2525,7 @@ function validaFormNuevoProyecto() {
         for (var t = 0; t < arrayDeTareasProyecto.length; t++) {
             if (arrayDeTareasProyecto[t].selected)
                 arrayDeTareasElegidas[contT++] = oConsultoria.dameTarea(arrayDeTareasProyecto[t].value);
-
         }
-
-
     }
 
 
@@ -2704,8 +2645,6 @@ var contT=0;
                 arrayDeTareasElegidas[contT++] = oConsultoria.dameTarea(arrayDeTareasProyecto[t].value);
 
         }
-
-
     }
 
 
@@ -3931,8 +3870,7 @@ function listaAnalistas() {
 
     ocultarFormularios();
     document.getElementById('tablas').style.display = 'block';
-    var array = oConsultoria.listarAnalistas();
-    //dibujarTabla(array[0], array[1]);
+
     var arrayAnalistas = oConsultoria.dameListaAnalistas();
 
     var oCabecera = ["Nombre", "DNI", "Apellidos", "Telefono", "Direccion", "Analista"];
@@ -4071,9 +4009,6 @@ function pintaTabla(titulo, oCabecera, array) {
     //se crea la tabla en cuestion
     var oTabla = document.createElement("table");
     oTabla.setAttribute("class", "table table-responsive table-bordered table-hover");
-  /*  oTabla.setAttribute("class","");
-    oTabla.setAttribute("class","");
-    oTabla.setAttribute("class","");*/
     oTabla.setAttribute("id", "TablaCreada");
 
     // CABECERA
@@ -4215,8 +4150,6 @@ function dibujarTabla(titulo, oCabecera, oInfo){
     var oTBody = oTabla.createTBody();
 
     var posicion = document.querySelector("#tablas");
-    // oTabla.createCaption();
-
 
     for (var j = 0;j<oInfo.length;j++) {
         oFila = oTBody.insertRow(-1);

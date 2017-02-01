@@ -1,8 +1,5 @@
 //OBJETO PRINCIPAL -- CONSULTORIA
 
-//Se trata de mantener la información recogida en este objeto, de manera que se pueda acceder
-//desde el a todos los objetos (como en la biblioteca)
-
 function Consultoria() {
 
     //Cristian
@@ -125,13 +122,6 @@ function Trabajador(sNombreTrabajador, iDniTrabajador, sApellidosTrabajador, iTe
     this.telefonoTrabajador = iTelefonoTrabajador;
     this.direccionTrabajador = sDireccionTrabajador;
 }
-
-// Metodos Trabajador
-// ******************
-
-Consultoria.prototype.anadeTrabajador = function (oTrabajador) {
-    this.trabajadores.push(oTrabajador);
-};
 
 
 //---------------------------------------------------------
